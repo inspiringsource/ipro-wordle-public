@@ -5,7 +5,7 @@ A Wordle game in Java as part of Individuelles Softwareprojekt 25HS 1Ia (ipro)
 ```markdown
 | Nachname  | Vorname | Projektname | Betreuung           |
 |-----------|---------|-------------|---------------------|
-| B. | A. | Wordle      | A. A. |
+| B.        | A.      | Wordle      | A. A.               |
 ```
 
 ## Spielregeln und Konventionen
