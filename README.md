@@ -42,8 +42,8 @@ We will create a helper java code to prepare the words.
 Requirements: 
    - 5 characters words only
    - Inlcude city names (like AARAU, BASEL, BRUGG)
-   - Letters (A-Z) we also to include Umlaute (Ä, Ö, Ü)
-We can loop through the list of words and create a new list with filtered {5} characters only
+   - Letters (A-Z) we also should include Umlaute (Ä, Ö, Ü)
+We can loop through the list of words and create a new list with filtered {5} characters only words we also should convert to uppercase.
 
 5. Compare characters:
    - Correct letter, correct position → G (Green)
