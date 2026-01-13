@@ -1,36 +1,43 @@
+// https://stackoverflow.com/questions/22728961/how-to-read-the-first-line-of-a-text-file-in-java-and-print-it-out
 package data;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Locale;
 
-// https://stackoverflow.com/questions/22728961/how-to-read-the-first-line-of-a-text-file-in-java-and-print-it-out
 public class Helper {
 
     public static void main(String[] args) {
-        String inputFile = "data/words";
+        Path inputFile = Path.of("data/words");
+        Path outputFile = Path.of("data/5_letter_words.txt");
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(inputFile))) {
-            // print the number of lines
-            // int lineCount = 0;
-            
-            // while (reader.readLine() != null) {
-            //     lineCount++;
-            // }
-            // System.out.println("Number of lines: " + lineCount); // 685789
+        try (BufferedReader reader = Files.newBufferedReader(inputFile, StandardCharsets.UTF_8);
+             BufferedWriter writer = Files.newBufferedWriter(outputFile, StandardCharsets.UTF_8)) {
 
-            for (int i = 0; i < 685789; i++) {
-                String line = reader.readLine();
-                if (line == null) {
-                    break;
+            String line;
+            while ((line = reader.readLine()) != null) {
+                line = line.trim();
+                if (line.isEmpty()) continue;
+
+                // erst normalisieren
+                String upper = line.toUpperCase(Locale.ROOT);
+
+                // optional: ß ausschliessen (weil es zu SS wird)
+                if (upper.contains("ß") || upper.contains("ẞ")) continue;
+
+                // dann erst die 5-Buchstaben-Regel anwenden
+                if (upper.length() == 5) {
+                    writer.write(upper);
+                    writer.newLine();
                 }
-                if (line.length() == 5)
-                    System.out.println(line);
             }
 
         } catch (IOException e) {
             System.out.println("Error: " + e.getMessage());
         }
     }
-
 }
