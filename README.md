@@ -5,7 +5,7 @@ A Wordle game in Java as part of Individuelles Softwareprojekt 25HS 1Ia (ipro)
 ```markdown
 | Nachname  | Vorname | Projektname | Betreuung           |
 |-----------|---------|-------------|---------------------|
-| B.        | A.      | Wordle      | A. A.               |
+| B.        | Avi     | Wordle      | A. A.               |
 ```
 
 ## Spielregeln und Konventionen
@@ -84,3 +84,17 @@ Resources used to understand the problem
   https://inside.java/2022/02/22/jepcafe10/
 
 *Whilst the video is based on Java 17 I still use this as a practice.
+
+## Resources
+
+Woerterliste (Quelle)
+
+Fuer die gueltigen deutschen Woerter verwende ich die Woerterliste aus dem Repository **enz/german-wordlist** (Lizenz: **CC0-1.0**).
+
+Quelle:
+- https://github.com/enz/german-wordlist
+- Datei: `words` (UTF-8, ein Wort pro Zeile)
+
+Verwendung im Projekt:
+- Die Rohdatei `words` wird mit `data/Helper.java` gefiltert (genau 5 Buchstaben) und in Grossbuchstaben normalisiert.
+- Das Ergebnis wird als eigene Liste fuer das Wordle-Woerterbuch genutzt.
