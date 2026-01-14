@@ -1,6 +1,6 @@
 # ipro-Wordle
 
-A Wordle game in Java as part of Individuelles Softwareprojekt 25HS 1Ia (ipro)
+Wordle game in Java Individuelles Softwareprojekt (ipro)
 
 ```markdown
 | Nachname  | Vorname | Projektname | Betreuung           |

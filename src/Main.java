@@ -20,6 +20,7 @@ public class Main {
         // System.out.println(WOERTERBUCH[2]); // output BRUGG
         System.out.print("erratenes Wort: ");
         String erratenesWort = scanner.nextLine();
+        erratenesWort = erratenesWort.toUpperCase();
         System.out.println("input/output: " + erratenesWort);
 
 
