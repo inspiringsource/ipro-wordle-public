@@ -42,7 +42,8 @@ We will create a helper java code to prepare the words.
 Requirements: 
    - 5 characters words only
    - Inlcude city names (like AARAU, BASEL, BRUGG)
-   - Letters (A-Z) we also should include Umlaute (Ä, Ö, Ü)
+   - Letters (A-Z) we also should include Umlaute (Ä, Ö, Ü) 
+   https://stackoverflow.com/a/71883843 und feedback Marco
 We can loop through the list of words and create a new list with filtered {5} characters only words we also should convert to uppercase.
 
 5. Compare characters:
@@ -60,6 +61,17 @@ https://intellij-support.jetbrains.com/hc/en-us/community/posts/360006477540-Is-
    - Request input again
 
 8. Check for win or termination: I think a while loop here makes most sense...
+
+Provisional screenshot of the game locic: 
+
+<img src="logic_draft.jpg" alt="Game Logic Draft" width="50%"/>
+
+Based on the logic above we have the following variables:
+- String[] WOERTERBUCH: Array of valid words
+- String erratenesWort: User input word
+- int versuchen: Attempt counter
+- boolean gameStart: Game loop control
+- String feedback: Feedback string for the user with G, Y, B
 
 ## Random Wort aus dem Woerterbuch (Idee fuer spaeter)
 

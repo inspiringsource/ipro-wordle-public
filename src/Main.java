@@ -1,29 +1,73 @@
-import java.util.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.List;
 import java.util.Scanner;
-/*
-    Wenn richtiger Buchstabe und richtige Stelle    G (Grün)
-    Wenn richtiger Buchstabe und  falsch Stelle     Y (Gelb)
-    Wenn Buchstabe nicht enthalten                  B (Grau)
-
-    Ideen für 5 Buchstaben Wörter: AARAU, BASEL, BRUGG, DATEI, MODUL, LOGIK
- */
-
 
 public class Main {
 
-    public static void main(String[] args) {
+    private static final String[] WOERTERBUCH = {"AARAU", "BASEL", "BRUGG", "DATEI", "MODUL", "LOGIK"};
+    private static final int MAX_ATTEMPTS = 6;
+
+    public static void main(String[] args) throws Exception {
+        List<String> woerter = Files.readAllLines(Path.of("data/5_letter_words.txt"));
+
+        String zielwort = WOERTERBUCH[(int) (Math.random() * WOERTERBUCH.length)];
+
         Scanner scanner = new Scanner(System.in);
-        String[] WOERTERBUCH = {"AARAU", "BASEL", "BRUGG", "DATEI", "MODUL", "LOGIK"};
-        
-        
+        int versuche = 0;
 
-        // System.out.println(WOERTERBUCH[2]); // output BRUGG
-        System.out.print("erratenes Wort: ");
-        String erratenesWort = scanner.nextLine();
-        erratenesWort = erratenesWort.toUpperCase();
-        System.out.println("input/output: " + erratenesWort);
+        while (versuche < MAX_ATTEMPTS) {
+            System.out.print("Versuch " + (versuche + 1) + ": ");
+            String guess = scanner.nextLine().trim().toUpperCase();
 
 
+            if (!woerter.contains(guess)) {
+                System.out.println("Kein gueltiges deutsches Wort oder Wort zu kurz.");
+                continue;
+            }
 
+            versuche++;
+
+            if (guess.equals(zielwort)) {
+                System.out.println("Feedback: GGGGG");
+                System.out.println("Gewonnen!");
+                scanner.close();
+                return;
+            }
+            String feedback = "";
+
+            for (int i = 0; i < 5; i++) {
+                /*
+                    Wenn richtiger Buchstabe und richtige Stelle    G (Grün)
+                    Wenn richtiger Buchstabe und  falsch Stelle     Y (Gelb)
+                    Wenn Buchstabe nicht enthalten                  B (Grau)
+
+                    Ideen für 5 Buchstaben Wörter: AARAU, BASEL, BRUGG, DATEI, MODUL, LOGIK
+                */
+                if (guess.charAt(i) == zielwort.charAt(i)) {
+                    feedback += "G";
+                } else {
+                    boolean found = false;
+
+                    for (int j = 0; j < 5; j++) {
+                        if (guess.charAt(i) == zielwort.charAt(j)) {
+                            found = true;
+                        }
+                    }
+
+                    if (found) {
+                        feedback += "Y";
+                    } else {
+                        feedback += "B";
+                    }
+                }
+            }
+
+            System.out.println("Feedback:  " + feedback);
+        }
+
+        System.out.println("Game Over! Zielwort war: " + zielwort);
+        scanner.close();
     }
+
 }
