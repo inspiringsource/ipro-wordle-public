@@ -97,6 +97,23 @@ Resources used to understand the problem
 
 *Whilst the video is based on Java 17 I still use this as a practice.
 
+
+
+## Next Steps (Web Version – Planung)
+
+As the console version of the game logic is now working, the next step is to explore a simple web-based version of the Wordle game.
+
+I plan to evaluate Javalin as a lightweight Java backend framework. The idea is to reuse the existing game logic in Java and connect it to a web interface using HTML, CSS and JavaScript.
+
+Javalin seems suitable because it allows handling HTML forms and HTTP requests with minimal setup, which fits well for a small prototype.
+
+### Reference:
+	•	Javalin HTML Forms Tutorial
+https://javalin.io/tutorials/html-forms-example
+
+Goal is to first understand how user input from a web form can be sent to the Java backend and processed using the existing Wordle logic.
+
+
 ## Resources
 
 Woerterliste (Quelle)
