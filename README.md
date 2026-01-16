@@ -1,140 +1,181 @@
 # ipro-Wordle
 
-Wordle game in Java Individuelles Softwareprojekt (ipro)
+Wordle Game in Java
+Individuelles Softwareprojekt (ipro)
 
-```markdown
-| Nachname  | Vorname | Projektname | Betreuung           |
-|-----------|---------|-------------|---------------------|
-| B.        | Avi     | Wordle      | A. A.               |
-```
+| Nachname | Vorname | Projektname | Betreuung |
+|----------|---------|-------------|-----------|
+| B.       | Avi     | Wordle      | A. A.     |
 
-## Spielregeln und Konventionen
+⸻
 
-### Buchstaben-Feedback
+1. Project Overview
 
-- Richtiger Buchstabe an richtiger Stelle: **G** (Gruen)
-- Richtiger Buchstabe an falscher Stelle: **Y** (Gelb)
-- Buchstabe kommt nicht im Wort vor: **B** (Grau)
+This project implements a simplified Wordle-style game in Java as part of the Individuelles Softwareprojekt (ipro).
 
-### Beispiel-Woerterbuch (5 Buchstaben)
+The project follows an incremental approach:
+	1.	implement and validate the complete game logic as a console application
+	2.	reuse the existing logic in a simple web application using Javalin, HTML, CSS, and JavaScript
 
-Ideen für 5 Buchstaben Wörter: AARAU, BASEL, BRUGG, DATEI, MODUL, LOGIK
+The main focus is on:
+	•	clear and correct game logic
+	•	input validation
+	•	incremental development
+	•	separation of logic and presentation
 
-### Logik (English)
+Advanced features such as multiplayer are intentionally out of scope.
 
-1. Define a dictionary of valid 5 letter words
+⸻
 
-2. Read user input
+2. Game Rules & Conventions
 
-3. Check if input is correct and valid:
-   - Exactly 5 characters and real word
-   - Letters A–Z only (using Regex: https://stackoverflow.com/a/11949550 and https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html)
-   https://www.geeksforgeeks.org/java/java-user-input-scanner-class/
-      - `matches("[A-Z]{5}")` uses the built in feature matches
-   - If invalid, request input again
+2.1 Letter Feedback
 
-4. Check input (word) against the dictionary
-   - If the word is valid, compare char
-https://github.com/enz/german-wordlist 
-This repo provides German words
+Symbol	Meaning
+G	Correct letter in the correct position
+Y	Correct letter in the wrong position
+B	Letter not contained in the target word
 
-We will create a helper java code to prepare the words.
-Requirements: 
-   - 5 characters words only
-   - Inlcude city names (like AARAU, BASEL, BRUGG)
-   - ~~Letters (A-Z) should include Umlaute (Ä, Ö, Ü)~~ [ :warning: This is not needed since i check the words from the `5_letter_words.txt` directly]
-   https://stackoverflow.com/a/71883843 and feedback from Marco.
-We can loop through the list of words and create a new list with filtered {5} characters only words we also should convert to uppercase.
+2.2 Example Dictionary (5-letter words)
 
-5. Compare characters:
-   - Correct letter, correct position → G (Green)
-   - Correct letter, wrong position → Y   (Yellow)
-   - Letter not contained → B             (Black [we use Grey])
+Examples used during development:
 
-can we output different colors in terminal?
-https://intellij-support.jetbrains.com/hc/en-us/community/posts/360006477540-Is-there-any-way-that-i-can-change-the-color-of-the-text-output-in-the-console-in-the-program
+AARAU, BASEL, BRUGG, DATEI, MODUL, LOGIK
 
-:warning: we will not use this feature since the final app is web based and colors can be added with CSS...
 
-6. Output feedback per character
+⸻
 
-7. Increment attempt counter
-   - 6 attempts maximum
-   - Request input again
+3. Game Logic (Conceptual Overview)
 
-8. Check for win or termination: I think a while loop here makes most sense...
+The Wordle game logic follows these steps:
+	1.	Define a dictionary containing valid 5-letter German words
+	2.	Read user input
+	3.	Validate input:
+	•	exactly 5 characters
+	•	word must exist in the dictionary (5_letter_words.txt)
+	4.	Compare the input word with the target word
+	5.	Generate feedback per character (G, Y, B)
+	6.	Output feedback
+	7.	Increase the attempt counter
+	8.	End the game on success or after 6 attempts
 
-Provisional screenshot of the game locic: 
+Maximum number of attempts: 6
 
-<img src="myImages/logic_draft.jpg" alt="Game Logic Draft" width="50%"/>
+⸻
 
-Based on the logic above we have the following variables:
+4. Diagrams & Screenshots
 
-- String[] WOERTERBUCH: Array of valid words
-- String erratenesWort: User input word
-- int versuchen: Attempt counter
-- boolean gameStart: Game loop control
-- String feedback: Feedback string for the user with G, Y, B
+4.1 Game Logic Draft (Console Version)
 
-## Random Wort aus dem Woerterbuch (Idee fuer spaeter)
+The following diagram illustrates the control flow of the console-based
+Wordle implementation, including input validation, feedback generation,
+and termination conditions.
 
-Referenz (Stack Overflow):  
+<img src="myImages/logic_draft.jpg" alt="Game Logic Draft" width="60%" />
+
+
+4.2 Web Application Architecture (Planned)
+
+This diagram shows the planned interaction between the web frontend
+(HTML, CSS, JavaScript) and the Java backend implemented using Javalin.
+
+<img src="myImages/web_app_logic.jpg" alt="Web App Logic Draft" width="60%" />
+
+
+
+⸻
+
+5. Core Variables
+
+The following variables are used in the game logic:
+	•	String[] WOERTERBUCH – list of valid words
+	•	String erratenesWort – user input word
+	•	int versuche – attempt counter
+	•	String feedback – feedback string (G, Y, B)
+
+⸻
+
+6. Random Word Selection
+
+A random target word is selected from the dictionary:
+
+String zufallsWort =
+    WOERTERBUCH[(int)(Math.random() * WOERTERBUCH.length)];
+
+Reference:
 https://stackoverflow.com/a/7923141
 
-Beispiel:
+⸻
 
-```java
-String zufallsWort = WOERTERBUCH[(int)(Math.random() * WOERTERBUCH.length)];
+7. Console vs Web Version
+
+7.1 Console Version
+	•	Uses Scanner for user input
+	•	Outputs feedback as characters (G, Y, B)
+	•	Focuses exclusively on correct game logic
+
+7.2 Web Version (Planned / In Progress)
+	•	Java backend implemented with Javalin
+	•	Frontend using HTML, CSS, JavaScript
+	•	Visual feedback (green/yellow/grey) handled via CSS
+	•	Game logic reused from the console version
+
+⸻
+
+8. Project Structure (Web Version)
+
+```tree
+src/
+ ├─ main/
+ │  ├─ java/
+ │  │  └─ app/
+ │  │     └─ Main.java        (Game logic)
+ │  │     └─ WebApp.java      (Javalin server setup)
+ │  └─ resources/
+ │     ├─ public/             (HTML, CSS, JS)
+ │     └─ data/
+ │        └─ 5_letter_words.txt
+pom.xml
 ```
 
-## Learning Resources & References
+⸻
 
-Resources used to understand the problem
+9. Word List Source
 
-- **Build a Wordle Clone in Java**  
-  https://medium.com/strategio/build-a-wordle-clone-in-java-c7b7b924fb8d
+The list of valid German words is based on:
 
-- **Leverage Java 17 New Features to Create Your Wordle Checker – JEP Café #10**  
-  Video with José Paumard (February 22, 2022)  
-  https://inside.java/2022/02/22/jepcafe10/
+enz/german-wordlist
+License: CC0-1.0
 
-*Whilst the video is based on Java 17 I still use this as a practice.
+Source:
+	•	https://github.com/enz/german-wordlist
+	•	File: words (UTF-8, one word per line)
 
+Usage in this project:
+	•	Filter words with exactly 5 letters
+	•	Convert all words to uppercase
+	•	Store the result in 5_letter_words.txt
 
+⸻
 
-## Next Steps (Web Version – Planung)
+10. Learning Resources & References
+	•	Build a Wordle Clone in Java
+https://medium.com/strategio/build-a-wordle-clone-in-java-c7b7b924fb8d
+	•	Leverage Java 17 New Features to Create Your Wordle Checker – JEP Café #10
+https://inside.java/2022/02/22/jepcafe10/
 
-As the console version of the game logic is now working, the next step is to explore a simple web-based version of the Wordle game.
+Note:
+Although the video uses Java 17 features, it was mainly used for conceptual understanding.
 
-I plan to evaluate Javalin as a lightweight Java backend framework. The idea is to reuse the existing game logic in Java and connect it to a web interface using HTML, CSS and JavaScript.
+⸻
 
-Javalin seems suitable because it allows handling HTML forms and HTTP requests with minimal setup, which fits well for a small prototype.
+11. Project Goal
 
-This will mean that the repo structure will change to include: 
+The goal of this project is to demonstrate:
+	•	understanding of basic Java programming
+	•	incremental software development
+	•	clean and maintainable code
+	•	transition from a console application to a simple web application
 
-- `src/main/java/app/Main.java` for Java backend code (Javalin server and game logic)
-- `src/main/resources` for static files (HTML, CSS, JS)
-- `pom.xml` for Maven dependencies (including Javalin)
-
-Marco B. help me with the initial setup of Javalin directory structure and correctly adjusting Maven and the pom.xml. I use the official Javalin documentation to guide me through the process.
-
-<img src="myImages/web_app_logic.jpg" alt="Web app Logic Draft" width="50%"/>
-
-## Reference:
-
-	•	Javalin HTML Forms Tutorial
-https://javalin.io/tutorials/html-forms-example
-
-Goal is to first understand how user input from a web form can be sent to the Java backend and processed using the existing Wordle logic.
-
-Woerterliste (Quelle)
-
-Fuer die gueltigen deutschen Woerter verwende ich die Woerterliste aus dem Repository **enz/german-wordlist** (Lizenz: **CC0-1.0**).
-
-Quelle:
-- https://github.com/enz/german-wordlist
-- Datei: `words` (UTF-8, ein Wort pro Zeile)
-
-Verwendung im Projekt:
-- Die Rohdatei `words` wird mit `data/Helper.java` gefiltert (genau 5 Buchstaben) und in Grossbuchstaben normalisiert.
-- Das Ergebnis wird als eigene Liste fuer das Wordle-Woerterbuch genutzt.
+The project scope is intentionally limited to ensure reliability and
+clarity within a pass/fail evaluation context.
