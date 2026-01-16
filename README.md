@@ -117,6 +117,8 @@ This will mean that the repo structure will change to include:
 
 Marco B. help me with the initial setup of Javalin directory structure and correctly adjusting Maven and the pom.xml. I use the official Javalin documentation to guide me through the process.
 
+<img src="web_app_logic.jpg" alt="Web app Logic Draft" width="50%"/>
+
 ## Reference:
 
 	•	Javalin HTML Forms Tutorial
