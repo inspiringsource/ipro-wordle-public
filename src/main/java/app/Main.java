@@ -1,3 +1,4 @@
+package app;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
@@ -9,7 +10,10 @@ public class Main {
     private static final int MAX_ATTEMPTS = 6;
 
     public static void main(String[] args) throws Exception {
-        List<String> woerter = Files.readAllLines(Path.of("data/5_letter_words.txt"));
+        // Updated to read from resources
+        java.net.URL resource = Main.class.getResource("/data/5_letter_words.txt");
+        if (resource == null) throw new java.io.FileNotFoundException("File not found: data/5_letter_words.txt");
+        List<String> woerter = Files.readAllLines(Path.of(resource.toURI()));
 
         String zielwort = WOERTERBUCH[(int) (Math.random() * WOERTERBUCH.length)];
 

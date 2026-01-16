@@ -42,8 +42,8 @@ We will create a helper java code to prepare the words.
 Requirements: 
    - 5 characters words only
    - Inlcude city names (like AARAU, BASEL, BRUGG)
-   - Letters (A-Z) we also should include Umlaute (Ä, Ö, Ü) 
-   https://stackoverflow.com/a/71883843 und feedback Marco
+   - ~~Letters (A-Z) should include Umlaute (Ä, Ö, Ü)~~ [:warning: This is not needed since i check the words from the `5_letter_words.txt` directly]
+   https://stackoverflow.com/a/71883843 and feedback from Marco.
 We can loop through the list of words and create a new list with filtered {5} characters only words we also should convert to uppercase.
 
 5. Compare characters:
@@ -53,6 +53,8 @@ We can loop through the list of words and create a new list with filtered {5} ch
 
 can we output different colors in terminal?
 https://intellij-support.jetbrains.com/hc/en-us/community/posts/360006477540-Is-there-any-way-that-i-can-change-the-color-of-the-text-output-in-the-console-in-the-program
+
+:warning: we will not use this feature since the final app is web based and colors can be added with CSS...
 
 6. Output feedback per character
 
@@ -107,14 +109,20 @@ I plan to evaluate Javalin as a lightweight Java backend framework. The idea is 
 
 Javalin seems suitable because it allows handling HTML forms and HTTP requests with minimal setup, which fits well for a small prototype.
 
-### Reference:
+This will mean that the repo structure will change to include: 
+
+- `src/main/java/app/Main.java` for Java backend code (Javalin server and game logic)
+- `src/main/resources` for static files (HTML, CSS, JS)
+- `pom.xml` for Maven dependencies (including Javalin)
+
+Marco B. help me with the initial setup of Javalin directory structure and correctly adjusting Maven and the pom.xml. I use the official Javalin documentation to guide me through the process.
+
+## Reference:
+
 	•	Javalin HTML Forms Tutorial
 https://javalin.io/tutorials/html-forms-example
 
 Goal is to first understand how user input from a web form can be sent to the Java backend and processed using the existing Wordle logic.
-
-
-## Resources
 
 Woerterliste (Quelle)
 
