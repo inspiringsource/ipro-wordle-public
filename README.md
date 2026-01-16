@@ -42,7 +42,7 @@ We will create a helper java code to prepare the words.
 Requirements: 
    - 5 characters words only
    - Inlcude city names (like AARAU, BASEL, BRUGG)
-   - ~~Letters (A-Z) should include Umlaute (Ä, Ö, Ü)~~ [:warning: This is not needed since i check the words from the `5_letter_words.txt` directly]
+   - ~~Letters (A-Z) should include Umlaute (Ä, Ö, Ü)~~ [ :warning: This is not needed since i check the words from the `5_letter_words.txt` directly]
    https://stackoverflow.com/a/71883843 and feedback from Marco.
 We can loop through the list of words and create a new list with filtered {5} characters only words we also should convert to uppercase.
 
@@ -66,9 +66,10 @@ https://intellij-support.jetbrains.com/hc/en-us/community/posts/360006477540-Is-
 
 Provisional screenshot of the game locic: 
 
-<img src="logic_draft.jpg" alt="Game Logic Draft" width="50%"/>
+<img src="myImages/logic_draft.jpg" alt="Game Logic Draft" width="50%"/>
 
 Based on the logic above we have the following variables:
+
 - String[] WOERTERBUCH: Array of valid words
 - String erratenesWort: User input word
 - int versuchen: Attempt counter
@@ -117,7 +118,7 @@ This will mean that the repo structure will change to include:
 
 Marco B. help me with the initial setup of Javalin directory structure and correctly adjusting Maven and the pom.xml. I use the official Javalin documentation to guide me through the process.
 
-<img src="web_app_logic.jpg" alt="Web app Logic Draft" width="50%"/>
+<img src="myImages/web_app_logic.jpg" alt="Web app Logic Draft" width="50%"/>
 
 ## Reference:
 
