@@ -1,4 +1,5 @@
 package app;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
@@ -6,13 +7,15 @@ import java.util.Scanner;
 
 public class Main {
 
-    private static final String[] WOERTERBUCH = {"AARAU", "BASEL", "BRUGG", "DATEI", "MODUL", "LOGIK"};
+    private static final String[] WOERTERBUCH = { "AARAU", "BASEL", "BRUGG", "DATEI", "MODUL", "LOGIK" };
     private static final int MAX_ATTEMPTS = 6;
 
     public static void main(String[] args) throws Exception {
+        System.out.println("Main game logic loaded");
         // Updated to read from resources
         java.net.URL resource = Main.class.getResource("/data/5_letter_words.txt");
-        if (resource == null) throw new java.io.FileNotFoundException("File not found: data/5_letter_words.txt");
+        if (resource == null)
+            throw new java.io.FileNotFoundException("File not found: data/5_letter_words.txt");
         List<String> woerter = Files.readAllLines(Path.of(resource.toURI()));
 
         String zielwort = WOERTERBUCH[(int) (Math.random() * WOERTERBUCH.length)];
@@ -23,7 +26,6 @@ public class Main {
         while (versuche < MAX_ATTEMPTS) {
             System.out.print("Versuch " + (versuche + 1) + ": ");
             String guess = scanner.nextLine().trim().toUpperCase();
-
 
             if (!woerter.contains(guess)) {
                 System.out.println("Kein gueltiges deutsches Wort oder Wort zu kurz.");
@@ -42,12 +44,12 @@ public class Main {
 
             for (int i = 0; i < 5; i++) {
                 /*
-                    Wenn richtiger Buchstabe und richtige Stelle    G (Grün)
-                    Wenn richtiger Buchstabe und  falsch Stelle     Y (Gelb)
-                    Wenn Buchstabe nicht enthalten                  B (Grau)
-
-                    Ideen für 5 Buchstaben Wörter: AARAU, BASEL, BRUGG, DATEI, MODUL, LOGIK
-                */
+                 * Wenn richtiger Buchstabe und richtige Stelle G (Grün)
+                 * Wenn richtiger Buchstabe und falsch Stelle Y (Gelb)
+                 * Wenn Buchstabe nicht enthalten B (Grau)
+                 * 
+                 * Ideen für 5 Buchstaben Wörter: AARAU, BASEL, BRUGG, DATEI, MODUL, LOGIK
+                 */
                 if (guess.charAt(i) == zielwort.charAt(i)) {
                     feedback += "G";
                 } else {

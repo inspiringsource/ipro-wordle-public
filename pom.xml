@@ -46,7 +46,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>app.Main</mainClass>
+              <mainClass>app.WebApp</mainClass>
             </manifest>
           </archive>
         </configuration>

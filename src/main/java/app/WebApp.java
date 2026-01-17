@@ -1,9 +1,24 @@
-package main.java.app;
+package app;
 
 import io.javalin.Javalin;
 
 public class WebApp {
-        var app = Javalin.create(/*config*/)
-        .get("/", ctx -> ctx.result("Hello World"))
-        .start(7070);
+
+        public static void main(String[] args) {
+                Javalin app = Javalin.create(config -> {
+                        config.staticFiles.add("/public");
+                }).start(7070);
+
+                app.get("/", ctx -> {
+                        var is = WebApp.class.getResourceAsStream("/public/index.html");
+                        if (is == null) {
+                                ctx.status(404).result("Template not found");
+                                return;
+                        }
+                        String html = new String(is.readAllBytes());
+                        html = html.replace("{{MESSAGE}}", "Hello World from backend");
+                        ctx.contentType("text/html");
+                        ctx.result(html);
+                });
+        }
 }
