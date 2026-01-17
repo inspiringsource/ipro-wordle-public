@@ -1,0 +1,480 @@
+{
+    "version": "1.4.0",
+    "project": {
+        "name": "wordle-test",
+        "directory": "/Users/avi/Documents/ipro-wordle-public",
+        "workspaceDir": "/Users/avi/Documents/ipro-wordle-public",
+        "sources": [
+            
+        ],
+        "dependencies": [
+            "wordle"
+        ],
+        "classpath": [
+            "/Users/avi/Documents/ipro-wordle-public/target/test-classes",
+            "/Users/avi/Documents/ipro-wordle-public/target/classes",
+            "/Users/avi/.m2/repository/io/javalin/javalin/6.7.0/javalin-6.7.0.jar",
+            "/Users/avi/.m2/repository/org/slf4j/slf4j-api/2.0.17/slf4j-api-2.0.17.jar",
+            "/Users/avi/.m2/repository/org/eclipse/jetty/jetty-server/11.0.25/jetty-server-11.0.25.jar",
+            "/Users/avi/.m2/repository/org/eclipse/jetty/jetty-http/11.0.25/jetty-http-11.0.25.jar",
+            "/Users/avi/.m2/repository/org/eclipse/jetty/jetty-util/11.0.25/jetty-util-11.0.25.jar",
+            "/Users/avi/.m2/repository/org/eclipse/jetty/jetty-io/11.0.25/jetty-io-11.0.25.jar",
+            "/Users/avi/.m2/repository/org/eclipse/jetty/toolchain/jetty-jakarta-servlet-api/5.0.2/jetty-jakarta-servlet-api-5.0.2.jar",
+            "/Users/avi/.m2/repository/org/eclipse/jetty/websocket/websocket-jetty-server/11.0.25/websocket-jetty-server-11.0.25.jar",
+            "/Users/avi/.m2/repository/org/eclipse/jetty/jetty-servlet/11.0.25/jetty-servlet-11.0.25.jar",
+            "/Users/avi/.m2/repository/org/eclipse/jetty/jetty-security/11.0.25/jetty-security-11.0.25.jar",
+            "/Users/avi/.m2/repository/org/eclipse/jetty/jetty-webapp/11.0.25/jetty-webapp-11.0.25.jar",
+            "/Users/avi/.m2/repository/org/eclipse/jetty/jetty-xml/11.0.25/jetty-xml-11.0.25.jar",
+            "/Users/avi/.m2/repository/org/eclipse/jetty/websocket/websocket-jetty-api/11.0.25/websocket-jetty-api-11.0.25.jar",
+            "/Users/avi/.m2/repository/org/eclipse/jetty/websocket/websocket-jetty-common/11.0.25/websocket-jetty-common-11.0.25.jar",
+            "/Users/avi/.m2/repository/org/eclipse/jetty/websocket/websocket-core-common/11.0.25/websocket-core-common-11.0.25.jar",
+            "/Users/avi/.m2/repository/org/eclipse/jetty/websocket/websocket-servlet/11.0.25/websocket-servlet-11.0.25.jar",
+            "/Users/avi/.m2/repository/org/eclipse/jetty/websocket/websocket-core-server/11.0.25/websocket-core-server-11.0.25.jar",
+            "/Users/avi/.m2/repository/org/jetbrains/kotlin/kotlin-stdlib-jdk8/1.9.25/kotlin-stdlib-jdk8-1.9.25.jar",
+            "/Users/avi/.m2/repository/org/jetbrains/kotlin/kotlin-stdlib/1.9.25/kotlin-stdlib-1.9.25.jar",
+            "/Users/avi/.m2/repository/org/jetbrains/annotations/13.0/annotations-13.0.jar",
+            "/Users/avi/.m2/repository/org/jetbrains/kotlin/kotlin-stdlib-jdk7/1.9.25/kotlin-stdlib-jdk7-1.9.25.jar",
+            "/Users/avi/.m2/repository/org/slf4j/slf4j-simple/2.0.16/slf4j-simple-2.0.16.jar"
+        ],
+        "out": "/Users/avi/Documents/ipro-wordle-public/target",
+        "classesDir": "/Users/avi/Documents/ipro-wordle-public/target/test-classes",
+        "resources": [
+            "/Users/avi/Documents/ipro-wordle-public/src/test/resources"
+        ],
+        "java": {
+            "options": [
+                "-g",
+                "--release",
+                "17",
+                "-encoding",
+                "UTF-8"
+            ]
+        },
+        "test": {
+            "frameworks": [
+                {
+                    "names": [
+                        "com.novocode.junit.JUnitFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "org.scalatest.tools.Framework",
+                        "org.scalatest.tools.ScalaTestFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "org.scalacheck.ScalaCheckFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "org.specs.runner.SpecsFramework",
+                        "org.specs2.runner.Specs2Framework",
+                        "org.specs2.runner.SpecsFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "utest.runner.Framework"
+                    ]
+                },
+                {
+                    "names": [
+                        "munit.Framework"
+                    ]
+                }
+            ],
+            "options": {
+                "excludes": [
+                    
+                ],
+                "arguments": [
+                    {
+                        "args": [
+                            "-v",
+                            "-a"
+                        ],
+                        "framework": {
+                            "names": [
+                                "com.novocode.junit.JUnitFramework"
+                            ]
+                        }
+                    }
+                ]
+            }
+        },
+        "platform": {
+            "name": "jvm",
+            "config": {
+                "home": "/Users/avi/Library/Java/JavaVirtualMachines/openjdk-25/Contents/Home",
+                "options": [
+                    
+                ]
+            },
+            "mainClass": [
+                
+            ]
+        },
+        "resolution": {
+            "modules": [
+                {
+                    "organization": "org.eclipse.jetty.websocket",
+                    "name": "websocket-jetty-api",
+                    "version": "11.0.25",
+                    "artifacts": [
+                        {
+                            "name": "websocket-jetty-api",
+                            "path": "/Users/avi/.m2/repository/org/eclipse/jetty/websocket/websocket-jetty-api/11.0.25/websocket-jetty-api-11.0.25.jar"
+                        },
+                        {
+                            "name": "websocket-jetty-api",
+                            "classifier": "sources",
+                            "path": "/Users/avi/.m2/repository/org/eclipse/jetty/websocket/websocket-jetty-api/11.0.25/websocket-jetty-api-11.0.25-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.jetbrains.kotlin",
+                    "name": "kotlin-stdlib-jdk7",
+                    "version": "1.9.25",
+                    "artifacts": [
+                        {
+                            "name": "kotlin-stdlib-jdk7",
+                            "path": "/Users/avi/.m2/repository/org/jetbrains/kotlin/kotlin-stdlib-jdk7/1.9.25/kotlin-stdlib-jdk7-1.9.25.jar"
+                        },
+                        {
+                            "name": "kotlin-stdlib-jdk7",
+                            "classifier": "sources",
+                            "path": "/Users/avi/.m2/repository/org/jetbrains/kotlin/kotlin-stdlib-jdk7/1.9.25/kotlin-stdlib-jdk7-1.9.25-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.slf4j",
+                    "name": "slf4j-api",
+                    "version": "2.0.17",
+                    "artifacts": [
+                        {
+                            "name": "slf4j-api",
+                            "path": "/Users/avi/.m2/repository/org/slf4j/slf4j-api/2.0.17/slf4j-api-2.0.17.jar"
+                        },
+                        {
+                            "name": "slf4j-api",
+                            "classifier": "sources",
+                            "path": "/Users/avi/.m2/repository/org/slf4j/slf4j-api/2.0.17/slf4j-api-2.0.17-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.eclipse.jetty.websocket",
+                    "name": "websocket-jetty-common",
+                    "version": "11.0.25",
+                    "artifacts": [
+                        {
+                            "name": "websocket-jetty-common",
+                            "path": "/Users/avi/.m2/repository/org/eclipse/jetty/websocket/websocket-jetty-common/11.0.25/websocket-jetty-common-11.0.25.jar"
+                        },
+                        {
+                            "name": "websocket-jetty-common",
+                            "classifier": "sources",
+                            "path": "/Users/avi/.m2/repository/org/eclipse/jetty/websocket/websocket-jetty-common/11.0.25/websocket-jetty-common-11.0.25-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.eclipse.jetty",
+                    "name": "jetty-security",
+                    "version": "11.0.25",
+                    "artifacts": [
+                        {
+                            "name": "jetty-security",
+                            "path": "/Users/avi/.m2/repository/org/eclipse/jetty/jetty-security/11.0.25/jetty-security-11.0.25.jar"
+                        },
+                        {
+                            "name": "jetty-security",
+                            "classifier": "sources",
+                            "path": "/Users/avi/.m2/repository/org/eclipse/jetty/jetty-security/11.0.25/jetty-security-11.0.25-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.eclipse.jetty",
+                    "name": "jetty-http",
+                    "version": "11.0.25",
+                    "artifacts": [
+                        {
+                            "name": "jetty-http",
+                            "path": "/Users/avi/.m2/repository/org/eclipse/jetty/jetty-http/11.0.25/jetty-http-11.0.25.jar"
+                        },
+                        {
+                            "name": "jetty-http",
+                            "classifier": "sources",
+                            "path": "/Users/avi/.m2/repository/org/eclipse/jetty/jetty-http/11.0.25/jetty-http-11.0.25-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.eclipse.jetty.websocket",
+                    "name": "websocket-servlet",
+                    "version": "11.0.25",
+                    "artifacts": [
+                        {
+                            "name": "websocket-servlet",
+                            "path": "/Users/avi/.m2/repository/org/eclipse/jetty/websocket/websocket-servlet/11.0.25/websocket-servlet-11.0.25.jar"
+                        },
+                        {
+                            "name": "websocket-servlet",
+                            "classifier": "sources",
+                            "path": "/Users/avi/.m2/repository/org/eclipse/jetty/websocket/websocket-servlet/11.0.25/websocket-servlet-11.0.25-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "io.javalin",
+                    "name": "javalin",
+                    "version": "6.7.0",
+                    "artifacts": [
+                        {
+                            "name": "javalin",
+                            "path": "/Users/avi/.m2/repository/io/javalin/javalin/6.7.0/javalin-6.7.0.jar"
+                        },
+                        {
+                            "name": "javalin",
+                            "classifier": "sources",
+                            "path": "/Users/avi/.m2/repository/io/javalin/javalin/6.7.0/javalin-6.7.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.eclipse.jetty",
+                    "name": "jetty-xml",
+                    "version": "11.0.25",
+                    "artifacts": [
+                        {
+                            "name": "jetty-xml",
+                            "path": "/Users/avi/.m2/repository/org/eclipse/jetty/jetty-xml/11.0.25/jetty-xml-11.0.25.jar"
+                        },
+                        {
+                            "name": "jetty-xml",
+                            "classifier": "sources",
+                            "path": "/Users/avi/.m2/repository/org/eclipse/jetty/jetty-xml/11.0.25/jetty-xml-11.0.25-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.eclipse.jetty",
+                    "name": "jetty-webapp",
+                    "version": "11.0.25",
+                    "artifacts": [
+                        {
+                            "name": "jetty-webapp",
+                            "path": "/Users/avi/.m2/repository/org/eclipse/jetty/jetty-webapp/11.0.25/jetty-webapp-11.0.25.jar"
+                        },
+                        {
+                            "name": "jetty-webapp",
+                            "classifier": "sources",
+                            "path": "/Users/avi/.m2/repository/org/eclipse/jetty/jetty-webapp/11.0.25/jetty-webapp-11.0.25-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.eclipse.jetty",
+                    "name": "jetty-util",
+                    "version": "11.0.25",
+                    "artifacts": [
+                        {
+                            "name": "jetty-util",
+                            "path": "/Users/avi/.m2/repository/org/eclipse/jetty/jetty-util/11.0.25/jetty-util-11.0.25.jar"
+                        },
+                        {
+                            "name": "jetty-util",
+                            "classifier": "sources",
+                            "path": "/Users/avi/.m2/repository/org/eclipse/jetty/jetty-util/11.0.25/jetty-util-11.0.25-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.slf4j",
+                    "name": "slf4j-simple",
+                    "version": "2.0.16",
+                    "artifacts": [
+                        {
+                            "name": "slf4j-simple",
+                            "path": "/Users/avi/.m2/repository/org/slf4j/slf4j-simple/2.0.16/slf4j-simple-2.0.16.jar"
+                        },
+                        {
+                            "name": "slf4j-simple",
+                            "classifier": "sources",
+                            "path": "/Users/avi/.m2/repository/org/slf4j/slf4j-simple/2.0.16/slf4j-simple-2.0.16-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.eclipse.jetty.websocket",
+                    "name": "websocket-core-common",
+                    "version": "11.0.25",
+                    "artifacts": [
+                        {
+                            "name": "websocket-core-common",
+                            "path": "/Users/avi/.m2/repository/org/eclipse/jetty/websocket/websocket-core-common/11.0.25/websocket-core-common-11.0.25.jar"
+                        },
+                        {
+                            "name": "websocket-core-common",
+                            "classifier": "sources",
+                            "path": "/Users/avi/.m2/repository/org/eclipse/jetty/websocket/websocket-core-common/11.0.25/websocket-core-common-11.0.25-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.eclipse.jetty.websocket",
+                    "name": "websocket-jetty-server",
+                    "version": "11.0.25",
+                    "artifacts": [
+                        {
+                            "name": "websocket-jetty-server",
+                            "path": "/Users/avi/.m2/repository/org/eclipse/jetty/websocket/websocket-jetty-server/11.0.25/websocket-jetty-server-11.0.25.jar"
+                        },
+                        {
+                            "name": "websocket-jetty-server",
+                            "classifier": "sources",
+                            "path": "/Users/avi/.m2/repository/org/eclipse/jetty/websocket/websocket-jetty-server/11.0.25/websocket-jetty-server-11.0.25-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.jetbrains.kotlin",
+                    "name": "kotlin-stdlib",
+                    "version": "1.9.25",
+                    "artifacts": [
+                        {
+                            "name": "kotlin-stdlib",
+                            "path": "/Users/avi/.m2/repository/org/jetbrains/kotlin/kotlin-stdlib/1.9.25/kotlin-stdlib-1.9.25.jar"
+                        },
+                        {
+                            "name": "kotlin-stdlib",
+                            "classifier": "sources",
+                            "path": "/Users/avi/.m2/repository/org/jetbrains/kotlin/kotlin-stdlib/1.9.25/kotlin-stdlib-1.9.25-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.eclipse.jetty.websocket",
+                    "name": "websocket-core-server",
+                    "version": "11.0.25",
+                    "artifacts": [
+                        {
+                            "name": "websocket-core-server",
+                            "path": "/Users/avi/.m2/repository/org/eclipse/jetty/websocket/websocket-core-server/11.0.25/websocket-core-server-11.0.25.jar"
+                        },
+                        {
+                            "name": "websocket-core-server",
+                            "classifier": "sources",
+                            "path": "/Users/avi/.m2/repository/org/eclipse/jetty/websocket/websocket-core-server/11.0.25/websocket-core-server-11.0.25-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.eclipse.jetty",
+                    "name": "jetty-server",
+                    "version": "11.0.25",
+                    "artifacts": [
+                        {
+                            "name": "jetty-server",
+                            "path": "/Users/avi/.m2/repository/org/eclipse/jetty/jetty-server/11.0.25/jetty-server-11.0.25.jar"
+                        },
+                        {
+                            "name": "jetty-server",
+                            "classifier": "sources",
+                            "path": "/Users/avi/.m2/repository/org/eclipse/jetty/jetty-server/11.0.25/jetty-server-11.0.25-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.jetbrains.kotlin",
+                    "name": "kotlin-stdlib-jdk8",
+                    "version": "1.9.25",
+                    "artifacts": [
+                        {
+                            "name": "kotlin-stdlib-jdk8",
+                            "path": "/Users/avi/.m2/repository/org/jetbrains/kotlin/kotlin-stdlib-jdk8/1.9.25/kotlin-stdlib-jdk8-1.9.25.jar"
+                        },
+                        {
+                            "name": "kotlin-stdlib-jdk8",
+                            "classifier": "sources",
+                            "path": "/Users/avi/.m2/repository/org/jetbrains/kotlin/kotlin-stdlib-jdk8/1.9.25/kotlin-stdlib-jdk8-1.9.25-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.eclipse.jetty",
+                    "name": "jetty-servlet",
+                    "version": "11.0.25",
+                    "artifacts": [
+                        {
+                            "name": "jetty-servlet",
+                            "path": "/Users/avi/.m2/repository/org/eclipse/jetty/jetty-servlet/11.0.25/jetty-servlet-11.0.25.jar"
+                        },
+                        {
+                            "name": "jetty-servlet",
+                            "classifier": "sources",
+                            "path": "/Users/avi/.m2/repository/org/eclipse/jetty/jetty-servlet/11.0.25/jetty-servlet-11.0.25-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.jetbrains",
+                    "name": "annotations",
+                    "version": "13.0",
+                    "artifacts": [
+                        {
+                            "name": "annotations",
+                            "path": "/Users/avi/.m2/repository/org/jetbrains/annotations/13.0/annotations-13.0.jar"
+                        },
+                        {
+                            "name": "annotations",
+                            "classifier": "sources",
+                            "path": "/Users/avi/.m2/repository/org/jetbrains/annotations/13.0/annotations-13.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.eclipse.jetty.toolchain",
+                    "name": "jetty-jakarta-servlet-api",
+                    "version": "5.0.2",
+                    "artifacts": [
+                        {
+                            "name": "jetty-jakarta-servlet-api",
+                            "path": "/Users/avi/.m2/repository/org/eclipse/jetty/toolchain/jetty-jakarta-servlet-api/5.0.2/jetty-jakarta-servlet-api-5.0.2.jar"
+                        },
+                        {
+                            "name": "jetty-jakarta-servlet-api",
+                            "classifier": "sources",
+                            "path": "/Users/avi/.m2/repository/org/eclipse/jetty/toolchain/jetty-jakarta-servlet-api/5.0.2/jetty-jakarta-servlet-api-5.0.2-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.eclipse.jetty",
+                    "name": "jetty-io",
+                    "version": "11.0.25",
+                    "artifacts": [
+                        {
+                            "name": "jetty-io",
+                            "path": "/Users/avi/.m2/repository/org/eclipse/jetty/jetty-io/11.0.25/jetty-io-11.0.25.jar"
+                        },
+                        {
+                            "name": "jetty-io",
+                            "classifier": "sources",
+                            "path": "/Users/avi/.m2/repository/org/eclipse/jetty/jetty-io/11.0.25/jetty-io-11.0.25-sources.jar"
+                        }
+                    ]
+                }
+            ]
+        },
+        "tags": [
+            "test"
+        ]
+    }
+}

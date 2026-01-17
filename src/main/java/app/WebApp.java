@@ -16,7 +16,7 @@ public class WebApp {
                                 return;
                         }
                         String html = new String(is.readAllBytes());
-                        html = html.replace("{{MESSAGE}}", "Hello World from backend");
+                        html = html.replace("{{MESSAGE}}", "Hello World from WebApp.java");
                         ctx.contentType("text/html");
                         ctx.result(html);
                 });
