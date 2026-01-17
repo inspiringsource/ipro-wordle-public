@@ -81,6 +81,30 @@ This diagram shows the planned interaction between the web frontend
 
 <img src="myImages/web_app_logic.jpg" alt="Web App Logic Draft" width="60%" />
 
+Web Frontend:
+	•	index.html
+	•	styles.css
+	•	script.js
+Java Backend:
+	•	Main.java (game logic)
+	•	WebApp.java (Javalin server setup)
+
+We successfully installed Javalin, maven dependencies, and set up a basic server:
+
+Command to run the web app:
+
+```bash
+mvn clean package
+java -jar target/wordle-1.0-SNAPSHOT.jar
+```
+
+in browser:
+
+```
+http://localhost:7070
+```
+
+<img src="myImages/Javalin_HelloWorld.png" alt="Web App Hello world" width="60%" />
 
 
 ⸻
@@ -99,8 +123,10 @@ The following variables are used in the game logic:
 
 A random target word is selected from the dictionary:
 
+```java
 String zufallsWort =
     WOERTERBUCH[(int)(Math.random() * WOERTERBUCH.length)];
+```
 
 Reference:
 https://stackoverflow.com/a/7923141
