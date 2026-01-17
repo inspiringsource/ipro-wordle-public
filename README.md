@@ -106,6 +106,8 @@ http://localhost:7070
 
 <img src="myImages/Javalin_HelloWorld.png" alt="Web App Hello world" width="60%" />
 
+### Deployment idea:
+We can deployed the app on Render that has a simple GitHub integration and straightforward support for running Java app.
 
 ⸻
 
