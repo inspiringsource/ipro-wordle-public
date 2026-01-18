@@ -25,16 +25,16 @@ public class Main {
 
         while (versuche < MAX_ATTEMPTS) {
             System.out.print("Versuch " + (versuche + 1) + ": ");
-            String guess = scanner.nextLine().trim().toUpperCase();
+            String erratenesWort = scanner.nextLine().trim().toUpperCase();
 
-            if (!woerter.contains(guess)) {
+            if (!woerter.contains(erratenesWort)) {
                 System.out.println("Kein gueltiges deutsches Wort oder Wort zu kurz.");
                 continue;
             }
 
             versuche++;
 
-            if (guess.equals(zielwort)) {
+            if (erratenesWort.equals(zielwort)) {
                 System.out.println("Feedback: GGGGG");
                 System.out.println("Gewonnen!");
                 scanner.close();
@@ -50,13 +50,13 @@ public class Main {
                  * 
                  * Ideen für 5 Buchstaben Wörter: AARAU, BASEL, BRUGG, DATEI, MODUL, LOGIK
                  */
-                if (guess.charAt(i) == zielwort.charAt(i)) {
+                if (erratenesWort.charAt(i) == zielwort.charAt(i)) {
                     feedback += "G";
                 } else {
                     boolean found = false;
 
                     for (int j = 0; j < 5; j++) {
-                        if (guess.charAt(i) == zielwort.charAt(j)) {
+                        if (erratenesWort.charAt(i) == zielwort.charAt(j)) {
                             found = true;
                         }
                     }
