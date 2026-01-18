@@ -18,10 +18,10 @@ The project follows an incremental approach:
 	2.	reuse the existing logic in a simple web application using Javalin, HTML, CSS, and JavaScript
 
 The main focus is on:
-	•	clear and correct game logic
-	•	input validation
-	•	incremental development
-	•	separation of logic and presentation
+	- clear and correct game logic
+	- input validation
+	- incremental development
+	- separation of logic and presentation
 
 Advanced features such as multiplayer are intentionally out of scope.
 
@@ -58,18 +58,27 @@ AARAU, BASEL, BRUGG, DATEI, MODUL, LOGIK
 ## Game Logic (Conceptual Overview)
 
 The Wordle game logic follows these steps:
-	1.	Define a dictionary containing valid 5-letter German words
-	2.	Read user input
-	3.	Validate input:
-	•	exactly 5 characters
-	•	word must exist in the dictionary (5_letter_words.txt)
-	4.	Compare the input word with the target word
-	5.	Generate feedback per character (G, Y, B)
-	6.	Output feedback
-	7.	Increase the attempt counter
-	8.	End the game on success or after 6 attempts
+1. Define a dictionary containing valid 5-letter German words
+2.	Read user input
+3.	Validate input:
+	- exactly 5 characters
+	- word must exist in the dictionary (5_letter_words.txt)
+4.	Compare the input word with the target word
+5.	Generate feedback per character (G, Y, B)
+6.	Output feedback
+7.	Increase the attempt counter
+8.	End the game on success or after 6 attempts
 
-Maximum number of attempts: 6
+⸻
+
+## Core Variables
+
+The following variables are used in the game logic:
+
+- String[] WOERTERBUCH – list of valid words
+- String erratenesWort – user input word
+- int versuche – attempt counter
+- String feedback – feedback string (G, Y, B)
 
 ⸻
 
@@ -92,12 +101,12 @@ This diagram shows the planned interaction between the web frontend
 <img src="myImages/web_app_logic.jpg" alt="Web App Logic Draft" width="60%" />
 
 Web Frontend:
-	•	index.html
-	•	styles.css
-	•	script.js
+	- index.html
+	- styles.css
+	- script.js
 Java Backend:
-	•	Main.java (game logic)
-	•	WebApp.java (Javalin server setup)
+	- Main.java (game logic)
+	- WebApp.java (Javalin server setup)
 
 We successfully installed Javalin, maven dependencies, and set up a basic server:
 
@@ -110,24 +119,15 @@ java -jar target/wordle-1.0-SNAPSHOT.jar
 
 in browser:
 
-```
+```bash
 http://localhost:7070
 ```
 
-<img src="myImages/Javalin_HelloWorld.png" alt="Web App Hello world" width="60%" />
+<img src="myImages/Javalin_HelloWorld.png" alt="Web App Hello world" width="80%" />
 
 ### Deployment idea:
+
 We can deployed the app on Render that has a simple GitHub integration and straightforward support for running Java app.
-
-⸻
-
-## Core Variables
-
-The following variables are used in the game logic:
-	•	String[] WOERTERBUCH – list of valid words
-	•	String erratenesWort – user input word
-	•	int versuche – attempt counter
-	•	String feedback – feedback string (G, Y, B)
 
 ⸻
 
@@ -148,15 +148,17 @@ https://stackoverflow.com/a/7923141
 ## Console vs Web Version
 
 ### Console Version
-	•	Uses Scanner for user input
-	•	Outputs feedback as characters (G, Y, B)
-	•	Focuses exclusively on correct game logic
+
+- Uses Scanner for user input
+- Outputs feedback as characters (G, Y, B)
+- Focuses exclusively on correct game logic
 
 ### Web Version (Planned / In Progress)
-	•	Java backend implemented with Javalin
-	•	Frontend using HTML, CSS, JavaScript
-	•	Visual feedback (green/yellow/grey) handled via CSS
-	•	Game logic reused from the console version
+
+- Java backend implemented with Javalin
+- Frontend using HTML, CSS, JavaScript
+- Visual feedback (green/yellow/grey) handled via CSS
+- Game logic reused from the console version
 
 ⸻
 
@@ -186,20 +188,23 @@ enz/german-wordlist
 License: CC0-1.0
 
 Source:
-	•	https://github.com/enz/german-wordlist
-	•	File: words (UTF-8, one word per line)
+
+- https://github.com/enz/german-wordlist
+- File: words (UTF-8, one word per line)
 
 Usage in this project:
-	•	Filter words with exactly 5 letters
-	•	Convert all words to uppercase
-	•	Store the result in 5_letter_words.txt
+
+- Filter words with exactly 5 letters
+- Convert all words to uppercase
+- Store the result in 5_letter_words.txt
 
 ⸻
 
 ## Learning Resources & References
-	•	Build a Wordle Clone in Java
+
+	- Build a Wordle Clone in Java
 https://medium.com/strategio/build-a-wordle-clone-in-java-c7b7b924fb8d
-	•	Leverage Java 17 New Features to Create Your Wordle Checker – JEP Café #10
+	- Leverage Java 17 New Features to Create Your Wordle Checker – JEP Café #10
 https://inside.java/2022/02/22/jepcafe10/
 
 Note:
@@ -210,10 +215,10 @@ Although the video uses Java 17 features, it was mainly used for conceptual unde
 ## Project Goal
 
 The goal of this project is to demonstrate:
-	•	understanding of basic Java programming
-	•	incremental software development
-	•	clean and maintainable code
-	•	transition from a console application to a simple web application
+	- understanding of basic Java programming
+	- incremental software development
+	- clean and maintainable code
+	- transition from a console application to a simple web application
 
 The project scope is intentionally limited to ensure reliability and
 clarity within a pass/fail evaluation context.
