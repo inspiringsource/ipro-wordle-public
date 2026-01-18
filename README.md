@@ -28,15 +28,27 @@ Advanced features such as multiplayer are intentionally out of scope.
 ⸻
 
 ## Our Methodology
-We use the **Incremental Delivery** approach (often illustrated by Henrik Kniberg).
 
-![Incremental Delivery Diagram](./myImages/mvp.png)
-*Image source: [Henrik Kniberg](https://blog.crisp.se/2016/01/25/henrikkniberg/making-sense-of-mvp)*
+We use an **Incremental Delivery** approach, illustrated by Henrik Kniberg’s
+*Skateboard → Bicycle → Motorcycle → Car* metaphor.
 
-For a detailed explanation of how we apply this, see this article by [Rebel Scrum](https://www.rebelscrum.site/post/10-more-objections-to-incremental-delivery).
+<img src="./myImages/mvp.png" alt="Incremental Delivery Diagram" width="45%" />
+
+*Image source and original post: [Henrik Kniberg – Making sense of MVP](https://blog.crisp.se/2016/01/25/henrikkniberg/making-sense-of-mvp)*
+
+This project follows Henrik Kniberg’s interpretation of MVP, where the focus is on
+delivering the **earliest usable version of the product**, rather than incomplete
+technical components.
+
+Instead of building unfinished fragments of a web application, the project starts
+in the first week with a **fully playable console-based Wordle game** (the “Skateboard”).
+This ensures real usability and enables meaningful feedback from the beginning.
+
+Each subsequent increment (week) improves the product in terms of usability,
+interface, and delivery, while **preserving a working, testable application at every
+stage**, reducing risk and supporting continuous learning.
 
 ⸻
-
 
 ## Game Rules & Conventions
 
