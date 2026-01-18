@@ -27,25 +27,35 @@ Advanced features such as multiplayer are intentionally out of scope.
 
 ⸻
 
-2. Game Rules & Conventions
+## Our Methodology
+We use the **Incremental Delivery** approach (often illustrated by Henrik Kniberg).
 
-2.1 Letter Feedback
+![Incremental Delivery Diagram](./myImages/mvp.png)
+*Image source: [Henrik Kniberg](https://blog.crisp.se/2016/01/25/henrikkniberg/making-sense-of-mvp)*
+
+For a detailed explanation of how we apply this, see this article by [Rebel Scrum](https://www.rebelscrum.site/post/10-more-objections-to-incremental-delivery).
+
+⸻
+
+
+## Game Rules & Conventions
+
+### Game Rules & Conventions
 
 Symbol	Meaning
 G	Correct letter in the correct position
 Y	Correct letter in the wrong position
 B	Letter not contained in the target word
 
-2.2 Example Dictionary (5-letter words)
+### Example Dictionary (5-letter words)
 
 Examples used during development:
 
 AARAU, BASEL, BRUGG, DATEI, MODUL, LOGIK
 
-
 ⸻
 
-3. Game Logic (Conceptual Overview)
+## Game Logic (Conceptual Overview)
 
 The Wordle game logic follows these steps:
 	1.	Define a dictionary containing valid 5-letter German words
@@ -63,9 +73,9 @@ Maximum number of attempts: 6
 
 ⸻
 
-4. Diagrams & Screenshots
+## Diagrams & Screenshots
 
-4.1 Game Logic Draft (Console Version)
+### Game Logic Draft (Console Version)
 
 The following diagram illustrates the control flow of the console-based
 Wordle implementation, including input validation, feedback generation,
@@ -74,7 +84,7 @@ and termination conditions.
 <img src="myImages/logic_draft.jpg" alt="Game Logic Draft" width="60%" />
 
 
-4.2 Web Application Architecture (Planned)
+### Web Application Architecture (Planned)
 
 This diagram shows the planned interaction between the web frontend
 (HTML, CSS, JavaScript) and the Java backend implemented using Javalin.
@@ -111,7 +121,7 @@ We can deployed the app on Render that has a simple GitHub integration and strai
 
 ⸻
 
-5. Core Variables
+## Core Variables
 
 The following variables are used in the game logic:
 	•	String[] WOERTERBUCH – list of valid words
@@ -121,7 +131,7 @@ The following variables are used in the game logic:
 
 ⸻
 
-6. Random Word Selection
+## Random Word Selection
 
 A random target word is selected from the dictionary:
 
@@ -135,14 +145,14 @@ https://stackoverflow.com/a/7923141
 
 ⸻
 
-7. Console vs Web Version
+## Console vs Web Version
 
-7.1 Console Version
+### Console Version
 	•	Uses Scanner for user input
 	•	Outputs feedback as characters (G, Y, B)
 	•	Focuses exclusively on correct game logic
 
-7.2 Web Version (Planned / In Progress)
+### Web Version (Planned / In Progress)
 	•	Java backend implemented with Javalin
 	•	Frontend using HTML, CSS, JavaScript
 	•	Visual feedback (green/yellow/grey) handled via CSS
@@ -150,7 +160,7 @@ https://stackoverflow.com/a/7923141
 
 ⸻
 
-8. Project Structure (Web Version)
+## Project Structure (Web Version)
 
 ```tree
 src/
@@ -168,7 +178,7 @@ pom.xml
 
 ⸻
 
-9. Word List Source
+## Word List Source
 
 The list of valid German words is based on:
 
@@ -186,7 +196,7 @@ Usage in this project:
 
 ⸻
 
-10. Learning Resources & References
+## Learning Resources & References
 	•	Build a Wordle Clone in Java
 https://medium.com/strategio/build-a-wordle-clone-in-java-c7b7b924fb8d
 	•	Leverage Java 17 New Features to Create Your Wordle Checker – JEP Café #10
@@ -197,7 +207,7 @@ Although the video uses Java 17 features, it was mainly used for conceptual unde
 
 ⸻
 
-11. Project Goal
+## Project Goal
 
 The goal of this project is to demonstrate:
 	•	understanding of basic Java programming
