@@ -9,19 +9,21 @@ Individuelles Softwareprojekt (ipro)
 
 ⸻
 
-1. Project Overview
+## Project Overview
 
 This project implements a simplified Wordle-style game in Java as part of the Individuelles Softwareprojekt (ipro).
 
-The project follows an incremental approach:
-	1.	implement and validate the complete game logic as a console application
-	2.	reuse the existing logic in a simple web application using Javalin, HTML, CSS, and JavaScript
+### The project follows an incremental approach:
+
+1. implement and validate the complete game logic as a console application
+2. reuse the existing logic in a simple web application using Javalin, HTML, CSS, and JavaScript
 
 The main focus is on:
-	- clear and correct game logic
-	- input validation
-	- incremental development
-	- separation of logic and presentation
+
+- clear and correct game logic
+- input validation
+- incremental development
+- separation of logic and presentation
 
 Advanced features such as multiplayer are intentionally out of scope.
 
@@ -54,7 +56,7 @@ stage**, reducing risk and supporting continuous learning.
 
 ### Game Rules & Conventions
 
-Symbol	Meaning
+Symbol Meaning
 G	Correct letter in the correct position
 Y	Correct letter in the wrong position
 B	Letter not contained in the target word
@@ -70,16 +72,17 @@ AARAU, BASEL, BRUGG, DATEI, MODUL, LOGIK
 ## Game Logic (Conceptual Overview)
 
 The Wordle game logic follows these steps:
+
 1. Define a dictionary containing valid 5-letter German words
-2.	Read user input
-3.	Validate input:
+2. Read user input
+3. Validate input:
 	- exactly 5 characters
 	- word must exist in the dictionary (5_letter_words.txt)
-4.	Compare the input word with the target word
-5.	Generate feedback per character (G, Y, B)
-6.	Output feedback
-7.	Increase the attempt counter
-8.	End the game on success or after 6 attempts
+4. Compare the input word with the target word
+5. Generate feedback per character (G, Y, B)
+6. Output feedback
+7. Increase the attempt counter
+8. End the game on success or after 6 attempts
 
 ⸻
 
@@ -104,6 +107,7 @@ and termination conditions.
 
 <img src="myImages/logic_draft.jpg" alt="Game Logic Draft" width="60%" />
 
+⸻
 
 ### Web Application Architecture (Planned)
 
@@ -113,12 +117,13 @@ This diagram shows the planned interaction between the web frontend
 <img src="myImages/web_app_logic.jpg" alt="Web App Logic Draft" width="60%" />
 
 Web Frontend:
-	- index.html
-	- styles.css
-	- script.js
+
+- index.html
+- styles.css
+- script.js
 Java Backend:
-	- Main.java (game logic)
-	- WebApp.java (Javalin server setup)
+- Main.java (game logic)
+- WebApp.java (Javalin server setup)
 
 We successfully installed Javalin, maven dependencies, and set up a basic server:
 
@@ -174,7 +179,26 @@ https://stackoverflow.com/a/7923141
 
 ⸻
 
+Using the Maven Archetype to Set Up the Project
+
+To set up the project using Maven Archetype, run the following command:
+
+```bash
+mvn archetype:generate
+```
+
+creating a basic project structure with necessary files.
+
+```tree
+- creates pom.xml
+- creates src/main/java
+- creates src/test/java
+- sets groupId / artifactId
+```
+
 ## Project Structure (Web Version)
+
+To best organize the project for the web version and game logic we use the following structure:
 
 ```tree
 src/
@@ -214,9 +238,9 @@ Usage in this project:
 
 ## Learning Resources & References
 
-	- Build a Wordle Clone in Java
+- Build a Wordle Clone in Java
 https://medium.com/strategio/build-a-wordle-clone-in-java-c7b7b924fb8d
-	- Leverage Java 17 New Features to Create Your Wordle Checker – JEP Café #10
+- Leverage Java 17 New Features to Create Your Wordle Checker – JEP Café #10
 https://inside.java/2022/02/22/jepcafe10/
 
 Note:
@@ -226,7 +250,7 @@ Although the video uses Java 17 features, it was mainly used for conceptual unde
 
 - Marco B. — for feedback, discussions, and practical support during development.
 - ChatGPT (OpenAI) — used as a supportive tool for explanations, wording improvements, and structuring documentation.
-- Javlin Documentation — for guidance on setting up the web server.
+- Javalin Documentation and Tutorials — for guidance on setting up the web server.
 https://javalin.io/documentation
 
 All external technical resources (Stack Overflow, articles, and word lists) are credited in the relevant sections above.
@@ -236,10 +260,11 @@ All external technical resources (Stack Overflow, articles, and word lists) are 
 ## Project Goal
 
 The goal of this project is to demonstrate:
-	- understanding of basic Java programming
-	- incremental software development
-	- clean and maintainable code
-	- transition from a console application to a simple web application
+
+- understanding of basic Java programming
+- incremental software development
+- clean and maintainable code
+- transition from a console application to a simple web application
 
 The project scope is intentionally limited to ensure reliability and
 clarity within a pass/fail evaluation context.
