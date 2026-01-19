@@ -222,6 +222,15 @@ https://inside.java/2022/02/22/jepcafe10/
 Note:
 Although the video uses Java 17 features, it was mainly used for conceptual understanding.
 
+### Credits & Acknowledgements
+
+- Marco B. — for feedback, discussions, and practical support during development.
+- ChatGPT (OpenAI) — used as a supportive tool for explanations, wording improvements, and structuring documentation.
+- Javlin Documentation — for guidance on setting up the web server.
+https://javalin.io/documentation
+
+All external technical resources (Stack Overflow, articles, and word lists) are credited in the relevant sections above.
+
 ⸻
 
 ## Project Goal
