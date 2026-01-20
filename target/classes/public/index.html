@@ -1,14 +1,19 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Document</title>
-</head>
+  </head>
+  <body>
+    <h1>Document</h1>
 
-<body>
-    <h1>{{MESSAGE}}</h1>
-</body>
+    <form method="post" action="/postTest">
+      <label for="postTest">Enter a 5-letter word:</label><br />
+      <input id="postTest" name="postTest" type="text" maxlength="5" autocomplete="off" />
+      <button type="submit">Submit</button>
+    </form>
 
+    <p id="result"></p>
+  </body>
 </html>
