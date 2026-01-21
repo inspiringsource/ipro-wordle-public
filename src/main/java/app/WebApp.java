@@ -1,25 +1,27 @@
 package app;
 
 import io.javalin.Javalin;
+import io.javalin.http.staticfiles.Location;
+import java.util.Map;
 
 public class WebApp {
-        public static void main(String[] args) {
-                var app = Javalin.create(config -> {
-                        config.staticFiles.add("/public");
-                }).start(7070);
+    public static void main(String[] args) {
+        var app = Javalin.create(config -> {
+            config.staticFiles.add("/public", Location.CLASSPATH);
+        }).start(7070);
 
-                // health check
-                app.get("/ping", ctx -> ctx.result("pong"));
+        app.get("/ping", ctx -> ctx.result("pong"));
 
-                // Scooter stage: accept a postTest
-                app.post("/postTest", ctx -> {
-                        String postTest = ctx.formParam("postTest");
-                        if (postTest == null)
-                                postTest = "";
+        app.post("/postTest", ctx -> {
+            String postTest = ctx.formParam("postTest");
+            if (postTest == null) {
+                postTest = "";
+            }
 
-                        postTest = postTest.trim().toUpperCase();
+            postTest = postTest.trim().toUpperCase();
 
-                        ctx.result("You entered: " + postTest);
-                });
-        }
+            // Minimal validation: simple echo back in JSON
+            ctx.json(Map.of("word", postTest));
+        });
+    }
 }

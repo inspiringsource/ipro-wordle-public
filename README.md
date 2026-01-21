@@ -130,8 +130,7 @@ We successfully installed Javalin, maven dependencies, and set up a basic server
 Command to run the web app:
 
 ```bash
-mvn clean package
-java -jar target/wordle-1.0-SNAPSHOT.jar
+mvn clean package && java -jar target/wordle-1.0-SNAPSHOT.jar
 ```
 
 in browser:
@@ -202,15 +201,16 @@ To best organize the project for the web version and game logic we use the follo
 
 ```tree
 src/
- ├─ main/
- │  ├─ java/
- │  │  └─ app/
- │  │     └─ Main.java        (Game logic)
- │  │     └─ WebApp.java      (Javalin server setup)
- │  └─ resources/
- │     ├─ public/             (HTML, CSS, JS)
- │     └─ data/
- │        └─ 5_letter_words.txt
+ └─ main/
+    ├─ java/
+    │  └─ app/
+    │     ├─ Main.java        (Game logic – console version)
+    │     └─ WebApp.java      (Javalin server & API endpoints)
+    └─ resources/
+       ├─ data/
+       │  └─ 5_letter_words.txt   (Dictionary)
+       └─ public/
+          └─ index.html           (Web frontend)
 pom.xml
 ```
 
