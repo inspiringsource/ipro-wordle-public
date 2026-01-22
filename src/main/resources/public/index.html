@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -6,12 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>IPRO Wordle</title>
     <style>
-      * { box-sizing: border-box; }
+      * {
+        box-sizing: border-box;
+      }
 
       body {
         margin: 0;
         padding: 24px;
-        font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+        font-family:
+          system-ui,
+          -apple-system,
+          Segoe UI,
+          Roboto,
+          Helvetica,
+          Arial,
+          sans-serif;
       }
 
       .container {
@@ -94,8 +102,31 @@
         font-size: 14px;
       }
 
-      .error { color: #b00020; }
-      .ok { color: #0b6b0b; }
+      /* Wordle states (G/Y/B) */
+      .cell.state-g {
+        background: #2e7d32; /* green */
+        border-color: #2e7d32;
+        color: #fff;
+      }
+
+      .cell.state-y {
+        background: #f9a825; /* yellow */
+        border-color: #f9a825;
+        color: #111;
+      }
+
+      .cell.state-b {
+        background: #616161; /* grey */
+        border-color: #616161;
+        color: #fff;
+      }
+
+      .error {
+        color: #b00020;
+      }
+      .ok {
+        color: #0b6b0b;
+      }
     </style>
   </head>
   <body>
@@ -104,10 +135,10 @@
 
       <div id="board" class="board" aria-label="Wordle board"></div>
 
-      <form id="guessForm" method="post" action="/postTest">
+      <form id="guessForm" method="post" action="/guess">
         <input
-          id="postTest"
-          name="postTest"
+          id="guess"
+          name="guess"
           type="text"
           maxlength="5"
           autocomplete="off"
@@ -125,33 +156,45 @@
       const ROWS = 6;
       const COLS = 5;
 
-      const boardEl = document.getElementById('board');
-      const formEl = document.getElementById('guessForm');
-      const inputEl = document.getElementById('postTest');
-      const resultEl = document.getElementById('result');
-      const submitBtn = document.getElementById('submitBtn');
+      const boardEl = document.getElementById("board");
+      const formEl = document.getElementById("guessForm");
+      const inputEl = document.getElementById("guess");
+      const resultEl = document.getElementById("result");
+      const submitBtn = document.getElementById("submitBtn");
 
       let attempt = 0;
 
       // Build 6x5 grid on load
       const cells = [];
       for (let i = 0; i < ROWS * COLS; i++) {
-        const cell = document.createElement('div');
-        cell.className = 'cell';
-        cell.textContent = '';
+        const cell = document.createElement("div");
+        cell.className = "cell";
+        cell.textContent = "";
         boardEl.appendChild(cell);
         cells.push(cell);
       }
 
       function setStatus(msg, kind) {
-        resultEl.className = kind || '';
+        resultEl.className = kind || "";
         resultEl.textContent = msg;
       }
 
-      function fillRow(rowIndex, word) {
+      function fillRow(rowIndex, word, feedback) {
         const start = rowIndex * COLS;
+
         for (let i = 0; i < COLS; i++) {
-          cells[start + i].textContent = word[i] || '';
+          const cell = cells[start + i];
+          const ch = word[i] || "";
+          const f = feedback?.[i] || "B";
+
+          cell.textContent = ch;
+
+          // reset state classes
+          cell.classList.remove("state-g", "state-y", "state-b");
+
+          if (f === "G") cell.classList.add("state-g");
+          else if (f === "Y") cell.classList.add("state-y");
+          else cell.classList.add("state-b");
         }
       }
 
@@ -160,58 +203,88 @@
         submitBtn.disabled = true;
       }
 
-      formEl.addEventListener('submit', async (e) => {
+      formEl.addEventListener("submit", async (e) => {
         e.preventDefault();
 
         if (attempt >= ROWS) {
-          setStatus('No attempts left.', 'error');
+          setStatus("No attempts left.", "error");
           lockGame();
           return;
         }
 
-        let guess = (inputEl.value || '').trim().toUpperCase();
+        let guess = (inputEl.value || "").trim().toUpperCase();
 
         // Basic validation (exactly 5 letters)
         if (!/^[A-ZÄÖÜ]{5}$/.test(guess)) {
-          setStatus('Please enter exactly 5 letters.', 'error');
+          setStatus("Please enter exactly 5 letters.", "error");
           return;
         }
 
+        // Helper: safely parse JSON or throw a readable error
+        async function readJsonOrThrow(res) {
+          const ct = res.headers.get("content-type") || "";
+          if (ct.includes("application/json")) {
+            return await res.json();
+          }
+          const txt = await res.text();
+          throw new Error(txt || `HTTP ${res.status}`);
+        }
+
         try {
-          const body = new URLSearchParams({ postTest: guess });
-          const res = await fetch('/postTest', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body,
+          // Try current endpoint first
+          let res = await fetch("/guess", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+              Accept: "application/json",
+            },
+            body: new URLSearchParams({ guess }),
           });
 
-          if (!res.ok) {
-            throw new Error('Server error: ' + res.status);
+          // If backend still uses the old route, retry legacy endpoint
+          if (res.status === 404) {
+            res = await fetch("/postTest", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+                Accept: "application/json",
+              },
+              body: new URLSearchParams({ postTest: guess }),
+            });
           }
 
-          // We expect JSON: { word: "ABCDE" }
-          const data = await res.json();
-          const word = (data && data.word ? String(data.word) : '').toUpperCase();
+          if (!res.ok) {
+            const txt = await res.text();
+            throw new Error(txt || `HTTP ${res.status}`);
+          }
 
-          fillRow(attempt, word);
+          // We expect JSON: { word: "ABCDE", feedback: "GYBBY" }
+          const data = await readJsonOrThrow(res);
+          const word = (data && data.word ? String(data.word) : "").toUpperCase();
+          const feedback = (data && data.feedback ? String(data.feedback) : "BBBBB").toUpperCase();
+
+          fillRow(attempt, word, feedback);
           attempt += 1;
 
-          inputEl.value = '';
+          inputEl.value = "";
           inputEl.focus();
 
           if (attempt >= ROWS) {
-            setStatus('Done. You used all 6 attempts.', 'ok');
+            setStatus("Done. You used all 6 attempts.", "ok");
             lockGame();
           } else {
-            setStatus(`Attempt ${attempt} of ${ROWS} recorded.`, 'ok');
+            setStatus(`Attempt ${attempt} of ${ROWS} recorded.`, "ok");
           }
         } catch (err) {
-          setStatus('Failed to submit. ' + (err?.message || ''), 'error');
+          setStatus(
+            "Failed to submit. " + (err?.message || ""),
+            "error"
+          );
         }
       });
 
       // Convenience: keep input uppercased
-      inputEl.addEventListener('input', () => {
+      inputEl.addEventListener("input", () => {
         inputEl.value = inputEl.value.toUpperCase();
       });
 

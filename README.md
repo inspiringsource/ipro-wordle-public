@@ -76,8 +76,8 @@ The Wordle game logic follows these steps:
 1. Define a dictionary containing valid 5-letter German words
 2. Read user input
 3. Validate input:
-	- exactly 5 characters
-	- word must exist in the dictionary (5_letter_words.txt)
+   - exactly 5 characters
+   - word must exist in the dictionary (5_letter_words.txt)
 4. Compare the input word with the target word
 5. Generate feedback per character (G, Y, B)
 6. Output feedback
@@ -150,11 +150,13 @@ backend via simple **GET** and **POST** requests using Javalin.
 This confirms that backend logic can be reached from the browser and forms the foundation
 for full web-based gameplay in the next increment.
 
-<img src="myImages/basicFrontend.png" alt="Web App Progress week 2" width="80%" />
+Update: 22.01.2026 - Added css coloring for feedback (green/yellow/grey) communicated from backend (screenshot updated).
+
+<img src="myImages/basicFrontend02.png" alt="Web App Progress week 2" width="80%" />
 
 for more technical details see wiki [Frontend & Backend Technology Overview](https://github.com/inspiringsource/ipro-wordle-public/wiki/Frontend-&-Backend-Technology-Overview)
 
-### Deployment idea:
+### Deployment idea
 
 We can deployed the app on Render that has a simple GitHub integration and straightforward support for running Java app.
 
@@ -226,6 +228,8 @@ src/
           └─ index.html           (Web frontend)
 pom.xml
 ```
+
+The advantage of this structure is a clear separation between game logic and web server code, which supports incremental development, reuse across interfaces, and long-term maintainability.
 
 ⸻
 

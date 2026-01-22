@@ -67,6 +67,13 @@
               <goal>shade</goal>
             </goals>
             <configuration>
+              <!-- Keep a single runnable jar: target/wordle-1.0-SNAPSHOT.jar -->
+              <shadedArtifactAttached>false</shadedArtifactAttached>
+
+              <!-- Avoid generating dependency-reduced-pom.xml -->
+              <createDependencyReducedPom>false</createDependencyReducedPom>
+
+              <!-- Ensure Main-Class is set correctly -->
               <transformers>
                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                   <mainClass>app.WebApp</mainClass>

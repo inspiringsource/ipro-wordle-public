@@ -10,6 +10,32 @@ public class Main {
     private static final String[] WOERTERBUCH = { "AARAU", "BASEL", "BRUGG", "DATEI", "MODUL", "LOGIK" };
     private static final int MAX_ATTEMPTS = 6;
 
+    public static String getFeedback(String erratenesWort, String zielwort) {
+        String feedback = "";
+
+        for (int i = 0; i < 5; i++) {
+            if (erratenesWort.charAt(i) == zielwort.charAt(i)) {
+                feedback += "G";
+            } else {
+                boolean found = false;
+
+                for (int j = 0; j < 5; j++) {
+                    if (erratenesWort.charAt(i) == zielwort.charAt(j)) {
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (found)
+                    feedback += "Y";
+                else
+                    feedback += "B";
+            }
+        }
+
+        return feedback;
+    }
+
     public static void main(String[] args) throws Exception {
         System.out.println("Main game logic loaded");
         // Updated to read from resources
@@ -18,7 +44,8 @@ public class Main {
             throw new java.io.FileNotFoundException("File not found: data/5_letter_words.txt");
         List<String> woerter = Files.readAllLines(Path.of(resource.toURI()));
 
-        String zielwort = WOERTERBUCH[(int) (Math.random() * WOERTERBUCH.length)];
+        String zielwort = WOERTERBUCH[1];
+        // WOERTERBUCH[(int) (Math.random() * WOERTERBUCH.length)];
 
         Scanner scanner = new Scanner(System.in);
         int versuche = 0;
@@ -40,36 +67,10 @@ public class Main {
                 scanner.close();
                 return;
             }
-            String feedback = "";
-
-            for (int i = 0; i < 5; i++) {
-                /*
-                 * Wenn richtiger Buchstabe und richtige Stelle G (Grün)
-                 * Wenn richtiger Buchstabe und falsch Stelle Y (Gelb)
-                 * Wenn Buchstabe nicht enthalten B (Grau)
-                 * 
-                 * Ideen für 5 Buchstaben Wörter: AARAU, BASEL, BRUGG, DATEI, MODUL, LOGIK
-                 */
-                if (erratenesWort.charAt(i) == zielwort.charAt(i)) {
-                    feedback += "G";
-                } else {
-                    boolean found = false;
-
-                    for (int j = 0; j < 5; j++) {
-                        if (erratenesWort.charAt(i) == zielwort.charAt(j)) {
-                            found = true;
-                        }
-                    }
-
-                    if (found) {
-                        feedback += "Y";
-                    } else {
-                        feedback += "B";
-                    }
-                }
-            }
+            String feedback = getFeedback(erratenesWort, zielwort);
 
             System.out.println("Feedback:  " + feedback);
+
         }
 
         System.out.println("Game Over! Zielwort war: " + zielwort);
