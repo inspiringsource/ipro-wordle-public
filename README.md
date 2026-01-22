@@ -99,7 +99,7 @@ The following variables are used in the game logic:
 
 ## Diagrams & Screenshots
 
-### Game Logic Draft (Console Version)
+### Game Logic Draft (Week 1)
 
 The following diagram illustrates the control flow of the console-based
 Wordle implementation, including input validation, feedback generation,
@@ -140,6 +140,19 @@ http://localhost:7070
 ```
 
 <img src="myImages/Javalin_HelloWorld.png" alt="Web App Hello world" width="80%" />
+
+
+### Web Application Progress (Week 2)
+
+A first interactive web version has been implemented using **HTML, CSS, and JavaScript**.
+The frontend provides basic input elements and styling, and communicates with the Java
+backend via simple **GET** and **POST** requests using Javalin.
+This confirms that backend logic can be reached from the browser and forms the foundation
+for full web-based gameplay in the next increment.
+
+<img src="myImages/basicFrontend.png" alt="Web App Progress week 2" width="80%" />
+
+for more technical details see wiki [Frontend & Backend Technology Overview](https://github.com/inspiringsource/ipro-wordle-public/wiki/Frontend-&-Backend-Technology-Overview)
 
 ### Deployment idea:
 
