@@ -99,7 +99,7 @@ The following variables are used in the game logic:
 
 ## Diagrams & Screenshots
 
-### Game Logic Draft (Week 1)
+### Game Logic Draft
 
 The following diagram illustrates the control flow of the console-based
 Wordle implementation, including input validation, feedback generation,
@@ -132,7 +132,7 @@ https://stackoverflow.com/a/7923141
 
 ⸻
 
-## Console to Web Version
+## Console to Web Version (Week 1)
 
 ### Console Version
 
