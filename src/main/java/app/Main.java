@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-
+    // for week 4 we can create a auto generated word list
     private static final String[] WOERTERBUCH = { "AARAU", "BASEL", "BRUGG", "DATEI", "MODUL", "LOGIK" };
     private static final int MAX_ATTEMPTS = 6;
 

@@ -207,6 +207,16 @@ Update: 22.01.2026 - Added css coloring for feedback (green/yellow/grey) communi
 
 for more technical details see wiki [Frontend & Backend Technology Overview](https://github.com/inspiringsource/ipro-wordle-public/wiki/Frontend-&-Backend-Technology-Overview)
 
+## Full Web Gameplay (Week 3)
+
+### Completed Features
+
+- Check if the word is in German (so compare again 5_letter_words.txt)
+- Win condition (all letters correct)
+- Lose condition (after 6 attempts)
+
+...
+
 ### Deployment idea
 
 We can deployed the app on Render that has a simple GitHub integration and straightforward support for running Java app.

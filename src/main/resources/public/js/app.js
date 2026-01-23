@@ -117,13 +117,13 @@ formEl.addEventListener("submit", async (e) => {
     inputEl.focus();
 
     if (attempt >= ROWS) {
-      setStatus("Done. You used all 6 attempts.", "ok");
+      setStatus("Fertig! Du hast alle 6 Versuche genutzt.", "ok");
       lockGame();
     } else {
-      setStatus(`Attempt ${attempt} of ${ROWS} recorded.`, "ok");
+      setStatus(`Versuch ${attempt} von ${ROWS} aufgenommen.`, "ok");
     }
   } catch (err) {
-    setStatus("Failed to submit. " + (err?.message || ""), "error");
+    setStatus("DebugFehler beim Absenden. " + (err?.message || ""), "error");
   }
 });
 
