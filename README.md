@@ -191,8 +191,9 @@ http://localhost:7070
 
 <img src="myImages/Javalin_HelloWorld.png" alt="Web App Hello world" width="80%" />
 
+## Web Application Progress (Week 2)
 
-### Web Application Progress (Week 2)
+### Basic Frontend Implementation
 
 A first interactive web version has been implemented using **HTML, CSS, and JavaScript**.
 The frontend provides basic input elements and styling, and communicates with the Java
