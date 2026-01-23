@@ -116,6 +116,56 @@ This diagram shows the planned interaction between the web frontend
 
 <img src="myImages/web_app_logic.jpg" alt="Web App Logic Draft" width="60%" />
 
+⸻
+
+## Random Word Selection
+
+A random target word is selected from the dictionary:
+
+```java
+String zufallsWort =
+    WOERTERBUCH[(int)(Math.random() * WOERTERBUCH.length)];
+```
+
+Reference:
+https://stackoverflow.com/a/7923141
+
+⸻
+
+## Console to Web Version
+
+### Console Version
+
+- Uses Scanner for user input
+- Outputs feedback as characters (G, Y, B)
+- Focuses exclusively on correct game logic
+
+### Web Version (Planned / In Progress)
+
+- Java backend implemented with Javalin
+- Frontend using HTML, CSS, JavaScript
+- Visual feedback (green/yellow/grey) handled via CSS
+- Game logic reused from the console version
+
+⸻
+
+Using the Maven Archetype to Set Up the Project
+
+To set up the project using Maven Archetype, run the following command:
+
+```bash
+mvn archetype:generate
+```
+
+creating a basic project structure with necessary files.
+
+```tree
+- creates pom.xml
+- creates src/main/java
+- creates src/test/java
+- sets groupId / artifactId
+```
+
 Web Frontend:
 
 - index.html
@@ -159,56 +209,6 @@ for more technical details see wiki [Frontend & Backend Technology Overview](htt
 ### Deployment idea
 
 We can deployed the app on Render that has a simple GitHub integration and straightforward support for running Java app.
-
-⸻
-
-## Random Word Selection
-
-A random target word is selected from the dictionary:
-
-```java
-String zufallsWort =
-    WOERTERBUCH[(int)(Math.random() * WOERTERBUCH.length)];
-```
-
-Reference:
-https://stackoverflow.com/a/7923141
-
-⸻
-
-## Console vs Web Version
-
-### Console Version
-
-- Uses Scanner for user input
-- Outputs feedback as characters (G, Y, B)
-- Focuses exclusively on correct game logic
-
-### Web Version (Planned / In Progress)
-
-- Java backend implemented with Javalin
-- Frontend using HTML, CSS, JavaScript
-- Visual feedback (green/yellow/grey) handled via CSS
-- Game logic reused from the console version
-
-⸻
-
-Using the Maven Archetype to Set Up the Project
-
-To set up the project using Maven Archetype, run the following command:
-
-```bash
-mvn archetype:generate
-```
-
-creating a basic project structure with necessary files.
-
-```tree
-- creates pom.xml
-- creates src/main/java
-- creates src/test/java
-- sets groupId / artifactId
-```
 
 ## Project Structure (Web Version)
 
