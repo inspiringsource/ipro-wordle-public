@@ -97,7 +97,7 @@ The following variables are used in the game logic:
 
 ⸻
 
-## Diagrams & Screenshots
+## Planninh & Diagrams
 
 ### Game Logic Draft
 
@@ -212,10 +212,13 @@ for more technical details see wiki [Frontend & Backend Technology Overview](htt
 ### Completed Features
 
 - Check if the word is in German (so compare again 5_letter_words.txt)
-- Win condition (all letters correct)
-- Lose condition (after 6 attempts)
+- JS modal popup for win/lose messages and menu
+  - Win condition (all letters correct)
+  - Lose condition (after 6 attempts)
+  - Reset game functionality
+- Other improvements including CSS styling...
 
-...
+WIP...
 
 ### Deployment idea
 
