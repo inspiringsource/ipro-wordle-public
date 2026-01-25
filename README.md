@@ -59,7 +59,7 @@ The initial increment implements and validates the complete game logic as a cons
 
 - An initial minimal dictionary of example 5-letter words is used during early development:
 
-  ```
+  ```list
   AARAU, BASEL, BRUGG, DATEI, MODUL, LOGIK
   ```
 
@@ -132,7 +132,7 @@ This increment reuses the existing console game logic in a simple web applicatio
   
   Creating:
 
-  ```
+  ```markdown
   - pom.xml
   - src/main/java
   - src/test/java
@@ -140,6 +140,12 @@ This increment reuses the existing console game logic in a simple web applicatio
   ```
 
 - Basic server setup confirmed with a "Hello World" example.
+
+### Command to build and run the web app
+
+```bash
+mvn clean package && java -jar target/wordle-1.0-SNAPSHOT.jar
+```
 
 #### Frontend Implementation
 
@@ -241,7 +247,7 @@ Rationale:
 
 The project is organized to support incremental development and clear separation of concerns.
 
-```
+```tree
 src/
  └─ main/
     ├─ java/
@@ -280,7 +286,7 @@ mvn clean package && java -jar target/wordle-1.0-SNAPSHOT.jar
 
 Access the web app in a browser at:
 
-```
+```bash
 http://localhost:7070
 ```
 
