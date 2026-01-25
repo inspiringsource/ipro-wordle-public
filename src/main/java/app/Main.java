@@ -12,7 +12,11 @@ public class Main {
 
     public static String getFeedback(String erratenesWort, String zielwort) {
         String feedback = "";
-
+        /*
+         * Wenn richtiger Buchstabe und richtige Stelle G (Grün)
+         * Wenn richtiger Buchstabe und falsch Stelle Y (Gelb)
+         * Wenn Buchstabe nicht enthalten B (Grau)
+        */
         for (int i = 0; i < 5; i++) {
             if (erratenesWort.charAt(i) == zielwort.charAt(i)) {
                 feedback += "G";
