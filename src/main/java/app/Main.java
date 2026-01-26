@@ -1,8 +1,7 @@
 package app;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
@@ -43,13 +42,12 @@ public class Main {
     public static void main(String[] args) throws Exception {
         System.out.println("Main game logic loaded");
         // Updated to read from resources
-        java.net.URL resource = Main.class.getResource("/data/5_letter_words.txt");
-        if (resource == null)
-            throw new java.io.FileNotFoundException("File not found: data/5_letter_words.txt");
-        List<String> woerter = Files.readAllLines(Path.of(resource.toURI()));
-
-        String zielwort = WOERTERBUCH[1];
-        // WOERTERBUCH[(int) (Math.random() * WOERTERBUCH.length)];
+        
+        Random random = new Random();
+        List<String> woerterbuch = Dictionary.load5LetterWords();
+        // truly random word from dictionary
+        //String zielwort = woerterbuch.get(random.nextInt(woerterbuch.size()));
+        String zielwort = WOERTERBUCH[1]; // for testing Basel
 
         Scanner scanner = new Scanner(System.in);
         int versuche = 0;
@@ -58,7 +56,7 @@ public class Main {
             System.out.print("Versuch " + (versuche + 1) + ": ");
             String erratenesWort = scanner.nextLine().trim().toUpperCase();
 
-            if (!woerter.contains(erratenesWort)) {
+            if (!Dictionary.contains(woerterbuch, erratenesWort)) {
                 System.out.println("Kein gueltiges deutsches Wort oder Wort zu kurz.");
                 continue;
             }

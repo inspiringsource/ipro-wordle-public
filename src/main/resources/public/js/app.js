@@ -99,6 +99,12 @@ formEl.addEventListener("submit", async (e) => {
     }
 
     if (!res.ok) {
+      const ct = res.headers.get("content-type") || "";
+      if (ct.includes("application/json")) {
+        const errData = await res.json();
+        const msg = errData && errData.error ? String(errData.error) : `HTTP ${res.status}`;
+        throw new Error(msg);
+      }
       const txt = await res.text();
       throw new Error(txt || `HTTP ${res.status}`);
     }
@@ -123,7 +129,7 @@ formEl.addEventListener("submit", async (e) => {
       setStatus(`Versuch ${attempt} von ${ROWS} aufgenommen.`, "ok");
     }
   } catch (err) {
-    setStatus("DebugFehler beim Absenden. " + (err?.message || ""), "error");
+    setStatus(err?.message || "Fehler beim Absenden.", "error");
   }
 });
 

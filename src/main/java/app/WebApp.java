@@ -2,15 +2,22 @@ package app;
 
 import io.javalin.Javalin;
 import io.javalin.http.staticfiles.Location;
+import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 public class WebApp {
-    public static void main(String[] args) {
+    private final List<String> woerterbuch;
+    private String zielwort;
+
+    public WebApp() {
+        this.woerterbuch = Dictionary.load5LetterWords();
+        Random random = new Random();
+        this.zielwort = woerterbuch.get(random.nextInt(woerterbuch.size()));
+
         var app = Javalin.create(config -> {
             config.staticFiles.add("/public", Location.CLASSPATH);
         }).start(7070);
-
-        String zielwort = "BASEL";
 
         app.get("/ping", ctx -> ctx.result("pong"));
 
@@ -20,11 +27,9 @@ public class WebApp {
                 erratenesWort = "";
             erratenesWort = erratenesWort.trim().toUpperCase();
 
-            if (erratenesWort.length() != 5) {
+            if (!Dictionary.contains(woerterbuch, erratenesWort)) {
                 ctx.status(400).json(Map.of(
-                        "word", erratenesWort,
-                        "feedback", "BBBBB",
-                        "error", "Guess must be exactly 5 letters"));
+                        "error", "Kein gueltiges deutsches Wort oder Wort zu kurz."));
                 return;
             }
 
@@ -50,5 +55,9 @@ public class WebApp {
                 ctx.json(Map.of("word", erratenesWort));
             }
         });
+    }
+
+    public static void main(String[] args) {
+        new WebApp();
     }
 }
