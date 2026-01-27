@@ -6,6 +6,7 @@ const formEl = document.getElementById("guessForm");
 const inputEl = document.getElementById("guess");
 const resultEl = document.getElementById("result");
 const submitBtn = document.getElementById("submitBtn");
+const restartBtn = document.getElementById("restartBtn");
 
 let attempt = 0;
 
@@ -136,6 +137,11 @@ formEl.addEventListener("submit", async (e) => {
 // Convenience: keep input uppercased
 inputEl.addEventListener("input", () => {
   inputEl.value = inputEl.value.toUpperCase();
+});
+
+// Restart (Week 2): simplest approach – full page reload resets UI state
+restartBtn?.addEventListener("click", () => {
+  location.reload();
 });
 
 inputEl.focus();

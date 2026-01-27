@@ -13,7 +13,9 @@ public class WebApp {
     public WebApp() {
         this.woerterbuch = Dictionary.load5LetterWords();
         Random random = new Random();
-        this.zielwort = woerterbuch.get(random.nextInt(woerterbuch.size()));
+        // Here we pick a random word from the dictionary `5_letter_words.txt`
+        // this.zielwort = woerterbuch.get(random.nextInt(woerterbuch.size()));
+        this.zielwort = woerterbuch.get(1); // for testing Basel
 
         var app = Javalin.create(config -> {
             config.staticFiles.add("/public", Location.CLASSPATH);

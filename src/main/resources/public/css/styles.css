@@ -120,3 +120,21 @@
       .ok {
         color: #0b6b0b;
       }
+
+      /* Actions row (Restart button placement) */
+      .actions {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 12px;
+      }
+
+      /* Secondary/destructive button style (Restart) */
+      button.secondary {
+        background: transparent;
+        border: 2px solid #c0392b;
+        color: #c0392b;
+      }
+
+      button.secondary:hover {
+        background: #fdecea;
+      }
