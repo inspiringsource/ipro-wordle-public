@@ -179,9 +179,9 @@ This increment aims to extend the web application with full gameplay features.
 
 - Randomly select a German word from `5_letter_words.txt` as WOERTERBUCH word.
 - JavaScript modal popup for win/lose messages and menu:
-  - Win condition (all letters correct).
-  - Lose condition (after 6 attempts).
   - Reset game functionality.
+  - Lose condition (after 6 attempts).
+  - Win condition (all letters correct).
 - Other improvements including CSS styling and js effects prep for week 4.
 
 #### Possible Refinements
