@@ -7,6 +7,9 @@ const inputEl = document.getElementById("guess");
 const resultEl = document.getElementById("result");
 const submitBtn = document.getElementById("submitBtn");
 const restartBtn = document.getElementById("restartBtn");
+const winModal = document.getElementById("winModal");
+const playAgainBtn = document.getElementById("playAgainBtn");
+const confettiContainer = document.getElementById("confetti");
 
 let attempt = 0;
 
@@ -103,7 +106,10 @@ formEl.addEventListener("submit", async (e) => {
       const ct = res.headers.get("content-type") || "";
       if (ct.includes("application/json")) {
         const errData = await res.json();
-        const msg = errData && errData.error ? String(errData.error) : `HTTP ${res.status}`;
+        const msg =
+          errData && errData.error
+            ? String(errData.error)
+            : `HTTP ${res.status}`;
         throw new Error(msg);
       }
       const txt = await res.text();
@@ -123,6 +129,13 @@ formEl.addEventListener("submit", async (e) => {
     inputEl.value = "";
     inputEl.focus();
 
+    // Check for win condition
+    if (feedback === "GGGGG") {
+      lockGame();
+      showWinModal();
+      return;
+    }
+
     if (attempt >= ROWS) {
       setStatus("Fertig! Du hast alle 6 Versuche genutzt.", "ok");
       lockGame();
@@ -141,6 +154,45 @@ inputEl.addEventListener("input", () => {
 
 // Restart (Week 2): simplest approach – full page reload resets UI state
 restartBtn?.addEventListener("click", () => {
+  location.reload();
+});
+
+// Win modal functions
+function showWinModal() {
+  winModal.hidden = false;
+  createConfetti();
+}
+
+function createConfetti() {
+  const colors = [
+    "#2e7d32",
+    "#f9a825",
+    "#1976d2",
+    "#e91e63",
+    "#9c27b0",
+    "#ff5722",
+  ];
+  const pieceCount = 50;
+
+  for (let i = 0; i < pieceCount; i++) {
+    const piece = document.createElement("div");
+    piece.className = "confetti-piece";
+    piece.style.left = Math.random() * 100 + "%";
+    piece.style.backgroundColor =
+      colors[Math.floor(Math.random() * colors.length)];
+    piece.style.animationDelay = Math.random() * 0.5 + "s";
+    piece.style.animationDuration = 2 + Math.random() * 2 + "s";
+    confettiContainer.appendChild(piece);
+  }
+
+  // Clean up confetti after animation
+  setTimeout(() => {
+    confettiContainer.innerHTML = "";
+  }, 4000);
+}
+
+// Play again button
+playAgainBtn?.addEventListener("click", () => {
   location.reload();
 });
 
