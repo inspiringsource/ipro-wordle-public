@@ -177,12 +177,20 @@ This increment aims to extend the web application with full gameplay features.
 
 #### Planned Features
 
-- Randomly select a German word from `5_letter_words.txt` as WOERTERBUCH word.
+This week features included:
+
+- Improvement of Randomly select a German word from `5_letter_words.txt` as WOERTERBUCH word.
 - JavaScript modal popup for win/lose messages and menu:
   - Reset game functionality.
   - Lose condition (after 6 attempts).
   - Win condition (all letters correct).
 - Other improvements including CSS styling and js effects prep for week 4.
+
+<img src="myImages/win_game.png" alt="Win game week 3" width="60%" />
+
+javascript code from [w3schools.com/](https://www.w3schools.com/howto/howto_css_modals.asp)
+
+### Week 4 – Final Enhancements (Planned)
 
 #### Possible Refinements
 

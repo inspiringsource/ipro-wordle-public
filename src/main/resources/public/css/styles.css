@@ -237,3 +237,21 @@
           opacity: 0;
         }
       }
+
+      .info-link {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 0.4rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.info-link:hover {
+  text-decoration: none;
+  color: #555;
+}
+
+.info-link:focus {
+  outline: none;
+  text-decoration: none;
+}
