@@ -8,20 +8,33 @@ import java.util.Random;
 
 public class WebApp {
     private final List<String> woerterbuch;
+    private final Random random;
     private String zielwort;
 
     public WebApp() {
         this.woerterbuch = Dictionary.load5LetterWords();
-        Random random = new Random();
+        this.random = new Random();
         // Here we pick a random word from the dictionary `5_letter_words.txt`
-        // this.zielwort = woerterbuch.get(random.nextInt(woerterbuch.size()));
-        this.zielwort = woerterbuch.get(1); // for testing Basel
+        this.zielwort = woerterbuch.get(random.nextInt(woerterbuch.size()));
+        //this.zielwort = woerterbuch.get(1); // for testing Basel
 
         var app = Javalin.create(config -> {
             config.staticFiles.add("/public", Location.CLASSPATH);
         }).start(7070);
 
         app.get("/ping", ctx -> ctx.result("pong"));
+
+        app.post("/new-game", ctx -> {
+            String oldZielwort = this.zielwort;
+            int maxTries = 10;
+            int tries = 0;
+            // Guarantee different word (reroll until different, max 10 tries)
+            do {
+                this.zielwort = woerterbuch.get(random.nextInt(woerterbuch.size()));
+                tries++;
+            } while (this.zielwort.equals(oldZielwort) && tries < maxTries);
+            ctx.json(Map.of("status", "ok"));
+        });
 
         app.post("/guess", ctx -> {
             String erratenesWort = ctx.formParam("guess");

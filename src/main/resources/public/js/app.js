@@ -9,6 +9,8 @@ const submitBtn = document.getElementById("submitBtn");
 const restartBtn = document.getElementById("restartBtn");
 const winModal = document.getElementById("winModal");
 const playAgainBtn = document.getElementById("playAgainBtn");
+const loseModal = document.getElementById("loseModal");
+const tryAgainBtn = document.getElementById("tryAgainBtn");
 const confettiContainer = document.getElementById("confetti");
 
 let attempt = 0;
@@ -139,6 +141,7 @@ formEl.addEventListener("submit", async (e) => {
     if (attempt >= ROWS) {
       setStatus("Fertig! Du hast alle 6 Versuche genutzt.", "ok");
       lockGame();
+      showLoseModal();
     } else {
       setStatus(`Versuch ${attempt} von ${ROWS} aufgenommen.`, "ok");
     }
@@ -152,15 +155,24 @@ inputEl.addEventListener("input", () => {
   inputEl.value = inputEl.value.toUpperCase();
 });
 
-// Restart (Week 2): simplest approach – full page reload resets UI state
-restartBtn?.addEventListener("click", () => {
-  location.reload();
+// Restart (Week 2): request new word from server, then reload UI
+restartBtn?.addEventListener("click", async () => {
+  try {
+    await fetch("/new-game", { method: "POST" });
+    location.reload();
+  } catch (err) {
+    setStatus("Fehler beim Neustarten.", "error");
+  }
 });
 
 // Win modal functions
 function showWinModal() {
   winModal.hidden = false;
   createConfetti();
+}
+
+function showLoseModal() {
+  loseModal.hidden = false;
 }
 
 function createConfetti() {
@@ -192,8 +204,23 @@ function createConfetti() {
 }
 
 // Play again button
-playAgainBtn?.addEventListener("click", () => {
-  location.reload();
+playAgainBtn?.addEventListener("click", async () => {
+  try {
+    await fetch("/new-game", { method: "POST" });
+    location.reload();
+  } catch (err) {
+    setStatus("Fehler beim Neustarten.", "error");
+  }
+});
+
+// Try again button (lose modal)
+tryAgainBtn?.addEventListener("click", async () => {
+  try {
+    await fetch("/new-game", { method: "POST" });
+    location.reload();
+  } catch (err) {
+    setStatus("Fehler beim Neustarten.", "error");
+  }
 });
 
 inputEl.focus();

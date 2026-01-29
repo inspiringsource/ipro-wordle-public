@@ -165,7 +165,6 @@ After integrating frontend (HTML, CSS and JavaScript):
 
 <img src="myImages/basicFrontend02.png" alt="Web App Progress week 2" width="60%" />
 
-
 For more technical details see wiki:  
 [Frontend & Backend Technology Overview](https://github.com/inspiringsource/ipro-wordle-public/wiki/Frontend-&-Backend-Technology-Overview)
 
@@ -185,19 +184,28 @@ This week features included:
   - Lose condition (after 6 attempts).
   - Win condition (all letters correct).
 - Other improvements including CSS styling and js effects prep for week 4.
+- Basic unit tests for core game logic using JUnit.
 
 <img src="myImages/win_game.png" alt="Win game week 3" width="60%" />
 
-javascript code from [w3schools.com/](https://www.w3schools.com/howto/howto_css_modals.asp)
+Inspired by [w3schools.com/](https://www.w3schools.com/howto/howto_css_modals.asp)
 
-### Week 4 – Final Enhancements (Planned)
+### Week 4: UX Improvements & Interaction & Testing (Planned)
 
 #### Possible Refinements
 
-- Deployment on Render with GitHub integration for continuous delivery.
 - Enhanced user interface and interaction.
 - Additional input validation and feedback enhancements.
+- Advanced unit tests for core game logic using JUnit.
 
+### Week 5: Polishing & Deployment (Car 🚗) #5
+
+#### Final Steps
+
+- Improve usability and overall user experience
+- Clean up code and documentation (add comments)
+- Deployment on Render with GitHub integration for CD.
+- Clone to GitLab
 ⸻
 
 ## Game Rules & Feedback System
