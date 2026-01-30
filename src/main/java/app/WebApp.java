@@ -44,7 +44,7 @@ public class WebApp {
 
             if (!Dictionary.contains(woerterbuch, erratenesWort)) {
                 ctx.status(400).json(Map.of(
-                        "error", "Kein gueltiges deutsches Wort oder Wort zu kurz."));
+                        "error", "Kein gueltiges deutsches Wort."));
                 return;
             }
 

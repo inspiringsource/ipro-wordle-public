@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Main {
     // for week 4 we can create a auto generated word list
-    private static final String[] WOERTERBUCH = { "AARAU", "BASEL", "BRUGG", "DATEI", "MODUL", "LOGIK" };
+    // private static final String[] WOERTERBUCH = { "AARAU", "BASEL", "BRUGG", "DATEI", "MODUL", "LOGIK" };
     private static final int MAX_ATTEMPTS = 6;
 
     public static String getFeedback(String erratenesWort, String zielwort) {
@@ -39,6 +39,13 @@ public class Main {
         return feedback;
     }
 
+    /**
+     * Entry point
+     * Initializes the dictionary, selects a random target word,
+     *
+     * @param args command-line arguments (not used)
+     * @throws Exception if loading the dictionary fails or an unexpected error occurs
+     */
     public static void main(String[] args) throws Exception {
         System.out.println("Main game logic loaded");
         // Updated to read from resources
@@ -46,8 +53,8 @@ public class Main {
         Random random = new Random();
         List<String> woerterbuch = Dictionary.load5LetterWords();
         // truly random word from dictionary
-        //String zielwort = woerterbuch.get(random.nextInt(woerterbuch.size()));
-        String zielwort = WOERTERBUCH[1]; // for testing Basel
+        String zielwort = woerterbuch.get(random.nextInt(woerterbuch.size()));
+        //String zielwort = WOERTERBUCH[1]; // for testing Basel
 
         Scanner scanner = new Scanner(System.in);
         int versuche = 0;
