@@ -3,7 +3,11 @@ package app;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
-
+/**
+ * The main class for the wordle app
+ * 
+ * @author Avi B
+ * */
 public class Main {
     // for week 4 we can create a auto generated word list
     // private static final String[] WOERTERBUCH = { "AARAU", "BASEL", "BRUGG", "DATEI", "MODUL", "LOGIK" };
