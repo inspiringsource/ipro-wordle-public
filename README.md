@@ -170,7 +170,7 @@ For more technical details see wiki:
 
 ⸻
 
-### Week 3 – Full Web Gameplay (Planned / In Progress)
+### Week 3 – Full Web Gameplay (Completed)
 
 This increment aims to extend the web application with full gameplay features.
 
@@ -190,15 +190,15 @@ This week features included:
 
 Inspired by [w3schools.com/](https://www.w3schools.com/howto/howto_css_modals.asp)
 
-### Week 4: UX Improvements & Interaction & Testing (Planned)
+### Week 4: UX Improvements & Interaction & Testing (Planned / In Progress)
 
 #### Possible Refinements
 
-- Enhanced user interface and interaction.
-- Additional input validation and feedback enhancements.
+- Enhanced user interface and interaction (e.g. add modal popups for not valid words).
+- Additional input: hints and jokers (e.g. reveal a letter).
 - Advanced unit tests for core game logic using JUnit.
 
-### Week 5: Polishing & Deployment (Car 🚗) #5
+### Week 5: Polishing & Deployment (Car 🚗) #5 (Planned)
 
 #### Final Steps
 
@@ -298,6 +298,12 @@ To build and run the web application:
 
 ```bash
 mvn clean package && java -jar target/wordle-1.0-SNAPSHOT.jar
+```
+
+or via Maven Exec plugin with:
+
+```bash
+mvn clean package exec:java
 ```
 
 Access the web app in a browser at:
