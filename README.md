@@ -1,5 +1,7 @@
 # ipro-Wordle
 
+> **Academic Project:** This repository represents my submission for the **Individuelles Projekt (ipro)** module at the **FHNW**.
+
 **Status:** Work in progress.  
 This README evolves alongside the project. Sections for later weeks describe planned work and will be expanded as implementation progresses.
 
@@ -355,3 +357,7 @@ The project scope is intentionally limited to ensure reliability and clarity wit
 | Nachname | Vorname | Projektname | Betreuung |
 |----------|---------|-------------|-----------|
 | B.       | Avi     | Wordle      | A. A.     |
+
+⸻
+
+All rights reserved - Copyright © 2026 Avi B & FHNW
