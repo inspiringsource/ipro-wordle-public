@@ -18,9 +18,14 @@ public class WebApp {
         this.zielwort = woerterbuch.get(random.nextInt(woerterbuch.size()));
         //this.zielwort = woerterbuch.get(1); // for testing Basel
 
+        int port = Integer.parseInt(System.getenv().getOrDefault("PORT", "7070"));
+
         var app = Javalin.create(config -> {
             config.staticFiles.add("/public", Location.CLASSPATH);
-        }).start(7070);
+            // Render (and most cloud platforms) require binding to 0.0.0.0 and the provided PORT
+            config.jetty.defaultHost = "0.0.0.0";
+            config.jetty.defaultPort = port;
+        }).start();
 
         app.get("/ping", ctx -> ctx.result("pong"));
 
