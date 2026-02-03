@@ -121,11 +121,41 @@
         color: #0b6b0b;
       }
 
-      /* Actions row (Restart button placement) */
+      /* Actions row (button placement) */
       .actions {
         display: flex;
-        justify-content: flex-end;
+        justify-content: right;
+        align-items: end;
+        gap: 10px;
         margin-top: 12px;
+        flex-wrap: wrap;
+      }
+
+      /* Shared action button style */
+      .action-btn {
+        height: 40px;
+        padding: 0 16px;
+        font-size: 14px;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+
+      /* Reveal button style (secondary/outline) */
+      .action-btn.reveal-btn {
+        background: transparent;
+        border: 2px solid #666;
+        color: #666;
+      }
+
+      .action-btn.reveal-btn:hover {
+        background: #f0f0f0;
+        border-color: #444;
+        color: #444;
+      }
+
+      .action-btn.reveal-btn:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
       }
 
       /* Secondary/destructive button style (Restart) */
@@ -275,32 +305,6 @@
 .info-link:focus {
   outline: none;
   text-decoration: none;
-}
-
-/* Reveal Button */
-.reveal-btn {
-  display: inline-flex;
-  align-items: center;
-  margin-left: 0.5rem;
-  padding: 4px 10px;
-  font-size: 12px;
-  height: 28px;
-  background: transparent;
-  border: 1px solid #888;
-  color: #555;
-  border-radius: 6px;
-  cursor: pointer;
-  vertical-align: middle;
-}
-
-.reveal-btn:hover {
-  background: #f0f0f0;
-  border-color: #666;
-}
-
-.reveal-btn:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
 }
 
 /* Reveal Modal Variant */

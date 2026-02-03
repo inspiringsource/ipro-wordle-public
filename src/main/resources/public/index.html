@@ -19,14 +19,6 @@
         >
           ℹ️
         </a>
-        <button
-          id="revealBtn"
-          type="button"
-          class="reveal-btn"
-          title="Wort anzeigen"
-        >
-          Wort anzeigen
-        </button>
       </h1>
 
       <div id="board" class="board" aria-label="Wordle board"></div>
@@ -45,7 +37,17 @@
       </form>
 
       <div class="actions">
-        <button id="restartBtn" type="button" class="secondary">Restart</button>
+        <button
+          id="revealBtn"
+          type="button"
+          class="action-btn reveal-btn"
+          title="Wort anzeigen"
+        >
+          Wort anzeigen
+        </button>
+        <button id="restartBtn" type="button" class="action-btn secondary">
+          Restart
+        </button>
       </div>
 
       <div class="hint">6 Versuche • 5 Buchstaben lang</div>
@@ -94,9 +96,6 @@
     <!-- Reveal Solution Modal -->
     <div id="revealSolutionModal" class="modal" hidden>
       <div class="modal-content reveal">
-        <span id="closeSolutionModal" class="modal-close" title="Schließen"
-          >&times;</span
-        >
         <h2>Lösungswort</h2>
         <p class="solution-text">
           Lösungswort: <span id="solutionText"></span>

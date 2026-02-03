@@ -20,7 +20,6 @@ const revealSolutionModal = document.getElementById("revealSolutionModal");
 const solutionText = document.getElementById("solutionText");
 const newGameFromRevealBtn = document.getElementById("newGameFromRevealBtn");
 const closeConfirmModal = document.getElementById("closeConfirmModal");
-const closeSolutionModal = document.getElementById("closeSolutionModal");
 const revealCancelBtn = document.getElementById("revealCancelBtn");
 const revealProceedBtn = document.getElementById("revealProceedBtn");
 const loseSolutionText = document.getElementById("loseSolutionText");
@@ -302,11 +301,6 @@ newGameFromRevealBtn?.addEventListener("click", async () => {
   } catch (err) {
     setStatus("Fehler beim Neustarten.", "error");
   }
-});
-
-// Close solution modal (game remains ended)
-closeSolutionModal?.addEventListener("click", () => {
-  revealSolutionModal.hidden = true;
 });
 
 inputEl.focus();
