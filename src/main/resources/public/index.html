@@ -19,6 +19,14 @@
         >
           ℹ️
         </a>
+        <button
+          id="revealBtn"
+          type="button"
+          class="reveal-btn"
+          title="Wort anzeigen"
+        >
+          Wort anzeigen
+        </button>
       </h1>
 
       <div id="board" class="board" aria-label="Wordle board"></div>
@@ -58,7 +66,44 @@
       <div class="modal-content lose">
         <h2>Schade 😞</h2>
         <p>Versuch es nochmal.</p>
+        <p id="loseSolutionText" class="solution-text"></p>
         <button id="tryAgainBtn" type="button">Nochmal versuchen</button>
+      </div>
+    </div>
+
+    <!-- Reveal Confirm Modal -->
+    <div id="revealConfirmModal" class="modal" hidden>
+      <div class="modal-content reveal">
+        <span id="closeConfirmModal" class="modal-close" title="Schließen"
+          >&times;</span
+        >
+        <h2>⚠️ Achtung</h2>
+        <p>Wenn du das Lösungswort anschaust, ist das Spiel vorbei.</p>
+        <p>Bist du sicher, dass du das Wort sehen möchtest?</p>
+        <div class="modal-buttons">
+          <button id="revealCancelBtn" type="button" class="btn-secondary">
+            Nein
+          </button>
+          <button id="revealProceedBtn" type="button" class="btn-warning">
+            Ja, anzeigen
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reveal Solution Modal -->
+    <div id="revealSolutionModal" class="modal" hidden>
+      <div class="modal-content reveal">
+        <span id="closeSolutionModal" class="modal-close" title="Schließen"
+          >&times;</span
+        >
+        <h2>Lösungswort</h2>
+        <p class="solution-text">
+          Lösungswort: <span id="solutionText"></span>
+        </p>
+        <button id="newGameFromRevealBtn" type="button">
+          Neues Spiel starten
+        </button>
       </div>
     </div>
 

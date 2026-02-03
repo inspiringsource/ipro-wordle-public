@@ -75,6 +75,11 @@ public class WebApp {
                 ctx.json(Map.of("word", erratenesWort));
             }
         });
+
+        // Endpoint to reveal the current solution word
+        app.get("/solution", ctx -> {
+            ctx.json(Map.of("zielwort", zielwort));
+        });
     }
 
     public static void main(String[] args) {

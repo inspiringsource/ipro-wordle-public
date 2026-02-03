@@ -13,6 +13,18 @@ const loseModal = document.getElementById("loseModal");
 const tryAgainBtn = document.getElementById("tryAgainBtn");
 const confettiContainer = document.getElementById("confetti");
 
+// Reveal word elements
+const revealBtn = document.getElementById("revealBtn");
+const revealConfirmModal = document.getElementById("revealConfirmModal");
+const revealSolutionModal = document.getElementById("revealSolutionModal");
+const solutionText = document.getElementById("solutionText");
+const newGameFromRevealBtn = document.getElementById("newGameFromRevealBtn");
+const closeConfirmModal = document.getElementById("closeConfirmModal");
+const closeSolutionModal = document.getElementById("closeSolutionModal");
+const revealCancelBtn = document.getElementById("revealCancelBtn");
+const revealProceedBtn = document.getElementById("revealProceedBtn");
+const loseSolutionText = document.getElementById("loseSolutionText");
+
 let attempt = 0;
 
 // Build 6x5 grid on load
@@ -171,7 +183,23 @@ function showWinModal() {
   createConfetti();
 }
 
-function showLoseModal() {
+async function showLoseModal() {
+  // Fetch solution before showing lose modal
+  try {
+    const res = await fetch("/solution", {
+      method: "GET",
+      headers: { Accept: "application/json" },
+    });
+    if (res.ok) {
+      const data = await res.json();
+      const word = data.zielwort || "---";
+      loseSolutionText.textContent = `Lösungswort war: ${word}`;
+    } else {
+      loseSolutionText.textContent = "Lösungswort konnte nicht geladen werden.";
+    }
+  } catch (err) {
+    loseSolutionText.textContent = "Lösungswort konnte nicht geladen werden.";
+  }
   loseModal.hidden = false;
 }
 
@@ -221,6 +249,64 @@ tryAgainBtn?.addEventListener("click", async () => {
   } catch (err) {
     setStatus("Fehler beim Neustarten.", "error");
   }
+});
+
+// Reveal word button - opens confirm modal only (no fetch yet)
+revealBtn?.addEventListener("click", () => {
+  revealConfirmModal.hidden = false;
+});
+
+// Cancel reveal - close confirm modal, game continues
+revealCancelBtn?.addEventListener("click", () => {
+  revealConfirmModal.hidden = true;
+});
+
+// Close confirm modal (same as cancel)
+closeConfirmModal?.addEventListener("click", () => {
+  revealConfirmModal.hidden = true;
+});
+
+// Proceed with reveal - lock game, fetch solution, show solution modal
+revealProceedBtn?.addEventListener("click", async () => {
+  // Lock the game
+  lockGame();
+  revealBtn.disabled = true;
+
+  // Fetch the solution
+  try {
+    const res = await fetch("/solution", {
+      method: "GET",
+      headers: { Accept: "application/json" },
+    });
+    if (res.ok) {
+      const data = await res.json();
+      const word = data.zielwort || "---";
+      solutionText.textContent = word;
+    } else {
+      solutionText.textContent = "Lösungswort konnte nicht geladen werden.";
+    }
+  } catch (err) {
+    solutionText.textContent = "Lösungswort konnte nicht geladen werden.";
+  }
+
+  // Close confirm modal and open solution modal
+  revealConfirmModal.hidden = true;
+  revealSolutionModal.hidden = false;
+});
+
+// New game from reveal solution modal
+newGameFromRevealBtn?.addEventListener("click", async () => {
+  try {
+    await fetch("/new-game", { method: "POST" });
+    location.reload();
+  } catch (err) {
+    setStatus("Fehler beim Neustarten.", "error");
+  }
+});
+
+// Close solution modal (game remains ended)
+closeSolutionModal?.addEventListener("click", () => {
+  revealSolutionModal.hidden = true;
 });
 
 inputEl.focus();

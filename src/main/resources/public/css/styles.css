@@ -276,3 +276,120 @@
   outline: none;
   text-decoration: none;
 }
+
+/* Reveal Button */
+.reveal-btn {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 0.5rem;
+  padding: 4px 10px;
+  font-size: 12px;
+  height: 28px;
+  background: transparent;
+  border: 1px solid #888;
+  color: #555;
+  border-radius: 6px;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+.reveal-btn:hover {
+  background: #f0f0f0;
+  border-color: #666;
+}
+
+.reveal-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Reveal Modal Variant */
+.modal-content.reveal h2 {
+  color: #e65100;
+}
+
+.modal-content.reveal p {
+  margin: 0 0 16px 0;
+  font-size: 16px;
+  color: #666;
+}
+
+.modal-content.reveal button {
+  background: #e65100;
+  border-color: #e65100;
+}
+
+.modal-content.reveal button:hover {
+  background: #bf4500;
+  border-color: #bf4500;
+}
+
+/* Confirm modal buttons layout */
+.modal-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+/* Secondary button for confirm modal (Nein) */
+.modal-content .btn-secondary {
+  background: transparent;
+  border: 2px solid #666;
+  color: #666;
+}
+
+.modal-content .btn-secondary:hover {
+  background: #f0f0f0;
+  border-color: #444;
+  color: #444;
+}
+
+/* Warning button for confirm modal (Ja, anzeigen) */
+.modal-content .btn-warning {
+  background: #e65100;
+  border: 2px solid #e65100;
+  color: #fff;
+}
+
+.modal-content .btn-warning:hover {
+  background: #bf4500;
+  border-color: #bf4500;
+}
+
+/* Solution text styling */
+.solution-text {
+  font-size: 18px;
+  font-weight: 700;
+  color: #333;
+  margin: 16px 0;
+  letter-spacing: 2px;
+}
+
+.solution-text span {
+  background: #f5f5f5;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-family: monospace;
+  font-size: 22px;
+}
+
+/* Modal close button */
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #888;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.modal-close:hover {
+  color: #333;
+}
+
+.modal-content {
+  position: relative;
+}
