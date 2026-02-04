@@ -199,7 +199,7 @@ Inspired by [w3schools.com/](https://www.w3schools.com/howto/howto_css_modals.as
 - Enhanced user interface and interaction (e.g. add modal popups for not valid words).
 - Reveal target word button and reveal word on game over (requested feature).
 - Deployment brought earlier to week 4.
-- Advanced unit tests for core game logic using JUnit.
+- Advanced unit tests for core game logic using [JUnit](https://docs.junit.org/6.0.2/running-tests/build-support.html#maven).
 - Among others fixes and improvements based on user feedback.
 
 ### Week 5: Polishing & Deployment (Car 🚗) #5 (Planned)

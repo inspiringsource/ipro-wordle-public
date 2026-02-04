@@ -8,11 +8,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Dictionary {
-
+    static String worterDB = "5_letter_words.txt";
     public static List<String> load5LetterWords() {
-        try (InputStream is = Dictionary.class.getClassLoader().getResourceAsStream("data/5_letter_words.txt")) {
+        try (InputStream is = Dictionary.class.getClassLoader().getResourceAsStream("data/" + worterDB)) {
             if (is == null) {
-                throw new RuntimeException("Could not load 5_letter_words.txt");
+                throw new RuntimeException("Could not load " + worterDB);
             }
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8))) {
                 return reader.lines()
@@ -22,7 +22,7 @@ public class Dictionary {
                         .collect(Collectors.toList());
             }
         } catch (Exception e) {
-            throw new RuntimeException("Could not load 5_letter_words.txt", e);
+            throw new RuntimeException("Could not load " + worterDB, e);
         }
     }
 
