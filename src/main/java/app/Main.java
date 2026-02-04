@@ -4,14 +4,17 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 /**
- * The main class for the wordle app
+ * Console-based Wordle game logic.
  * 
+ * This class contains the core gameplay rules and feedback generation.
+ *
  * @author Avi B
- * */
+ */
 public class Main {
     // for week 4 we can create a auto generated word list
     // private static final String[] WOERTERBUCH = { "AARAU", "BASEL", "BRUGG", "DATEI", "MODUL", "LOGIK" };
-    private static final int MAX_ATTEMPTS = 6;
+    
+    private static final int MAX_ATTEMPTS = 6; // maximum number of attempts
 
     public static String getFeedback(String erratenesWort, String zielwort) {
         String feedback = "";

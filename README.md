@@ -196,20 +196,21 @@ Inspired by [w3schools.com/](https://www.w3schools.com/howto/howto_css_modals.as
 
 #### Possible Refinements
 
-- Enhanced user interface and interaction (e.g. add modal popups for not valid words).
 - Reveal target word button and reveal word on game over (requested feature).
 - Deployment brought earlier to week 4.
+- Enhanced user interface and interaction (e.g. add modal popups for not valid words).
 - Advanced unit tests for core game logic using [JUnit](https://docs.junit.org/6.0.2/running-tests/build-support.html#maven).
 - Among others fixes and improvements based on user feedback.
 
-### Week 5: Polishing & Deployment (Car 🚗) #5 (Planned)
-
+### Week 5: Polishing & Presenation (Car 🚗) #5 (Planned)
+  
 #### Final Steps
 
 - Improve usability and overall user experience
 - Clean up code and documentation (add comments)
-- Deployment on Render with GitHub integration for CD.
+- ~~Deployment on Render with GitHub integration for CD.~~
 - Clone to GitLab
+- Presensation
 
 ⸻
 

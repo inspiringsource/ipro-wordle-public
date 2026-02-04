@@ -134,7 +134,7 @@ formEl.addEventListener("submit", async (e) => {
     if (!res.ok) {
       const ct = res.headers.get("content-type") || "";
       let errorMsg = `HTTP ${res.status}`;
-      
+
       if (ct.includes("application/json")) {
         const errData = await res.json();
         errorMsg = errData?.error || errData?.message || errorMsg;
