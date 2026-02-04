@@ -328,6 +328,27 @@
   border-color: #bf4500;
 }
 
+/* Warning Modal Variant (Invalid Word) */
+.modal-content.warning h2 {
+  color: #f57c00;
+}
+
+.modal-content.warning p {
+  margin: 0 0 24px 0;
+  font-size: 16px;
+  color: #666;
+}
+
+.modal-content.warning button {
+  background: #f57c00;
+  border-color: #f57c00;
+}
+
+.modal-content.warning button:hover {
+  background: #ef6c00;
+  border-color: #ef6c00;
+}
+
 /* Confirm modal buttons layout */
 .modal-buttons {
   display: flex;

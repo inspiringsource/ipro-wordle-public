@@ -24,6 +24,10 @@ const revealCancelBtn = document.getElementById("revealCancelBtn");
 const revealProceedBtn = document.getElementById("revealProceedBtn");
 const loseSolutionText = document.getElementById("loseSolutionText");
 
+// Invalid Word modal elements
+const invalidWordModal = document.getElementById("invalidWordModal");
+const invalidWordOkBtn = document.getElementById("invalidWordOkBtn");
+
 let attempt = 0;
 
 // Build 6x5 grid on load
@@ -115,22 +119,48 @@ formEl.addEventListener("submit", async (e) => {
       });
     }
 
+    // Helper: check if message indicates an invalid word
+    function isInvalidWordMessage(msg) {
+      if (!msg) return false;
+      const lower = msg.toLowerCase();
+      return (
+        lower.includes("kein gueltiges deutsches wort") ||
+        lower.includes("kein gültiges deutsches wort") ||
+        lower.includes("not a valid german word") ||
+        lower.includes("invalid word")
+      );
+    }
+
     if (!res.ok) {
       const ct = res.headers.get("content-type") || "";
+      let errorMsg = `HTTP ${res.status}`;
+      
       if (ct.includes("application/json")) {
         const errData = await res.json();
-        const msg =
-          errData && errData.error
-            ? String(errData.error)
-            : `HTTP ${res.status}`;
-        throw new Error(msg);
+        errorMsg = errData?.error || errData?.message || errorMsg;
+      } else {
+        errorMsg = (await res.text()) || errorMsg;
       }
-      const txt = await res.text();
-      throw new Error(txt || `HTTP ${res.status}`);
+
+      // Check for invalid word response
+      if (isInvalidWordMessage(errorMsg)) {
+        showInvalidWordModal();
+        return;
+      }
+      throw new Error(errorMsg);
     }
 
     // We expect JSON: { word: "ABCDE", feedback: "GYBBY" }
     const data = await readJsonOrThrow(res);
+
+    // Also check if a 200 response contains an error/message field indicating invalid word
+    if (data && (data.error || data.message)) {
+      const msg = data.error || data.message;
+      if (isInvalidWordMessage(msg)) {
+        showInvalidWordModal();
+        return;
+      }
+    }
     const word = (data && data.word ? String(data.word) : "").toUpperCase();
     const feedback = (
       data && data.feedback ? String(data.feedback) : "BBBBB"
@@ -302,5 +332,18 @@ newGameFromRevealBtn?.addEventListener("click", async () => {
     setStatus("Fehler beim Neustarten.", "error");
   }
 });
+
+// Invalid Word modal functions
+function showInvalidWordModal() {
+  invalidWordModal.hidden = false;
+}
+
+function hideInvalidWordModal() {
+  invalidWordModal.hidden = true;
+  inputEl.value = "";
+  inputEl.focus();
+}
+
+invalidWordOkBtn?.addEventListener("click", hideInvalidWordModal);
 
 inputEl.focus();
