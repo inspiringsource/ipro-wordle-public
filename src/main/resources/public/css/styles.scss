@@ -1,0 +1,439 @@
+/*
+ * styles.scss
+ * Source of truth for styles.
+ * Compile this manually to styles.css for now.
+ */
+
+$color-text: #333;
+$color-bg-body: #fff;
+$color-border: #cfcfcf;
+$color-border-focus: #888;
+$color-placeholder: #aaa; 
+
+$color-success-text: #0b6b0b; 
+$color-error-text: #b00020;   
+
+$color-state-correct: #2e7d32; 
+$color-state-present: #f9a825; 
+$color-state-absent: #616161;  
+$color-text-inverse: #fff;
+$color-text-dark: #111;
+
+$color-btn-primary-bg: #333;
+$color-btn-primary-text: #fff;
+$color-btn-secondary: #c0392b;           
+$color-btn-secondary-hover: #fdecea;
+$color-btn-reveal: #666;                 
+$color-btn-reveal-hover-bg: #f0f0f0;
+$color-btn-reveal-hover-text: #444;
+
+$color-modal-overlay: rgba(0, 0, 0, 0.6);
+$color-modal-bg: #fff;
+$color-modal-shadow: rgba(0, 0, 0, 0.3);
+
+$color-theme-win: #2e7d32;
+$color-theme-lose: #c0392b;
+$color-theme-reveal: #e65100;
+$color-theme-warning: #f57c00;
+
+
+$font-family-base: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+$font-family-mono: monospace;
+
+
+$control-height-lg: 44px; 
+$control-height-sm: 40px; 
+$radius-base: 8px;
+$radius-lg: 10px;
+$radius-xl: 12px;
+$radius-modal: 16px;
+
+$grid-gap: 10px;
+$cell-size: 64px;
+
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin control-base($height, $radius, $font-size: 16px) {
+  height: $height;
+  padding: 0 16px; 
+  font-size: $font-size;
+  border-radius: $radius;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 24px;
+  font-family: $font-family-base;
+}
+
+.container {
+  max-width: 520px;
+  margin: 0 auto;
+  display: grid;
+  gap: 16px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 20px;
+  letter-spacing: 0.5px;
+}
+
+/* 6 rows x 5 columns */
+.board {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-auto-rows: $cell-size;
+  gap: $grid-gap;
+}
+
+.cell {
+  border: 2px solid $color-border;
+  border-radius: $radius-base;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 24px;
+  text-transform: uppercase;
+  user-select: none;
+  
+  &.state-g {
+    background: $color-state-correct;
+    border-color: $color-state-correct;
+    color: $color-text-inverse;
+  }
+
+  &.state-y {
+    background: $color-state-present;
+    border-color: $color-state-present;
+    color: $color-text-dark;
+  }
+
+  &.state-b {
+    background: $color-state-absent;
+    border-color: $color-state-absent;
+    color: $color-text-inverse;
+  }
+}
+
+
+form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: $grid-gap;
+  align-items: center;
+}
+
+input[type="text"] {
+  height: $control-height-lg;
+  padding: 0 12px;
+  font-size: 16px;
+  border: 2px solid $color-border;
+  border-radius: $radius-lg;
+  outline: none;
+  text-transform: uppercase;
+
+  &:focus {
+    border-color: $color-border-focus;
+  }
+}
+
+button {
+  
+  height: $control-height-lg;
+  padding: 0 16px;
+  font-size: 16px;
+  border-radius: $radius-lg;
+  border: 2px solid $color-btn-primary-bg;
+  background: $color-btn-primary-bg;
+  color: $color-btn-primary-text;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  
+  &.secondary {
+    background: transparent;
+    border: 2px solid $color-btn-secondary;
+    color: $color-btn-secondary;
+
+    &:hover {
+      background: $color-btn-secondary-hover;
+    }
+  }
+}
+
+.hint {
+  font-size: 13px;
+  opacity: 0.75;
+}
+
+#result {
+  min-height: 20px;
+  margin: 0;
+  font-size: 14px;
+}
+
+.error { color: $color-error-text; }
+.ok { color: $color-success-text; }
+
+.info-link {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 0.4rem;
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    text-decoration: none;
+    color: #555;
+  }
+
+  &:focus {
+    outline: none;
+    text-decoration: none;
+  }
+}
+
+.actions {
+  display: flex;
+  justify-content: right;
+  align-items: end;
+  gap: 10px; 
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.action-btn {
+  height: $control-height-sm;
+  padding: 0 16px;
+  font-size: 14px;
+  border-radius: $radius-base;
+  cursor: pointer;
+
+  
+  &.reveal-btn {
+    background: transparent;
+    border: 2px solid $color-btn-reveal;
+    color: $color-btn-reveal;
+
+    &:hover {
+      background: $color-btn-reveal-hover-bg;
+      border-color: $color-btn-reveal-hover-text;
+      color: $color-btn-reveal-hover-text;
+    }
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: $color-modal-overlay;
+  @include flex-center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-out;
+
+  &[hidden] {
+    display: none;
+  }
+
+  &-content {
+    background: $color-modal-bg;
+    padding: 40px 48px;
+    border-radius: $radius-modal;
+    text-align: center;
+    box-shadow: 0 8px 32px $color-modal-shadow;
+    animation: slideIn 0.4s ease-out;
+    z-index: 1001;
+    position: relative; 
+
+    h2 {
+      margin: 0 0 24px 0;
+      font-size: 28px;
+      color: $color-theme-win; 
+    }
+
+    p {
+      
+      margin: 0 0 24px 0;
+      font-size: 16px;
+      color: #666;
+    }
+    
+    win,
+    button {
+      padding: 12px 32px;
+      font-size: 18px;
+      background: $color-theme-win;
+      border-color: $color-theme-win;
+      border-radius: $radius-xl;
+      color: #fff; 
+
+      &:hover {
+        background: darken($color-theme-win, 5%);
+        border-color: darken($color-theme-win, 5%);
+      }
+    }
+
+    
+    .btn-secondary {
+      background: transparent;
+      border: 2px solid $color-btn-reveal; 
+      color: $color-btn-reveal;
+      
+      
+      
+      &:hover {
+        background: $color-btn-reveal-hover-bg;
+        border-color: $color-btn-reveal-hover-text;
+        color: $color-btn-reveal-hover-text;
+      }
+    }
+    
+    
+    .btn-warning {
+      background: $color-theme-reveal; 
+      border: 2px solid $color-theme-reveal;
+      color: #fff;
+      
+      &:hover {
+        background: darken($color-theme-reveal, 8%);
+        border-color: darken($color-theme-reveal, 8%);
+      }
+    }
+
+    
+    &.lose {
+      h2 { color: $color-theme-lose; }
+      p { margin: 0 0 24px 0; font-size: 16px; color: #666; }
+      button {
+        background: $color-theme-lose;
+        border-color: $color-theme-lose;
+        &:hover {
+          background: darken($color-theme-lose, 8%);
+          border-color: darken($color-theme-lose, 8%);
+        }
+      }
+    }
+
+    &.reveal {
+      h2 { color: $color-theme-reveal; }
+      p { margin: 0 0 16px 0; font-size: 16px; color: #666; }
+      button {
+        background: $color-theme-reveal;
+        border-color: $color-theme-reveal;
+        &:hover {
+          background: darken($color-theme-reveal, 8%);
+          border-color: darken($color-theme-reveal, 8%);
+        }
+      }
+    }
+
+    &.warning {
+      h2 { color: $color-theme-warning; } 
+      p { margin: 0 0 24px 0; font-size: 16px; color: #666; }
+      button { 
+        background: $color-theme-warning;
+        border-color: $color-theme-warning;
+        &:hover {
+          background: darken($color-theme-warning, 5%);
+          border-color: darken($color-theme-warning, 5%);
+        }
+      }
+    }
+  }
+
+  
+  &-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 24px;
+  }
+}
+
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 28px;
+  font-weight: bold;
+  color: $color-border-focus; 
+  cursor: pointer;
+  line-height: 1;
+
+  &:hover {
+    color: $color-text;
+  }
+}
+
+.solution-text {
+  font-size: 18px;
+  font-weight: 700;
+  color: $color-text;
+  margin: 16px 0;
+  letter-spacing: 2px;
+
+  span {
+    background: #f5f5f5;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-family: $font-family-mono;
+    font-size: 22px;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(-30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1002;
+}
+
+.confetti-piece {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  top: -20px;
+  animation: confettiFall 3s ease-out forwards;
+}
+
+@keyframes confettiFall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
