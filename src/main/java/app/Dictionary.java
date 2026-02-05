@@ -10,17 +10,15 @@ import java.util.stream.Collectors;
 public class Dictionary {
     static String worterDB = "5_letter_words.txt";
     public static List<String> load5LetterWords() {
-        try (InputStream is = Dictionary.class.getClassLoader().getResourceAsStream("data/" + worterDB)) {
-            if (is == null) {
-                throw new RuntimeException("Could not load " + worterDB);
-            }
-            try (BufferedReader reader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8))) {
+        try (
+            InputStream is = Dictionary.class.getClassLoader().getResourceAsStream("data/" + worterDB);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8))
+        ) {
                 return reader.lines()
                         .map(String::trim)
                         .map(String::toUpperCase)
                         .filter(line -> !line.isEmpty())
                         .collect(Collectors.toList());
-            }
         } catch (Exception e) {
             throw new RuntimeException("Could not load " + worterDB, e);
         }
