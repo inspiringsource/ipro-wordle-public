@@ -12,22 +12,26 @@ import java.util.Locale;
 public class Helper {
 
     public static void main(String[] args) {
-        Path inputFile = Path.of("data/words");
-        Path outputFile = Path.of("data/5_letter_words.txt");
+        Path inputFile = Path.of("data/German-words-1600000-words-multilines.json");
+        Path outputFile = Path.of("src/main/resources/data/5_letter_wordsv2.txt");
 
         try (BufferedReader reader = Files.newBufferedReader(inputFile, StandardCharsets.UTF_8);
              BufferedWriter writer = Files.newBufferedWriter(outputFile, StandardCharsets.UTF_8)) {
 
             String line;
             while ((line = reader.readLine()) != null) {
-                line = line.trim();
+                // Remove JSON characters like quotes, commas, and brackets
+                line = line.replaceAll("[\"\\[\\],]", "").trim();
                 if (line.isEmpty()) continue;
 
                 // erst normalisieren
                 String upper = line.toUpperCase(Locale.ROOT);
 
-                // optional: ß ausschliessen (weil es zu SS wird)
-                if (upper.contains("ß") || upper.contains("ẞ")) continue;
+                // Skip words containing German special characters (ß, Ä, Ö, Ü)
+                if (line.contains("ß") || line.contains("ẞ")
+                        || upper.contains("Ä") || upper.contains("Ö") || upper.contains("Ü")) {
+                    continue;
+                }
 
                 // dann erst die 5-Buchstaben-Regel anwenden
                 if (upper.length() == 5) {

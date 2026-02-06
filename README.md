@@ -194,7 +194,7 @@ Inspired by [w3schools.com/](https://www.w3schools.com/howto/howto_css_modals.as
 - Deployment brought earlier to week 4.
 - Enhanced user interface and interaction (e.g. add modal popups for not valid words).
 - Advanced unit tests for core game logic using [JUnit](https://docs.junit.org/6.0.2/running-tests/build-support.html#maven).
-- Among others fixes and improvements based on user feedback.
+- Upgraded the word list to a more comprehensive one (`5_letter_wordsv2.txt`).
 
 // Planned / In Progress
 
@@ -334,6 +334,9 @@ http://localhost:7070
 
 - Word list source: enz/german-wordlist (CC0-1.0)  
   https://github.com/enz/german-wordlist
+
+- Second Word list source: [German-Words-Library](https://github.com/Jonny-exe/German-Words-Library)
+
 
 ### Credits & Acknowledgements
 

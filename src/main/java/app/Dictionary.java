@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Dictionary {
-    static String worterDB = "5_letter_words.txt";
+    static String worterDB = "5_letter_wordsv2.txt";
     public static List<String> load5LetterWords() {
         try (
             InputStream is = Dictionary.class.getClassLoader().getResourceAsStream("data/" + worterDB);
