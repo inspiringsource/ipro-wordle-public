@@ -143,12 +143,6 @@ This increment reuses the existing console game logic in a simple web applicatio
 
 - Basic server setup confirmed with a "Hello World" example.
 
-### Command to build and run the web app
-
-```bash
-mvn clean package && java -jar target/wordle-1.0-SNAPSHOT.jar
-```
-
 #### Frontend Implementation
 
 - Basic frontend built with HTML, CSS, and JavaScript.
@@ -192,15 +186,17 @@ This week features included:
 
 Inspired by [w3schools.com/](https://www.w3schools.com/howto/howto_css_modals.asp)
 
-### Week 4: UX Improvements & Interaction & Testing (Planned / In Progress)
+### Week 4: UX Improvements & Interaction & Testing (Completed)
 
-#### Possible Refinements
+#### Refinements
 
 - Reveal target word button and reveal word on game over (requested feature).
 - Deployment brought earlier to week 4.
 - Enhanced user interface and interaction (e.g. add modal popups for not valid words).
 - Advanced unit tests for core game logic using [JUnit](https://docs.junit.org/6.0.2/running-tests/build-support.html#maven).
 - Among others fixes and improvements based on user feedback.
+
+// Planned / In Progress
 
 ### Week 5: Polishing & Presenation (Car 🚗) #5 (Planned)
   
@@ -275,11 +271,14 @@ src/
     ├─ java/
     │  └─ app/
     │     ├─ Main.java        (Game logic – console version)
+    │     ├─ Dictionary.java    (Word list handling)
     │     └─ WebApp.java      (Javalin server & API endpoints)
     └─ resources/
        ├─ data/
        │  └─ 5_letter_words.txt   (Dictionary)
        └─ public/
+          │     ├─ style.css        (CSS styling)
+          │     ├─ style.scss       (extension of CSS)
           └─ index.html           (Web frontend)
 pom.xml
 ```
@@ -342,19 +341,6 @@ http://localhost:7070
 - ChatGPT (OpenAI) — supportive tool for explanations, wording improvements, and structuring documentation.
 - Henrik Kniberg — MVP metaphor inspiration.
 - Stack Overflow and other technical resources cited within the document.
-
-⸻
-
-## Project Goal
-
-The goal of this project is to demonstrate:
-
-- understanding of basic Java programming
-- incremental software development
-- clean and maintainable code
-- transition from a console application to a simple web application
-
-The project scope is intentionally limited to ensure reliability and clarity within a pass/fail evaluation context.
 
 ⸻
 
