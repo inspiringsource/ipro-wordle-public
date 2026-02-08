@@ -194,11 +194,11 @@ Inspired by [w3schools.com/](https://www.w3schools.com/howto/howto_css_modals.as
 - Deployment brought earlier to week 4.
 - Enhanced user interface and interaction (e.g. add modal popups for not valid words).
 - Advanced unit tests for core game logic using [JUnit](https://docs.junit.org/6.0.2/running-tests/build-support.html#maven).
-- Upgraded the word list to a more comprehensive one (`5_letter_wordsv2.txt`).
+- Upgraded the word list to a more common set of 5-letter German words (`5_letter_common_words.txt`), improving gameplay experience (words make more sense in everyday usage).
+- Added a virtual keyboard to the frontend using the [simple-keyboard library](https://hodgef.com/simple-keyboard/).
+- Improved feedback to handle duplicate letters correctly.
 
-// Planned / In Progress
-
-### Week 5: Polishing & Presenation (Car 🚗) #5 (Planned)
+### Week 5: Polishing & Presenation (Car 🚗) #5 (Planned / In Progress)
   
 #### Final Steps
 
@@ -266,21 +266,98 @@ Rationale:
 The project is organized to support incremental development and clear separation of concerns.
 
 ```tree
-src/
- └─ main/
-    ├─ java/
-    │  └─ app/
-    │     ├─ Main.java        (Game logic – console version)
-    │     ├─ Dictionary.java    (Word list handling)
-    │     └─ WebApp.java      (Javalin server & API endpoints)
-    └─ resources/
-       ├─ data/
-       │  └─ 5_letter_words.txt   (Dictionary)
-       └─ public/
-          │     ├─ style.css        (CSS styling)
-          │     ├─ style.scss       (extension of CSS)
-          └─ index.html           (Web frontend)
-pom.xml
+.
+├── Dockerfile
+├── Presentation
+│   └── ipro25HS-Presentation.pdf
+├── README.md
+├── data
+│   ├── 1000-most-common-german-words.txt
+│   ├── German-words-1600000-words-multilines.json
+│   ├── Helper.class
+│   ├── Helper.java
+│   ├── README-Helper.md
+│   └── words_v1
+├── dependency-reduced-pom.xml
+├── docs
+│   └── methodology.md
+├── ipro-Merkblatt_Studierende.pdf
+├── ipro-Wordle.pdf
+├── myImages
+│   ├── Javalin_HelloWorld.png
+│   ├── backend_revision.JPG
+│   ├── basicFrontend.png
+│   ├── basicFrontend02.png
+│   ├── logic_draft.jpg
+│   ├── mvp.png
+│   ├── restart_logic.JPG
+│   ├── web_app_logic.jpg
+│   └── win_game.png
+├── pom.xml
+├── src
+│   ├── main
+│   │   ├── java
+│   │   │   └── app
+│   │   │       ├── Dictionary.java
+│   │   │       ├── Main.java
+│   │   │       └── WebApp.java
+│   │   └── resources
+│   │       ├── data
+│   │       │   ├── 5_letter_common_words.txt
+│   │       │   ├── 5_letter_words.txt
+│   │       │   └── 5_letter_wordsv2.txt
+│   │       └── public
+│   │           ├── css
+│   │           │   ├── styles.css
+│   │           │   └── styles.scss
+│   │           ├── index.html
+│   │           └── js
+│   │               └── app.js
+│   └── test
+│       └── java
+│           └── app
+│               └── MainTest.java
+└── target
+    ├── classes
+    │   ├── app
+    │   │   ├── Dictionary.class
+    │   │   ├── Main.class
+    │   │   └── WebApp.class
+    │   ├── data
+    │   │   ├── 5_letter_common_words.txt
+    │   │   ├── 5_letter_words.txt
+    │   │   └── 5_letter_wordsv2.txt
+    │   └── public
+    │       ├── css
+    │       │   ├── styles.css
+    │       │   └── styles.scss
+    │       ├── index.html
+    │       └── js
+    │           └── app.js
+    ├── generated-sources
+    │   └── annotations
+    ├── generated-test-sources
+    │   └── test-annotations
+    ├── maven-archiver
+    │   └── pom.properties
+    ├── maven-status
+    │   └── maven-compiler-plugin
+    │       ├── compile
+    │       │   └── default-compile
+    │       │       ├── createdFiles.lst
+    │       │       └── inputFiles.lst
+    │       └── testCompile
+    │           └── default-testCompile
+    │               ├── createdFiles.lst
+    │               └── inputFiles.lst
+    ├── original-wordle-1.0-SNAPSHOT.jar
+    ├── surefire-reports
+    │   ├── TEST-app.MainTest.xml
+    │   └── app.MainTest.txt
+    ├── test-classes
+    │   └── app
+    │       └── MainTest.class
+    └── wordle-1.0-SNAPSHOT.jar
 ```
 
 Advantages:
