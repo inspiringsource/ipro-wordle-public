@@ -4,6 +4,7 @@ const COLS = 5;
 const boardEl = document.getElementById("board");
 const formEl = document.getElementById("guessForm");
 const inputEl = document.getElementById("guess");
+inputEl.setAttribute("readonly", "true");
 const resultEl = document.getElementById("result");
 const submitBtn = document.getElementById("submitBtn");
 const restartBtn = document.getElementById("restartBtn");
@@ -12,6 +13,8 @@ const playAgainBtn = document.getElementById("playAgainBtn");
 const loseModal = document.getElementById("loseModal");
 const tryAgainBtn = document.getElementById("tryAgainBtn");
 const confettiContainer = document.getElementById("confetti");
+const kbToggleBtn = document.getElementById("kbToggleBtn");
+const keyboardContainer = document.getElementById("keyboardContainer");
 
 // Reveal word elements
 const revealBtn = document.getElementById("revealBtn");
@@ -39,6 +42,123 @@ for (let i = 0; i < ROWS * COLS; i++) {
   boardEl.appendChild(cell);
   cells.push(cell);
 }
+
+
+let currentGuess = "";
+let keyboard = null;
+
+function clampGuess(s) {
+  // keep only letters A-Z and German umlauts, max 5
+  const cleaned = (s || "")
+    .toUpperCase()
+    .replace(/[^A-ZÄÖÜ]/g, "")
+    .slice(0, COLS);
+  return cleaned;
+}
+
+function renderCurrentRow() {
+  const rowStart = attempt * COLS;
+  for (let i = 0; i < COLS; i++) {
+    const ch = currentGuess[i] || "";
+    cells[rowStart + i].textContent = ch;
+  }
+  // keep the existing form submission compatible
+  inputEl.value = currentGuess;
+}
+
+function resetCurrentGuess() {
+  currentGuess = "";
+  inputEl.value = "";
+  if (keyboard) keyboard.setInput("");
+  renderCurrentRow();
+}
+
+function setGuessFromAnyInput(next) {
+  currentGuess = clampGuess(next);
+  inputEl.value = currentGuess;
+  renderCurrentRow();
+  if (keyboard) keyboard.setInput(currentGuess);
+}
+
+function appendChar(ch) {
+  if (currentGuess.length >= COLS) return;
+  setGuessFromAnyInput(currentGuess + ch);
+}
+
+function backspaceChar() {
+  setGuessFromAnyInput(currentGuess.slice(0, -1));
+}
+
+function submitGuess() {
+  // trigger your existing submit handler
+  formEl.requestSubmit();
+}
+
+document.addEventListener("keydown", (e) => {
+  if (keyboardContainer && keyboardContainer.hidden === false) {
+    // allow typing even when virtual keyboard is open
+  }
+  if (e.key === "Enter") {
+    e.preventDefault();
+    submitGuess();
+    return;
+  }
+  if (e.key === "Backspace") {
+    e.preventDefault();
+    backspaceChar();
+    return;
+  }
+  // Accept letters and German umlauts
+  const key = e.key;
+  if (/^[a-zA-ZäöüÄÖÜ]$/.test(key)) {
+    e.preventDefault();
+    appendChar(key.toUpperCase());
+  }
+});
+
+
+
+function initKeyboardIfNeeded() {
+  if (keyboard) return;
+
+  // simple-keyboard UMD exposes window.SimpleKeyboard.default
+  keyboard = new window.SimpleKeyboard.default({
+    layoutName: "default",
+    layout: {
+      default: [
+        "1 2 3 4 5 6 7 8 9 0",
+        "Q W E R T Z U I O P Ü",
+        "A S D F G H J K L Ö Ä",
+        "Y X C V B N M",
+        "{enter} {space} {bksp}"
+      ]
+    },
+    display: {
+      "{bksp}": "⌫",
+      "{enter}": "Enter",
+      "{space}": "Space"
+    },
+    onChange: (input) => {
+      // Called when keyboard input changes (e.g. by clicking letter keys)
+      setGuessFromAnyInput(input);
+    },
+    onKeyPress: (button) => {
+      if (button === "{enter}") submitGuess();
+      if (button === "{bksp}") backspaceChar();
+    }
+  });
+
+  keyboard.setInput(currentGuess);
+}
+
+kbToggleBtn.addEventListener("click", () => {
+  const willShow = keyboardContainer.hidden === true;
+  keyboardContainer.hidden = !willShow;
+
+  if (willShow) {
+    initKeyboardIfNeeded();
+  }
+});
 
 function setStatus(msg, kind) {
   resultEl.className = kind || "";
@@ -78,7 +198,7 @@ formEl.addEventListener("submit", async (e) => {
     return;
   }
 
-  let guess = (inputEl.value || "").trim().toUpperCase();
+  let guess = (currentGuess || inputEl.value || "").trim().toUpperCase();
 
   // Basic validation (exactly 5 letters)
   if (!/^[A-ZÄÖÜ]{5}$/.test(guess)) {
@@ -169,8 +289,8 @@ formEl.addEventListener("submit", async (e) => {
     fillRow(attempt, word, feedback);
     attempt += 1;
 
-    inputEl.value = "";
-    inputEl.focus();
+    resetCurrentGuess();
+    inputEl.blur();
 
     // Check for win condition
     if (feedback === "GGGGG") {
@@ -198,6 +318,7 @@ inputEl.addEventListener("input", () => {
 
 // Restart (Week 2): request new word from server, then reload UI
 restartBtn?.addEventListener("click", async () => {
+  resetCurrentGuess();
   try {
     await fetch("/new-game", { method: "POST" });
     location.reload();
@@ -262,6 +383,7 @@ function createConfetti() {
 
 // Play again button
 playAgainBtn?.addEventListener("click", async () => {
+  resetCurrentGuess();
   try {
     await fetch("/new-game", { method: "POST" });
     location.reload();
@@ -272,6 +394,7 @@ playAgainBtn?.addEventListener("click", async () => {
 
 // Try again button (lose modal)
 tryAgainBtn?.addEventListener("click", async () => {
+  resetCurrentGuess();
   try {
     await fetch("/new-game", { method: "POST" });
     location.reload();
@@ -325,6 +448,7 @@ revealProceedBtn?.addEventListener("click", async () => {
 
 // New game from reveal solution modal
 newGameFromRevealBtn?.addEventListener("click", async () => {
+  resetCurrentGuess();
   try {
     await fetch("/new-game", { method: "POST" });
     location.reload();

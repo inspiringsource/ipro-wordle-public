@@ -337,6 +337,9 @@ http://localhost:7070
 
 - Second Word list source: [German-Words-Library](https://github.com/Jonny-exe/German-Words-Library)
 
+- Common German words source: [1000 most common German words](https://github.com/JackShannon/1000-most-common-words)
+
+- Virtual keyboard library: [simple-keyboard (MIT License)](https://github.com/hodgef/simple-keyboard)
 
 ### Credits & Acknowledgements
 

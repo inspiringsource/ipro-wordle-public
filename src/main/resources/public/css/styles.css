@@ -410,3 +410,23 @@ button.secondary:hover {
     opacity: 0;
   }
 }
+
+.keyboard-controls {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+}
+
+.keyboard-container {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+}
+
+.keyboard-container[hidden] {
+  display: none !important;
+}
+
+.simple-keyboard {
+  width: min(680px, 100%);
+}

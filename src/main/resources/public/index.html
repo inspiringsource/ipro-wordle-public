@@ -1,120 +1,116 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>IPRO Wordle</title>
-    <link rel="stylesheet" href="css/styles.css" />
-  </head>
-  <body>
-    <div class="container">
-      <h1>
-        IPRO Wordle
-        <a
-          href="https://github.com/inspiringsource/ipro-wordle-public/wiki/Frontend-&-Backend-Technology-Overview"
-          target="_blank"
-          rel="noopener noreferrer"
-          title="Projekt-Dokumentation & Entwicklungsprozess"
-          class="info-link"
-        >
-          ℹ️
-        </a>
-      </h1>
 
-      <div id="board" class="board" aria-label="Wordle board"></div>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>IPRO Wordle</title>
+  <link rel="stylesheet" href="https://unpkg.com/simple-keyboard@3.8.107/build/css/index.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
 
-      <form id="guessForm" method="post" action="/guess">
-        <input
-          id="guess"
-          name="guess"
-          type="text"
-          maxlength="5"
-          autocomplete="off"
-          inputmode="text"
-          aria-label="Geben Sie ein 5-Buchstaben-Wort ein"
-        />
-        <button id="submitBtn" type="submit">Absenden</button>
-      </form>
+<body>
+  <div class="container">
+    <h1>
+      IPRO Wordle
+      <a href="https://github.com/inspiringsource/ipro-wordle-public/wiki/Frontend-&-Backend-Technology-Overview"
+        target="_blank" rel="noopener noreferrer" title="Projekt-Dokumentation & Entwicklungsprozess" class="info-link">
+        ℹ️
+      </a>
+    </h1>
 
-      <div class="actions">
-        <button
-          id="revealBtn"
-          type="button"
-          class="action-btn reveal-btn"
-          title="Wort anzeigen"
-        >
-          Wort anzeigen
+    <div id="board" class="board" aria-label="Wordle board"></div>
+
+    <form id="guessForm" method="post" action="/guess">
+      <input id="guess" name="guess" type="text" maxlength="5" autocomplete="off" inputmode="text"
+        aria-label="Geben Sie ein 5-Buchstaben-Wort ein" />
+      <button id="submitBtn" type="submit">Absenden</button>
+    </form>
+
+    <div class="keyboard-controls">
+      <button id="kbToggleBtn" type="button" class="action-btn secondary">
+        Keyboard
+      </button>
+    </div>
+
+    <div id="keyboardContainer" class="keyboard-container" hidden>
+      <div class="simple-keyboard"></div>
+    </div>
+
+    <div class="actions">
+      <button id="revealBtn" type="button" class="action-btn reveal-btn" title="Wort anzeigen">
+        Wort anzeigen
+      </button>
+      <button id="restartBtn" type="button" class="action-btn secondary">
+        Restart
+      </button>
+    </div>
+
+    <div class="hint">6 Versuche • 5 Buchstaben lang</div>
+    <p id="result"></p>
+  </div>
+
+  <!-- Win Modal -->
+  <div id="winModal" class="modal" hidden>
+    <div class="modal-content">
+      <h2>Du hast gewonnen! 🎉</h2>
+      <button id="playAgainBtn" type="button">Nochmal spielen</button>
+    </div>
+    <div id="confetti" class="confetti-container"></div>
+  </div>
+
+  <!-- Lose Modal -->
+  <div id="loseModal" class="modal" hidden>
+    <div class="modal-content lose">
+      <h2>Schade 😞</h2>
+      <p>Versuch es nochmal.</p>
+      <p id="loseSolutionText" class="solution-text"></p>
+      <button id="tryAgainBtn" type="button">Nochmal versuchen</button>
+    </div>
+  </div>
+
+  <!-- Invalid Word Modal -->
+  <div id="invalidWordModal" class="modal" hidden>
+    <div class="modal-content warning">
+      <h2>Ungültiges Wort</h2>
+      <p>Kein gültiges deutsches Wort.</p>
+      <button id="invalidWordOkBtn" type="button">OK</button>
+    </div>
+  </div>
+
+  <!-- Reveal Confirm Modal -->
+  <div id="revealConfirmModal" class="modal" hidden>
+    <div class="modal-content reveal">
+      <span id="closeConfirmModal" class="modal-close" title="Schließen">&times;</span>
+      <h2>⚠️ Achtung</h2>
+      <p>Wenn du das Lösungswort anschaust, ist das Spiel vorbei.</p>
+      <p>Bist du sicher, dass du das Wort sehen möchtest?</p>
+      <div class="modal-buttons">
+        <button id="revealCancelBtn" type="button" class="btn-secondary">
+          Nein
         </button>
-        <button id="restartBtn" type="button" class="action-btn secondary">
-          Restart
-        </button>
-      </div>
-
-      <div class="hint">6 Versuche • 5 Buchstaben lang</div>
-      <p id="result"></p>
-    </div>
-
-    <!-- Win Modal -->
-    <div id="winModal" class="modal" hidden>
-      <div class="modal-content">
-        <h2>Du hast gewonnen! 🎉</h2>
-        <button id="playAgainBtn" type="button">Nochmal spielen</button>
-      </div>
-      <div id="confetti" class="confetti-container"></div>
-    </div>
-
-    <!-- Lose Modal -->
-    <div id="loseModal" class="modal" hidden>
-      <div class="modal-content lose">
-        <h2>Schade 😞</h2>
-        <p>Versuch es nochmal.</p>
-        <p id="loseSolutionText" class="solution-text"></p>
-        <button id="tryAgainBtn" type="button">Nochmal versuchen</button>
-      </div>
-    </div>
-
-    <!-- Invalid Word Modal -->
-    <div id="invalidWordModal" class="modal" hidden>
-      <div class="modal-content warning">
-        <h2>Ungültiges Wort</h2>
-        <p>Kein gültiges deutsches Wort.</p>
-        <button id="invalidWordOkBtn" type="button">OK</button>
-      </div>
-    </div>
-
-    <!-- Reveal Confirm Modal -->
-    <div id="revealConfirmModal" class="modal" hidden>
-      <div class="modal-content reveal">
-        <span id="closeConfirmModal" class="modal-close" title="Schließen"
-          >&times;</span
-        >
-        <h2>⚠️ Achtung</h2>
-        <p>Wenn du das Lösungswort anschaust, ist das Spiel vorbei.</p>
-        <p>Bist du sicher, dass du das Wort sehen möchtest?</p>
-        <div class="modal-buttons">
-          <button id="revealCancelBtn" type="button" class="btn-secondary">
-            Nein
-          </button>
-          <button id="revealProceedBtn" type="button" class="btn-warning">
-            Ja, anzeigen
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Reveal Solution Modal -->
-    <div id="revealSolutionModal" class="modal" hidden>
-      <div class="modal-content reveal">
-        <h2>Lösungswort</h2>
-        <p class="solution-text">
-          Lösungswort: <span id="solutionText"></span>
-        </p>
-        <button id="newGameFromRevealBtn" type="button">
-          Neues Spiel starten
+        <button id="revealProceedBtn" type="button" class="btn-warning">
+          Ja, anzeigen
         </button>
       </div>
     </div>
+  </div>
 
-    <script src="js/app.js" defer></script>
-  </body>
+  <!-- Reveal Solution Modal -->
+  <div id="revealSolutionModal" class="modal" hidden>
+    <div class="modal-content reveal">
+      <h2>Lösungswort</h2>
+      <p class="solution-text">
+        Lösungswort: <span id="solutionText"></span>
+      </p>
+      <button id="newGameFromRevealBtn" type="button">
+        Neues Spiel starten
+      </button>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/simple-keyboard@3.8.107/build/index.js" defer></script>
+  <script src="js/app.js" defer></script>
+</body>
+
 </html>
