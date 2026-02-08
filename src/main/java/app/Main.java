@@ -16,34 +16,33 @@ public class Main {
 
     private static final int MAX_ATTEMPTS = 6; // maximum number of attempts
 
-    public static String getFeedback(String erratenesWort, String zielwort) {
-        String feedback = "";
-        /*
-         * Wenn richtiger Buchstabe und richtige Stelle G (Grün)
-         * Wenn richtiger Buchstabe und falsch Stelle Y (Gelb)
-         * Wenn Buchstabe nicht enthalten B (Grau)
-         */
+    public static String getFeedback(String guess, String target) {
+
+        char[] result = {'B','B','B','B','B'}; // default feedback (B)
+        char[] tempTarget = target.toCharArray();
+
+        // if correct positions (G)
         for (int i = 0; i < 5; i++) {
-            if (erratenesWort.charAt(i) == zielwort.charAt(i)) {
-                feedback += "G";
-            } else {
-                boolean found = false;
-
-                for (int j = 0; j < 5; j++) {
-                    if (erratenesWort.charAt(i) == zielwort.charAt(j)) {
-                        found = true;
-                        break;
-                    }
-                }
-
-                if (found)
-                    feedback += "Y";
-                else
-                    feedback += "B";
+            if (guess.charAt(i) == tempTarget[i]) {
+                result[i] = 'G';
+                tempTarget[i] = '_'; // mark letter as used
             }
         }
 
-        return feedback;
+        // if present letters (Y)
+        for (int i = 0; i < 5; i++) {
+            if (result[i] == 'G') continue;
+
+            for (int j = 0; j < 5; j++) {
+                if (guess.charAt(i) == tempTarget[j]) {
+                    result[i] = 'Y';
+                    tempTarget[j] = '_'; // mark as used
+                    break;
+                }
+            }
+        }
+
+        return new String(result);
     }
 
     /**
