@@ -12,8 +12,8 @@ import java.util.Locale;
 public class Helper {
 
     public static void main(String[] args) {
-        Path inputFile = Path.of("data/German-words-1600000-words-multilines.json");
-        Path outputFile = Path.of("src/main/resources/data/5_letter_wordsv2.txt");
+        Path inputFile = Path.of("data/1000-most-common-german-words.txt");
+        Path outputFile = Path.of("src/main/resources/data/5_letter_common_words.txt");
 
         try (BufferedReader reader = Files.newBufferedReader(inputFile, StandardCharsets.UTF_8);
              BufferedWriter writer = Files.newBufferedWriter(outputFile, StandardCharsets.UTF_8)) {
