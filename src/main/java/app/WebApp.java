@@ -2,27 +2,24 @@ package app;
 
 import io.javalin.Javalin;
 import io.javalin.http.staticfiles.Location;
-import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 public class WebApp {
-    private final List<String> woerterbuch;
-    private final Random random;
+    // private final List<String> woerterbuch; // Removed
     private String zielwort;
 
     public WebApp() {
-        this.woerterbuch = Dictionary.load5LetterWords();
-        this.random = new Random();
+        // this.woerterbuch = Dictionary.load5LetterWords(); // Removed
         // Here we pick a random word from the dictionary `5_letter_words.txt`
-        this.zielwort = woerterbuch.get(random.nextInt(woerterbuch.size()));
-        //this.zielwort = woerterbuch.get(1); // for testing Basel
+        this.zielwort = Dictionary.randomSolutionWord();
+        // this.zielwort = woerterbuch.get(1); // for testing Basel
 
         int port = Integer.parseInt(System.getenv().getOrDefault("PORT", "7070"));
 
         var app = Javalin.create(config -> {
             config.staticFiles.add("/public", Location.CLASSPATH);
-            // Render (and most cloud platforms) require binding to 0.0.0.0 and the provided PORT
+            // Render (and most cloud platforms) require binding to 0.0.0.0 and the provided
+            // PORT
             config.jetty.defaultHost = "0.0.0.0";
             config.jetty.defaultPort = port;
         }).start();
@@ -35,7 +32,7 @@ public class WebApp {
             int tries = 0;
             // Guarantee different word (reroll until different, max 10 tries)
             do {
-                this.zielwort = woerterbuch.get(random.nextInt(woerterbuch.size()));
+                this.zielwort = Dictionary.randomSolutionWord();
                 tries++;
             } while (this.zielwort.equals(oldZielwort) && tries < maxTries);
             ctx.json(Map.of("status", "ok"));
@@ -47,7 +44,7 @@ public class WebApp {
                 erratenesWort = "";
             erratenesWort = erratenesWort.trim().toUpperCase();
 
-            if (!Dictionary.contains(woerterbuch, erratenesWort)) {
+            if (!Dictionary.isValidWord(erratenesWort)) {
                 ctx.status(400).json(Map.of(
                         "error", "Kein gueltiges deutsches Wort."));
                 return;
