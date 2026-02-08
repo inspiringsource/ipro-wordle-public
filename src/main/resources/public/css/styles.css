@@ -150,11 +150,9 @@ button.secondary:hover {
 
 .actions {
   display: flex;
-  justify-content: right;
-  align-items: end;
-  gap: 10px;
-  margin-top: 12px;
-  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 20px;
 }
 
 .action-btn {
