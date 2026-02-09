@@ -1,8 +1,17 @@
-out
-.idea
-.metals
-.vscode
-*.iml
-*.class
-target/
+# macOS
 .DS_Store
+
+# Maven
+target/
+*.class
+dependency-reduced-pom.xml
+
+# Bloop
+.bloop/
+.metals/
+
+# IDEs
+.idea/
+.vscode/
+*.iml
+out/
