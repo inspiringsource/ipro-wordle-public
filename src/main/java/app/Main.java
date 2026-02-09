@@ -15,7 +15,7 @@ public class Main {
     // "DATEI", "MODUL", "LOGIK" };
 
     private static final int MAX_ATTEMPTS = 6; // maximum number of attempts
-
+    // Two-Pass Algorithm for Feedback fixes the issue of duplicate letters in the target word
     public static String getFeedback(String guess, String target) {
 
         char[] result = {'B','B','B','B','B'}; // default feedback (B)
