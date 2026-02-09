@@ -118,6 +118,9 @@ document.addEventListener("keydown", (e) => {
 
 
 
+
+let isVirtualKeyboardMode = false;
+
 function initKeyboardIfNeeded() {
   if (keyboard) return;
 
@@ -130,7 +133,7 @@ function initKeyboardIfNeeded() {
         "Q W E R T Z U I O P Ü",
         "A S D F G H J K L Ö Ä",
         "Y X C V B N M",
-        "{enter} {space} {bksp}"
+        "{space} {bksp}"
       ]
     },
     display: {
@@ -151,14 +154,30 @@ function initKeyboardIfNeeded() {
   keyboard.setInput(currentGuess);
 }
 
-kbToggleBtn.addEventListener("click", () => {
-  const willShow = keyboardContainer.hidden === true;
-  keyboardContainer.hidden = !willShow;
-
-  if (willShow) {
+function updateInputModeUI() {
+  if (isVirtualKeyboardMode) {
+    // Virtual Mode
+    keyboardContainer.hidden = false;
+    inputEl.hidden = true;
+    kbToggleBtn.textContent = "Keyboard: On";
     initKeyboardIfNeeded();
+  } else {
+    // Physical Mode
+    keyboardContainer.hidden = true;
+    inputEl.hidden = false;
+    kbToggleBtn.textContent = "Keyboard: Off";
+    // We do NOT explicitly focus inputEl here to avoid mobile keyboard popups,
+    // as per user request. "Wordle-style" means we just listen to global keydown.
   }
+}
+
+kbToggleBtn.addEventListener("click", () => {
+  isVirtualKeyboardMode = !isVirtualKeyboardMode;
+  updateInputModeUI();
 });
+
+// Initialize UI
+updateInputModeUI();
 
 function setStatus(msg, kind) {
   resultEl.className = kind || "";

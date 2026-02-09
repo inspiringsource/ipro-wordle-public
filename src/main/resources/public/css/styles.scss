@@ -8,22 +8,22 @@ $color-text: #333;
 $color-bg-body: #fff;
 $color-border: #cfcfcf;
 $color-border-focus: #888;
-$color-placeholder: #aaa; 
+$color-placeholder: #aaa;
 
-$color-success-text: #0b6b0b; 
-$color-error-text: #b00020;   
+$color-success-text: #0b6b0b;
+$color-error-text: #b00020;
 
-$color-state-correct: #2e7d32; 
-$color-state-present: #f9a825; 
-$color-state-absent: #616161;  
+$color-state-correct: #2e7d32;
+$color-state-present: #f9a825;
+$color-state-absent: #616161;
 $color-text-inverse: #fff;
 $color-text-dark: #111;
 
 $color-btn-primary-bg: #333;
 $color-btn-primary-text: #fff;
-$color-btn-secondary: #c0392b;           
+$color-btn-secondary: #c0392b;
 $color-btn-secondary-hover: #fdecea;
-$color-btn-reveal: #666;                 
+$color-btn-reveal: #666;
 $color-btn-reveal-hover-bg: #f0f0f0;
 $color-btn-reveal-hover-text: #444;
 
@@ -41,8 +41,8 @@ $font-family-base: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
 $font-family-mono: monospace;
 
 
-$control-height-lg: 44px; 
-$control-height-sm: 40px; 
+$control-height-lg: 44px;
+$control-height-sm: 40px;
 $radius-base: 8px;
 $radius-lg: 10px;
 $radius-xl: 12px;
@@ -60,7 +60,7 @@ $cell-size: 64px;
 
 @mixin control-base($height, $radius, $font-size: 16px) {
   height: $height;
-  padding: 0 16px; 
+  padding: 0 16px;
   font-size: $font-size;
   border-radius: $radius;
 }
@@ -105,7 +105,7 @@ h1 {
   font-size: 24px;
   text-transform: uppercase;
   user-select: none;
-  
+
   &.state-g {
     background: $color-state-correct;
     border-color: $color-state-correct;
@@ -148,7 +148,7 @@ input[type="text"] {
 }
 
 button {
-  
+
   height: $control-height-lg;
   padding: 0 16px;
   font-size: 16px;
@@ -163,7 +163,7 @@ button {
     cursor: not-allowed;
   }
 
-  
+
   &.secondary {
     background: transparent;
     border: 2px solid $color-btn-secondary;
@@ -186,8 +186,13 @@ button {
   font-size: 14px;
 }
 
-.error { color: $color-error-text; }
-.ok { color: $color-success-text; }
+.error {
+  color: $color-error-text;
+}
+
+.ok {
+  color: $color-success-text;
+}
 
 .info-link {
   display: inline-flex;
@@ -211,7 +216,7 @@ button {
   display: flex;
   justify-content: right;
   align-items: end;
-  gap: 10px; 
+  gap: 10px;
   margin-top: 12px;
   flex-wrap: wrap;
 }
@@ -223,7 +228,7 @@ button {
   border-radius: $radius-base;
   cursor: pointer;
 
-  
+
   &.reveal-btn {
     background: transparent;
     border: 2px solid $color-btn-reveal;
@@ -265,21 +270,21 @@ button {
     box-shadow: 0 8px 32px $color-modal-shadow;
     animation: slideIn 0.4s ease-out;
     z-index: 1001;
-    position: relative; 
+    position: relative;
 
     h2 {
       margin: 0 0 24px 0;
       font-size: 28px;
-      color: $color-theme-win; 
+      color: $color-theme-win;
     }
 
     p {
-      
+
       margin: 0 0 24px 0;
       font-size: 16px;
       color: #666;
     }
-    
+
     win,
     button {
       padding: 12px 32px;
@@ -287,7 +292,7 @@ button {
       background: $color-theme-win;
       border-color: $color-theme-win;
       border-radius: $radius-xl;
-      color: #fff; 
+      color: #fff;
 
       &:hover {
         background: darken($color-theme-win, 5%);
@@ -295,40 +300,49 @@ button {
       }
     }
 
-    
+
     .btn-secondary {
       background: transparent;
-      border: 2px solid $color-btn-reveal; 
+      border: 2px solid $color-btn-reveal;
       color: $color-btn-reveal;
-      
-      
-      
+
+
+
       &:hover {
         background: $color-btn-reveal-hover-bg;
         border-color: $color-btn-reveal-hover-text;
         color: $color-btn-reveal-hover-text;
       }
     }
-    
-    
+
+
     .btn-warning {
-      background: $color-theme-reveal; 
+      background: $color-theme-reveal;
       border: 2px solid $color-theme-reveal;
       color: #fff;
-      
+
       &:hover {
         background: darken($color-theme-reveal, 8%);
         border-color: darken($color-theme-reveal, 8%);
       }
     }
 
-    
+
     &.lose {
-      h2 { color: $color-theme-lose; }
-      p { margin: 0 0 24px 0; font-size: 16px; color: #666; }
+      h2 {
+        color: $color-theme-lose;
+      }
+
+      p {
+        margin: 0 0 24px 0;
+        font-size: 16px;
+        color: #666;
+      }
+
       button {
         background: $color-theme-lose;
         border-color: $color-theme-lose;
+
         &:hover {
           background: darken($color-theme-lose, 8%);
           border-color: darken($color-theme-lose, 8%);
@@ -337,11 +351,20 @@ button {
     }
 
     &.reveal {
-      h2 { color: $color-theme-reveal; }
-      p { margin: 0 0 16px 0; font-size: 16px; color: #666; }
+      h2 {
+        color: $color-theme-reveal;
+      }
+
+      p {
+        margin: 0 0 16px 0;
+        font-size: 16px;
+        color: #666;
+      }
+
       button {
         background: $color-theme-reveal;
         border-color: $color-theme-reveal;
+
         &:hover {
           background: darken($color-theme-reveal, 8%);
           border-color: darken($color-theme-reveal, 8%);
@@ -350,11 +373,20 @@ button {
     }
 
     &.warning {
-      h2 { color: $color-theme-warning; } 
-      p { margin: 0 0 24px 0; font-size: 16px; color: #666; }
-      button { 
+      h2 {
+        color: $color-theme-warning;
+      }
+
+      p {
+        margin: 0 0 24px 0;
+        font-size: 16px;
+        color: #666;
+      }
+
+      button {
         background: $color-theme-warning;
         border-color: $color-theme-warning;
+
         &:hover {
           background: darken($color-theme-warning, 5%);
           border-color: darken($color-theme-warning, 5%);
@@ -363,7 +395,7 @@ button {
     }
   }
 
-  
+
   &-buttons {
     display: flex;
     gap: 12px;
@@ -379,7 +411,7 @@ button {
   right: 16px;
   font-size: 28px;
   font-weight: bold;
-  color: $color-border-focus; 
+  color: $color-border-focus;
   cursor: pointer;
   line-height: 1;
 
@@ -405,13 +437,25 @@ button {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes slideIn {
-  from { transform: translateY(-30px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+  from {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .confetti-container {
@@ -434,6 +478,37 @@ button {
 }
 
 @keyframes confettiFall {
-  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.keyboard-controls {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+}
+
+.keyboard-container {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+
+  &[hidden] {
+    display: none !important;
+  }
+}
+
+.simple-keyboard {
+  width: min(680px, 100%);
+}
+
+[hidden] {
+  display: none !important;
 }

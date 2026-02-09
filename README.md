@@ -382,7 +382,7 @@ To build and run the web application:
 mvn clean package && java -jar target/wordle-1.0-SNAPSHOT.jar
 ```
 
-or via Maven Exec plugin with:
+or using Maven Exec plugin with:
 
 ```bash
 mvn clean package exec:java

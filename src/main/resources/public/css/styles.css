@@ -428,3 +428,7 @@ button.secondary:hover {
 .simple-keyboard {
   width: min(680px, 100%);
 }
+
+[hidden] {
+  display: none !important;
+}
