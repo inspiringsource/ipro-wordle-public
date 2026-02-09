@@ -37,7 +37,7 @@ The goal is to demonstrate:
 
 ## Methodology
 
-We use an **Incremental Delivery** approach, illustrated by Henrik Kniberg’s *Skateboard → Bicycle → Motorcycle → Car* metaphor.
+We use an **Incremental Delivery** approach, illustrated by Henrik Kniberg’s *Skateboard → Scooter → Bicycle → Motorcycle → Car* metaphor.
 
 <img src="./myImages/mvp.png" alt="Incremental Delivery Diagram" width="45%" />
 
