@@ -14,6 +14,7 @@ const loseModal = document.getElementById("loseModal");
 const tryAgainBtn = document.getElementById("tryAgainBtn");
 const confettiContainer = document.getElementById("confetti");
 const kbToggleBtn = document.getElementById("kbToggleBtn");
+const autoSubmitBtn = document.getElementById("autoSubmitBtn");
 const keyboardContainer = document.getElementById("keyboardContainer");
 
 // Reveal word elements
@@ -45,6 +46,9 @@ for (let i = 0; i < ROWS * COLS; i++) {
 
 
 let currentGuess = "";
+let autoSubmitEnabled = localStorage.getItem("autoSubmitEnabled") === "true";
+let submitInProgress = false;
+let lastAutoSubmittedAttempt = -1;
 let keyboard = null;
 
 function clampGuess(s) {
@@ -75,9 +79,11 @@ function resetCurrentGuess() {
 
 function setGuessFromAnyInput(next) {
   currentGuess = clampGuess(next);
+  currentGuess = clampGuess(next);
   inputEl.value = currentGuess;
   renderCurrentRow();
   if (keyboard) keyboard.setInput(currentGuess);
+  maybeAutoSubmit();
 }
 
 function appendChar(ch) {
@@ -87,6 +93,17 @@ function appendChar(ch) {
 
 function backspaceChar() {
   setGuessFromAnyInput(currentGuess.slice(0, -1));
+}
+
+function maybeAutoSubmit() {
+  if (!autoSubmitEnabled) return;
+  if (currentGuess.length !== COLS) return;
+  if (submitInProgress) return;
+  // Prevent infinite loops if word is invalid or already tried for this row
+  if (lastAutoSubmittedAttempt === attempt) return;
+
+  lastAutoSubmittedAttempt = attempt;
+  submitGuess();
 }
 
 function submitGuess() {
@@ -176,6 +193,28 @@ kbToggleBtn.addEventListener("click", () => {
   updateInputModeUI();
 });
 
+// Auto-submit toggle
+function updateAutoSubmitUI() {
+  if (autoSubmitEnabled) {
+    autoSubmitBtn.textContent = "Auto: On";
+    // Hide submit button in auto mode
+    submitBtn.hidden = true;
+  } else {
+    autoSubmitBtn.textContent = "Auto: Off";
+    submitBtn.hidden = false;
+  }
+}
+
+autoSubmitBtn.addEventListener("click", () => {
+  autoSubmitEnabled = !autoSubmitEnabled;
+  localStorage.setItem("autoSubmitEnabled", autoSubmitEnabled);
+  updateAutoSubmitUI();
+  // If we just enabled it and have a full row, try submitting
+  maybeAutoSubmit();
+});
+
+updateAutoSubmitUI();
+
 // Initialize UI
 updateInputModeUI();
 
@@ -211,9 +250,13 @@ function lockGame() {
 formEl.addEventListener("submit", async (e) => {
   e.preventDefault();
 
+  if (submitInProgress) return;
+  submitInProgress = true;
+
   if (attempt >= ROWS) {
     setStatus("No attempts left.", "error");
     lockGame();
+    submitInProgress = false;
     return;
   }
 
@@ -222,6 +265,7 @@ formEl.addEventListener("submit", async (e) => {
   // Basic validation (exactly 5 letters)
   if (!/^[A-ZÄÖÜ]{5}$/.test(guess)) {
     setStatus("Please enter exactly 5 letters.", "error");
+    submitInProgress = false;
     return;
   }
 
@@ -327,6 +371,8 @@ formEl.addEventListener("submit", async (e) => {
     }
   } catch (err) {
     setStatus(err?.message || "Fehler beim Absenden.", "error");
+  } finally {
+    submitInProgress = false;
   }
 });
 

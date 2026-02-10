@@ -1,9 +1,8 @@
 # ipro-Wordle
 
-> **Academic Project:** This repository represents my submission for the **Individuelles Projekt (ipro)** module at the **FHNW**.
+> **Academic Project:** This repository represents my submission for the **Individuelles Projekt (ipro)** module at **FHNW**.
 
-**Status:** Work in progress.  
-This README evolves alongside the project. Sections for later weeks describe planned work and will be expanded as implementation progresses.
+**Status:** Completed (Final academic submission – maintained for portfolio purposes)
 
 ⸻
 
@@ -198,15 +197,17 @@ Inspired by [w3schools.com/](https://www.w3schools.com/howto/howto_css_modals.as
 - Added a virtual keyboard to the frontend using the [simple-keyboard library](https://hodgef.com/simple-keyboard/).
 - Improved feedback to handle duplicate letters correctly.
 
-### Week 5: Polishing & Presenation (Car 🚗) #5 (Planned / In Progress)
+### Week 5: Polishing & Presentation (Car 🚗) #5 (Planned / In Progress)
   
 #### Final Steps
 
 - Improve usability and overall user experience
 - Clean up code and documentation (add comments)
 - ~~Deployment on Render with GitHub integration for CD.~~
+- Added toggle button to switch between auto sending and manual sending of the word.
+- Last testing and bug fixing.
 - Clone to GitLab
-- Presensation
+- Presentation
 
 ⸻
 
@@ -258,6 +259,8 @@ Rationale:
 
 - Simple uppercase comparison avoids locale or regex complexity at runtime.
 - Ensures consistent validation and feedback generation.
+
+*Edit (Week 4):* The word list was later refined to `5_letter_common_words.txt` to include more commonly used words.
 
 ⸻
 
@@ -420,7 +423,7 @@ http://localhost:7070
 
 ### Credits & Acknowledgements
 
-- Marco B. — feedback, discussions, and practical support during development.
+- Marco Benedetti — feedback, discussions, and practical support during development.
 - ChatGPT (OpenAI) — supportive tool for explanations, wording improvements, and structuring documentation.
 - Henrik Kniberg — MVP metaphor inspiration.
 - Stack Overflow and other technical resources cited within the document.
