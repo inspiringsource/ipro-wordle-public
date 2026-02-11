@@ -32,7 +32,7 @@ The goal is to demonstrate:
 - clean and maintainable code
 - transition from a console application to a simple web application
 
-The [Report](Presentation/ipro25HS-Presentation.pdf) in English.
+The [Report](Presentation/ipro25HS-Presentation.pdf) in English. \
 Der [Bericht](Presentation/ipro25HS-Praesentation[DE].pdf) in Deutsch.
 
 ⸻
