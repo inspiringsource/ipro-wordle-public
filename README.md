@@ -213,6 +213,8 @@ Inspired by [w3schools.com/](https://www.w3schools.com/howto/howto_css_modals.as
 - Clone to GitLab
 - Presentation
 
+<img src="myImages/Final_version.png" alt="Web App Final Version" width="70%" />
+
 Everything is working and deployed :relieved:
 
 ⸻
