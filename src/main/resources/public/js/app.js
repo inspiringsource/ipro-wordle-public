@@ -97,7 +97,7 @@ function backspaceChar() {
 
 function maybeAutoSubmit() {
   if (!autoSubmitEnabled) return;
-  if (currentGuess.length !== COLS) return;
+  if (currentGuess.length !== COLS) return; // 5 chars / columns 
   if (submitInProgress) return;
   // Prevent infinite loops if word is invalid or already tried for this row
   if (lastAutoSubmittedAttempt === attempt) return;
