@@ -61,16 +61,25 @@ function clampGuess(s) {
 }
 
 function renderCurrentRow() {
+  // 1) Guard: invalid attempt index
+  if (attempt < 0 || attempt >= ROWS) return;
+
   const rowStart = attempt * COLS;
   for (let i = 0; i < COLS; i++) {
+    // Guard: cell existence
+    if (!cells[rowStart + i]) {
+      console.warn("renderCurrentRow: Missing cell at index", rowStart + i);
+      return;
+    }
     const ch = currentGuess[i] || "";
     cells[rowStart + i].textContent = ch;
   }
   // keep the existing form submission compatible
-  inputEl.value = currentGuess;
+  if (inputEl) inputEl.value = currentGuess;
 }
 
 function resetCurrentGuess() {
+  if (attempt >= ROWS) return; // Don't reset/render if game over
   currentGuess = "";
   inputEl.value = "";
   if (keyboard) keyboard.setInput("");
@@ -87,6 +96,7 @@ function setGuessFromAnyInput(next) {
 }
 
 function appendChar(ch) {
+  if (attempt >= ROWS) return; // Game over
   if (currentGuess.length >= COLS) return;
   setGuessFromAnyInput(currentGuess + ch);
 }
@@ -103,7 +113,9 @@ function maybeAutoSubmit() {
   if (lastAutoSubmittedAttempt === attempt) return;
 
   lastAutoSubmittedAttempt = attempt;
-  submitGuess();
+  if (attempt < ROWS) {
+    submitGuess();
+  }
 }
 
 function submitGuess() {
@@ -338,31 +350,39 @@ formEl.addEventListener("submit", async (e) => {
 
     // Also check if a 200 response contains an error/message field indicating invalid word
     if (data && (data.error || data.message)) {
+      console.log("[DEBUG] /guess JSON:", JSON.stringify(data));
       const msg = data.error || data.message;
       if (isInvalidWordMessage(msg)) {
         showInvalidWordModal();
         return;
       }
     }
+    console.log("[DEBUG] /guess response:", data);
     const word = (data && data.word ? String(data.word) : "").toUpperCase();
     const feedback = (
       data && data.feedback ? String(data.feedback) : "BBBBB"
     ).toUpperCase();
 
     fillRow(attempt, word, feedback);
-    attempt += 1;
+    attempt += 1; // Increment attempt
 
-    resetCurrentGuess();
-    inputEl.blur();
+    // Only reset/render if we still have attempts left
+    // If attempt === ROWS, we are done, so don't call renderCurrentRow
+    if (attempt < ROWS) {
+      resetCurrentGuess();
+      inputEl.blur();
+    }
 
     // Check for win condition
     if (feedback === "GGGGG") {
+      console.log("[DEBUG] WIN detected. Calling showWinModal().");
       lockGame();
       showWinModal();
       return;
     }
 
     if (attempt >= ROWS) {
+      console.log("[DEBUG] LOSE detected (attempt >= ROWS). Calling showLoseModal().");
       setStatus("Fertig! Du hast alle 6 Versuche genutzt.", "ok");
       lockGame();
       showLoseModal();
@@ -383,39 +403,72 @@ inputEl.addEventListener("input", () => {
 
 // Restart (Week 2): request new word from server, then reload UI
 restartBtn?.addEventListener("click", async () => {
-  resetCurrentGuess();
+  console.log("[DEBUG] Restart button clicked.");
+  // Only reset guess if safe
+  if (attempt < ROWS) {
+    resetCurrentGuess();
+  }
+
   try {
-    await fetch("/new-game", { method: "POST" });
-    location.reload();
+    const controller = new AbortController();
+    const t = setTimeout(() => controller.abort(), 1500); // 1.5s timeout
+
+    const res = await fetch("/new-game", {
+      method: "POST",
+      signal: controller.signal
+    });
+    clearTimeout(t);
+    console.log("[DEBUG] /new-game response status:", res.status);
   } catch (err) {
-    setStatus("Fehler beim Neustarten.", "error");
+    console.error("[DEBUG] Restart /new-game failed (still reloading):", err);
+    // setStatus("Fehler beim Neustarten.", "error"); // Don't show error, just reload
+  } finally {
+    location.reload();
   }
 });
 
 // Win modal functions
 function showWinModal() {
+  if (!winModal) { console.error("[DEBUG] winModal element is MISSING!"); return; }
   winModal.hidden = false;
+  console.log("[DEBUG] showWinModal called. winModal.hidden =", winModal.hidden, "display style =", getComputedStyle(winModal).display);
   createConfetti();
 }
 
 async function showLoseModal() {
-  // Fetch solution before showing lose modal
+  if (!loseModal) { console.error("[DEBUG] loseModal element is MISSING!"); return; }
+  console.log("[DEBUG] showLoseModal start.");
+
+  // 1) Show modal FIRST so user sees it immediately
+  loseModal.hidden = false;
+  loseSolutionText.textContent = "Lösungswort wird geladen...";
+
+  // 2) Fetch solution safely
   try {
+    const controller = new AbortController();
+    const t = setTimeout(() => controller.abort(), 2000); // 2s timeout
+
     const res = await fetch("/solution", {
       method: "GET",
       headers: { Accept: "application/json" },
+      signal: controller.signal
     });
+    clearTimeout(t);
+
     if (res.ok) {
       const data = await res.json();
+      console.log("[DEBUG] /solution data:", data);
       const word = data.zielwort || "---";
       loseSolutionText.textContent = `Lösungswort war: ${word}`;
     } else {
+      console.warn("[DEBUG] /solution fetch failed:", res.status);
       loseSolutionText.textContent = "Lösungswort konnte nicht geladen werden.";
     }
   } catch (err) {
+    console.error("[DEBUG] showLoseModal caught error:", err);
     loseSolutionText.textContent = "Lösungswort konnte nicht geladen werden.";
   }
-  loseModal.hidden = false;
+  console.log("[DEBUG] showLoseModal done. loseModal.hidden =", loseModal.hidden);
 }
 
 function createConfetti() {

@@ -35,6 +35,7 @@ public class WebApp {
                 this.zielwort = Dictionary.randomSolutionWord();
                 tries++;
             } while (this.zielwort.equals(oldZielwort) && tries < maxTries);
+            System.out.println("[DEBUG] /new-game: old=" + oldZielwort + ", new=" + this.zielwort);
             ctx.json(Map.of("status", "ok"));
         });
 
@@ -51,6 +52,8 @@ public class WebApp {
             }
 
             String feedback = Main.getFeedback(erratenesWort, zielwort);
+            System.out.println(
+                    "[DEBUG] /guess: zielwort=" + zielwort + ", guess=" + erratenesWort + ", feedback=" + feedback);
 
             ctx.json(Map.of(
                     "word", erratenesWort,
