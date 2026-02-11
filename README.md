@@ -14,7 +14,7 @@ The main focus is on:
 
 - clear and correct game logic
 - input validation
-- incremental development
+- incremental (playable) development
 - separation of logic and presentation
 
 Advanced features such as multiplayer are intentionally out of scope.
@@ -28,9 +28,12 @@ The project scope is intentionally limited to ensure reliability and clarity wit
 The goal is to demonstrate:
 
 - understanding of basic Java programming
-- incremental software development
+- incremental (playable) software development
 - clean and maintainable code
 - transition from a console application to a simple web application
+
+The [Report](Presentation/ipro25HS-Presentation.pdf) in English.
+Der [Bericht](Presentation/ipro25HS-Praesentation[DE].pdf) in Deutsch.
 
 ⸻
 
@@ -64,7 +67,7 @@ The initial increment implements and validates the complete game logic as a cons
   AARAU, BASEL, BRUGG, DATEI, MODUL, LOGIK
   ```
 
-- Later, a filtered German word list (`5_letter_words.txt`) is used for validation.
+- Later, a filtered German word list (`5_letter_words.txt`) is used for validation. This has been further refined to `5_letter_common_words.txt` in week 5 to improve gameplay experience.
 
 #### Game Logic Steps
 
@@ -73,6 +76,7 @@ The initial increment implements and validates the complete game logic as a cons
 3. Validate input:
    - Exactly 5 characters.
    - Word must exist in the dictionary (`5_letter_words.txt`).
+   - Word are selected from `5_letter_common_words.txt`. These are more common words, which makes the game more enjoyable.
 4. Compare the input word with the target word.
 5. Generate feedback per character using the following scheme:
    - **G**: Correct letter in the correct position.
@@ -197,7 +201,7 @@ Inspired by [w3schools.com/](https://www.w3schools.com/howto/howto_css_modals.as
 - Added a virtual keyboard to the frontend using the [simple-keyboard library](https://hodgef.com/simple-keyboard/).
 - Improved feedback to handle duplicate letters correctly.
 
-### Week 5: Polishing & Presentation (Car 🚗) #5 (Planned / In Progress)
+### Week 5: Polishing & Presentation (Car 🚗) #5 (Completed)
   
 #### Final Steps
 
@@ -208,6 +212,8 @@ Inspired by [w3schools.com/](https://www.w3schools.com/howto/howto_css_modals.as
 - Last testing and bug fixing.
 - Clone to GitLab
 - Presentation
+
+Everything is working and deployed :relieved:
 
 ⸻
 
