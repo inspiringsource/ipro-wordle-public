@@ -20,23 +20,20 @@ public class Helper {
 
             String line;
             while ((line = reader.readLine()) != null) {
-                // Remove JSON characters like quotes, commas, and brackets
                 line = line.replaceAll("[\"\\[\\],]", "").trim();
-                if (line.isEmpty()) continue;
 
-                // erst normalisieren
-                String upper = line.toUpperCase(Locale.ROOT);
+                if (!line.isEmpty()) {
 
-                // Skip words containing German special characters (ß, Ä, Ö, Ü)
-                if (line.contains("ß") || line.contains("ẞ")
-                        || upper.contains("Ä") || upper.contains("Ö") || upper.contains("Ü")) {
-                    continue;
-                }
+                    String upper = line.toUpperCase(Locale.ROOT);
 
-                // dann erst die 5-Buchstaben-Regel anwenden
-                if (upper.length() == 5) {
-                    writer.write(upper);
-                    writer.newLine();
+                    boolean hasSpecial =
+                            line.contains("ß") || line.contains("ẞ") ||
+                            upper.contains("Ä") || upper.contains("Ö") || upper.contains("Ü");
+
+                    if (!hasSpecial && upper.length() == 5) {
+                        writer.write(upper);
+                        writer.newLine();
+                    }
                 }
             }
 

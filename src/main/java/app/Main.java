@@ -31,13 +31,13 @@ public class Main {
 
         // if present letters (Y)
         for (int i = 0; i < 5; i++) {
-            if (result[i] == 'G') continue;
-
-            for (int j = 0; j < 5; j++) {
-                if (guess.charAt(i) == tempTarget[j]) {
-                    result[i] = 'Y';
-                    tempTarget[j] = '_'; // mark as used
-                    break;
+            if (result[i] != 'G') {
+                for (int j = 0; j < 5; j++) {
+                    if (guess.charAt(i) == tempTarget[j]) {
+                        result[i] = 'Y';
+                        tempTarget[j] = '_';
+                        break;
+                    }
                 }
             }
         }
@@ -70,22 +70,21 @@ public class Main {
             String erratenesWort = scanner.nextLine().trim().toUpperCase();
 
             if (!Dictionary.isValidWord(erratenesWort)) {
-                System.out.println("Kein gueltiges deutsches Wort oder Wort zu kurz.");
-                continue;
+                System.out.println("Kein gueltiges deutsches Wort!");
+            } else {
+
+                versuche++;
+
+                if (erratenesWort.equals(zielwort)) {
+                    System.out.println("Feedback: GGGGG");
+                    System.out.println("Gewonnen!");
+                    scanner.close();
+                    return;
+                }
+
+                String feedback = getFeedback(erratenesWort, zielwort);
+                System.out.println("Feedback:  " + feedback);
             }
-
-            versuche++;
-
-            if (erratenesWort.equals(zielwort)) {
-                System.out.println("Feedback: GGGGG");
-                System.out.println("Gewonnen!");
-                scanner.close();
-                return;
-            }
-            String feedback = getFeedback(erratenesWort, zielwort);
-
-            System.out.println("Feedback:  " + feedback);
-
         }
 
         System.out.println("Game Over! Zielwort war: " + zielwort);
