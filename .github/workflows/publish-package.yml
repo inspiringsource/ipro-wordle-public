@@ -21,8 +21,8 @@ jobs:
           java-version: "17"
           cache: maven
           server-id: github
-          server-username: GITHUB_ACTOR
-          server-password: GITHUB_TOKEN
+          server-username: ${{ github.actor }}
+          server-password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish
         run: mvn -B -DskipTests deploy
