@@ -35,4 +35,12 @@ class MainTest {
         assertEquals(erwartetesResultat, Main.getFeedback(erratenesWort, zielwort));
     }
 
+    // guess: zielwort=LICHT, guess=LOGIK, feedback=GBBYB
+    @Test
+    void testCharSomeIncorrect() {
+        String erratenesWort = "LOGIK";
+        String zielwort = "LICHT";
+        String erwartetesResultat = "GBBYB";
+        assertEquals(erwartetesResultat, Main.getFeedback(erratenesWort, zielwort));
+    }
 }
