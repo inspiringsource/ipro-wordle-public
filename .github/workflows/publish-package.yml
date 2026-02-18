@@ -20,9 +20,46 @@ jobs:
           distribution: temurin
           java-version: "17"
           cache: maven
-          server-id: github
-          server-username: ${{ github.actor }}
-          server-password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create explicit Maven settings.xml for GitHub Packages
+        shell: bash
+        env:
+          GH_ACTOR: ${{ github.actor }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Explicit settings.xml removes any ambiguity about which credentials Maven uses.
+          echo "::add-mask::${GH_TOKEN}"
+          mkdir -p ~/.m2
+
+          # Quoted heredoc => no shell expansion. Maven will resolve env vars at runtime.
+          cat > ~/.m2/settings.xml <<'EOF'
+          <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 https://maven.apache.org/xsd/settings-1.0.0.xsd">
+            <servers>
+              <server>
+                <id>github</id>
+                <username>${env.GH_ACTOR}</username>
+                <password>${env.GH_TOKEN}</password>
+              </server>
+            </servers>
+          </settings>
+          EOF
+
+          chmod 600 ~/.m2/settings.xml
+          echo "Maven settings path: $HOME/.m2/settings.xml"
+
+      - name: Validate Maven settings and server id
+        env:
+          GH_ACTOR: ${{ github.actor }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mvn -v
+          mvn -q -s ~/.m2/settings.xml help:effective-settings -Doutput=effective-settings.xml
+          grep -n "<id>github</id>" effective-settings.xml
 
       - name: Publish
-        run: mvn -B -DskipTests deploy
+        env:
+          GH_ACTOR: ${{ github.actor }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: mvn -B -s ~/.m2/settings.xml -DskipTests deploy
