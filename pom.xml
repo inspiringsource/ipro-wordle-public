@@ -5,7 +5,7 @@
 
   <groupId>ch.fhnw.ipro</groupId>
   <artifactId>wordle</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
 
   <name>wordle</name>
   <url>https://github.com/inspiringsource/ipro-wordle-public</url>

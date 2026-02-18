@@ -24,39 +24,30 @@ jobs:
       - name: Create Maven settings.xml for GitHub Packages
         shell: bash
         env:
-          GH_ACTOR: ${{ github.actor }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_ACTOR: ${{ github.repository_owner }}
+          GH_TOKEN: ${{ secrets.GH_PACKAGES_TOKEN }}
         run: |
           echo "::add-mask::${GH_TOKEN}"
           mkdir -p ~/.m2
-
-          cat > ~/.m2/settings.xml <<'EOF'
+          cat > ~/.m2/settings.xml <<EOF
           <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                     xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 https://maven.apache.org/xsd/settings-1.0.0.xsd">
             <servers>
               <server>
                 <id>github</id>
-                <username>${env.GH_ACTOR}</username>
-                <password>${env.GH_TOKEN}</password>
+                <username>${GH_ACTOR}</username>
+                <password>${GH_TOKEN}</password>
               </server>
             </servers>
           </settings>
           EOF
-
           chmod 600 ~/.m2/settings.xml
-
-      - name: Diagnostics (safe)
-        run: |
-          mvn -v
-          mvn -q -s ~/.m2/settings.xml help:evaluate \
-            -Dexpression=project.distributionManagement.repository.url \
-            -DforceStdout || true
 
       - name: Publish
         env:
-          GH_ACTOR: ${{ github.actor }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_ACTOR: ${{ github.repository_owner }}
+          GH_TOKEN: ${{ secrets.GH_PACKAGES_TOKEN }}
         run: |
           mvn -B -s ~/.m2/settings.xml -DskipTests \
             -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/inspiringsource/ipro-wordle-public \
